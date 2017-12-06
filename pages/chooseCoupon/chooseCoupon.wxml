@@ -1,0 +1,79 @@
+
+<!--pages/chooseCoupon/chooseCoupon.wxml-->
+<scroll-view scroll-y="true" bindscrolltolower="scrolltolower" lower-threshold="0px" upper-threshold="0px" bindscrolltolower="bindscrolltoupper" style="height:{{scrollStyle.height}}px;">
+  <view class="container">
+    <!--<view class="chooseCoupon_tit">
+      <view class="chooseCoupon_tit_left">选择优惠券:</view>
+      <view class="chooseCoupon_tit_right" bindtap="bindChoose">
+        <view class="chooseCoupon_tit_right_name">{{chooseText}}</view>
+        <view class="chooseCoupon_tit_right_img">
+          <image src="../../imgs/sanjiao.png"></image>
+        </view>
+      </view>
+    </view>-->
+    <view class="chooseCoupon_info">
+      <view class="chooseCoupon_info_tit">
+        <view class="chooseCoupon_info_tit-box {{currentTab==0?'active':''}}" data-current="0" bindtap="swichNav">浏览({{num.browse_num}})</view>
+        <view class="chooseCoupon_info_tit-box {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">领取({{num.no_num}})</view>
+        <view class="chooseCoupon_info_tit-box {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">使用({{num.user_num}})</view>
+      </view>
+
+      <!--这是没有数据统计的样式-->
+      <view class="no_info_detail" wx:if="{{unShow==true}}">
+        <view class="no_info_box">
+          <view class="no_info_box_img">
+            <image src="../../imgs/no.png"></image>
+          </view>
+          <view class="no_info_box_text">当前没有任何数据统计</view>
+        </view>
+      </view>
+
+      <!--这是浏览的数据-->
+      <view class="chooseCoupon_info_con" wx:if="{{currentTab==0}}">
+        <view class="chooseCoupon_info_con_box" wx:for="{{drawList}}" wx:for-item="item">
+          <view class="chooseCoupon_info_con_box_img">
+            <image src="{{item.avatar}}"></image>
+          </view>
+          <view class="chooseCoupon_info_con_box_name">{{item.nickname}}</view>
+          <view class="chooseCoupon_info_con_box_time">{{item.created_at}}</view>
+        </view>
+      </view>
+
+      <!--这是领取的数据-->
+      <view class="chooseCoupon_info_con" wx:if="{{currentTab==1}}">
+        <view class="chooseCoupon_info_con_box" wx:for="{{drawList}}" wx:for-item="item">
+          <view class="chooseCoupon_info_con_box_img">
+            <image src="{{item.avatar}}"></image>
+          </view>
+          <view class="chooseCoupon_info_con_box_name">{{item.nickname}}</view>
+          <view class="chooseCoupon_info_con_box_time">{{item.created_at}}</view>
+        </view>
+      </view>
+
+      <!--这是使用的数据-->
+      <view class="chooseCoupon_info_con" wx:if="{{currentTab==2}}">
+        <view class="chooseCoupon_info_con_box" wx:for="{{drawList}}" wx:for-item="item">
+          <view class="chooseCoupon_info_con_box_img">
+            <image src="{{item.avatar}}"></image>
+          </view>
+          <view class="chooseCoupon_info_con_box_name">{{item.nickname}}</view>
+          <view class="chooseCoupon_info_con_box_time">{{item.created_at}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!--这是选择优惠券的弹出框-->
+    <view class="chooseCoupon_pop" wx:if="{{chooseShow}}">
+      <view class="chooseCoupon_pop_per" wx:for="{{chooseList}}" wx:for-item="item" bindtap="bindCoupon" data-index="{{index}}">
+        <view class="chooseCoupon_pop_left">
+          <view class="chooseCoupon_pop_left_name">{{item.name}}</view>
+
+          <!--<view class="chooseCoupon_pop_left_time">{{item.date}}</view>-->
+        </view>
+        <view class="chooseCoupon_pop_right" wx:if="{{item.isOpen}}">
+          <image src="../../imgs/duigou.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

@@ -1,0 +1,26 @@
+
+<!--pages/clerkPage/clerkPage.wxml-->
+<view class="container">
+  <view class="wxapp-toast-content-box" wx:if="{{isShowToast}}">
+    <view class="wxapp-toast-content">
+      <view class="wxapp-toast-content-text"> {{toastText}} </view>
+    </view>
+  </view>
+  <view class="coupon_info">
+    <view class="coupon_info_box">
+        <view class="box_right" wx:if="{{info}}">
+          <view class="box_right_text">{{info.name}}</view>
+          <view class="box_right_bot">{{info.created_at}}</view>
+        </view>
+    </view>
+  </view>
+  <view class="mine_tit">
+        <view class="mine_tit_img">
+            <image src="{{img}}"></image>
+        </view>
+        <view class="mine-tit_text">
+            {{name}}
+        </view>
+    </view>
+  <view class="clerkPage_button" bindtap="clerk">核销</view>
+</view>

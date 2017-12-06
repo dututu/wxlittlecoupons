@@ -1,0 +1,17 @@
+<!--pages/bindClerk/bindClerk.wxml-->
+<view class="container">
+  <view class="wxapp-toast-content-box" wx:if="{{isShowToast}}">
+    <view class="wxapp-toast-content">
+      <view class="wxapp-toast-content-text"> {{toastText}} </view>
+    </view>
+  </view>
+    <view class="bindClerk_info">
+        <view class="bindClerk_info_box">
+            <view class="bindClerk_info_box_img">
+                <image src="../../imgs/bindClerk.png"></image>
+            </view>
+            <view class="bindClerk_info_box_text">是否绑定核销员</view>
+        </view>
+    </view>
+    <view class="bindClerk_button" bindtap="getBind">确定</view>
+</view>

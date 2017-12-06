@@ -1,0 +1,8 @@
+<!--pages/submit/submit.wxml-->
+<view class="container">
+  <view class="submit_info">
+    <image src="../../imgs/submit.png"></image>
+    <view class="submit_info_text">已提交</view>
+  </view>
+  <view class="submit_button" bindtap="jumpIndex">完成</view>
+</view>

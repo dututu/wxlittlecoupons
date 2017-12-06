@@ -1,0 +1,8 @@
+<!--pages/authorize/authorize.wxml-->
+<!-- 授权页面 -->
+<view class="container">
+  <view class="index">
+    <image src="../../imgs/shou_bgc.png"></image>
+  </view>
+  <view class="index_button" bindtap="quan">重新授权</view>
+</view>

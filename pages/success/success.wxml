@@ -1,0 +1,13 @@
+<!--pages/bindClerk/bindClerk.wxml-->
+<view class="container">
+    <view class="bindClerk_info">
+        <view class="bindClerk_info_box">
+            <view class="bindClerk_info_box_img">
+                <image src="../../imgs/successs.png"></image>
+            </view>
+            <view class="bindClerk_info_box_text">支付成功</view>
+            <view class="bindClerk_info_box_text">去'我的优惠券'查看</view>
+        </view>
+    </view>
+    <view class="bindClerk_button" bindtap="jumpMine">完成</view>
+</view>

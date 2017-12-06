@@ -1,0 +1,238 @@
+/* pages/chooseCoupon/chooseCoupon.wxss */
+
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: #ebebeb;
+  position: relative;
+}
+
+/*发布优惠券头部的内容*/
+
+.chooseCoupon_tit {
+  padding: 15rpx 30rpx;
+  height: 60rpx;
+  background-color: #fff;
+  border-bottom: 2rpx solid #e7e8ea;
+}
+
+.chooseCoupon_tit_left {
+  width: 180rpx;
+  height: 100%;
+  line-height: 60rpx;
+  font-size: 28rpx;
+  color: #000;
+  float: left;
+}
+
+.chooseCoupon_tit_right {
+  height: 60rpx;
+  line-height: 60rpx;
+  overflow: hidden;
+  border-radius: 30rpx;
+  border: 2rpx solid #09bb07;
+  position: relative;
+}
+
+.chooseCoupon_tit_right_name {
+  position: absolute;
+  left: 20rpx;
+  font-size: 28rpx;
+  color: #000;
+}
+
+/*.chooseCoupon_tit_right_time {
+  position: absolute;
+  right: 55rpx;
+  font-size: 24rpx;
+  color: #7e7e7e;
+}*/
+
+.chooseCoupon_tit_right_img {
+  position: absolute;
+  top: 25rpx;
+  right: 15rpx;
+  width: 17rpx;
+  height: 11rpx;
+}
+
+.chooseCoupon_tit_right_img>image {
+  width: 17rpx;
+  height: 11rpx;
+  display: block;
+}
+
+/*发布优惠券内容头部的样式*/
+
+.chooseCoupon_info {
+  width: 100%;
+}
+
+.chooseCoupon_info_tit {
+  padding: 0 30rpx;
+  height: 80rpx;
+  border-bottom: 2rpx solid #e7e8ea;
+  background-color: #fff;
+  position: relative;
+}
+
+.chooseCoupon_info_tit-box {
+  height: 100%;
+  line-height: 80rpx;
+  padding: 0 28rpx;
+  font-size: 28rpx;
+  color: #000;
+  position: absolute;
+  top: 50%;
+}
+
+.active {
+  color: #09bb07;
+  border-bottom: 4rpx solid #09bb07;
+}
+
+.chooseCoupon_info_tit-box:nth-child(1) {
+  left: 53rpx;
+  transform: translateY(-50%);
+}
+
+.chooseCoupon_info_tit-box:nth-child(2) {
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.chooseCoupon_info_tit-box:nth-child(3) {
+  right: 53rpx;
+  transform: translateY(-50%);
+}
+
+
+
+/*这是没有数据统计的样式*/
+.no_info_detail {
+    width: 100%;
+    padding-top: 300rpx;
+}
+.no_info_box {
+    width: 100%;
+}
+.no_info_box_img {
+    width: 130rpx;
+    height: 130rpx;
+    margin: 0 auto;
+    margin-bottom: 30rpx;
+}
+.no_info_box_img>image {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.no_info_box_text {
+   width: 100%;
+   text-align: center;
+   font-size: 28rpx;
+   color: #595959;
+}
+.no_info_button_box {
+    margin-top: 245rpx;
+    padding: 0 75rpx;
+}
+
+/*这是浏览部分的内容*/
+
+.chooseCoupon_info_con {
+  width: 100%;
+  background-color: #fff;
+}
+
+.chooseCoupon_info_con_box {
+  width: 100%;
+  height: 95rpx;
+  line-height: 95rpx;
+  border-bottom: 1rpx solid #e7e8ea;
+  position: relative;
+}
+
+.chooseCoupon_info_con_box_img {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  position: absolute;
+  left: 60rpx;
+  top: 13rpx;
+}
+
+.chooseCoupon_info_con_box_img>image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: block;
+}
+
+.chooseCoupon_info_con_box_name {
+  position: absolute;
+  left: 150rpx;
+  font-size: 26rpx;
+  color: #595959;
+}
+
+.chooseCoupon_info_con_box_time {
+  position: absolute;
+  right: 60rpx;
+  font-size: 26rpx;
+  color: #a3a3a3;
+}
+
+/*选择优惠券弹出框*/
+
+.chooseCoupon_pop {
+  width: 470rpx;
+  position: absolute;
+  top: 75rpx;
+  right: 50rpx;
+  background-color: #fff;
+  box-shadow: 3rpx 3rpx 3rpx #ccc;
+  height: 540rpx;
+  overflow: scroll;
+}
+
+.chooseCoupon_pop_per {
+  padding-left: 35rpx;
+  padding-right: 20rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  border-bottom: 1rpx solid #e7e8ea;
+}
+
+.chooseCoupon_pop_left {
+  float: left;
+  height: 100%;
+  width: 88%;
+}
+
+.chooseCoupon_pop_right {
+  float: right;
+  width: 27rpx;
+  height: 20rpx;
+  margin-top: 35rpx;
+}
+
+.chooseCoupon_pop_right>image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.chooseCoupon_pop_left_name {
+  font-size: 26rpx;
+  color: #000;
+  width: 100%;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.chooseCoupon_pop_left_time {
+  font-size: 24rpx;
+  color: #7e7e7e;
+}

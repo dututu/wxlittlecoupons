@@ -1,0 +1,222 @@
+/* pages/publish/publish.wxss */
+
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: #ebebeb;
+  position: relative;
+}
+
+.newpublish_info>form button {
+  border: 0;
+  background-color: #09bb07;
+  color: #fff;
+  padding: 0;
+}
+
+.publish_tit {
+  /*padding: 0 30rpx;*/
+  width: 100%;
+  height: 90rpx;
+  line-height: 90rpx;
+  background-color: #fff;
+  /*position: relative;*/
+}
+
+.publish_tit_per {
+  width: 50%;
+  height: 100%;
+  float: left;
+  font-size: 30rpx;
+  text-align: center;
+}
+
+.active {
+  color: #09bb07;
+  border-bottom: 4rpx solid #09bb07;
+}
+
+/*已经发布过的优惠券样式*/
+
+.publish_info {
+  padding: 20rpx 20rpx;
+  /*padding-bottom: 20rpx;*/
+}
+
+.publish_info_box {
+  width: 100%;
+  height: 200rpx;
+  position: relative;
+  margin-bottom: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.publish_info_box:last-child {
+  margin: 0;
+}
+
+.publish_info_box>image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.publish_info_box_left {
+  width: 557rpx;
+  padding: 28rpx 0;
+  z-index: 1000;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.box_left {
+  width: 145rpx;
+  height: 145rpx;
+  margin-left: 35rpx;
+  margin-right: 32rpx;
+  float: left;
+}
+
+.box_left>image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.box_right {
+  overflow: hidden;
+  height: 100%;
+}
+
+.box_right_text {
+  margin-top: 12rpx;
+  height: 90rpx;
+  overflow: hidden;
+  font-size: 30rpx;
+  color: #000;
+  font-family: "苹方";
+}
+
+.box_right_bot {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.publish_info_box_right {
+  width: 153rpx;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 557rpx;
+  z-index: 1000;
+}
+
+.publish_info_button {
+  width: 125rpx;
+  height: 40rpx;
+  background-color: #09bb07;
+  margin: 80rpx auto 0;
+  color: #fff;
+  font-size: 20rpx;
+  text-align: center;
+  line-height: 42rpx;
+  border-radius: 20rpx;
+}
+
+/*没有发布过优惠券的样式*/
+
+.no_info_detail {
+  width: 100%;
+  padding-top: 220rpx;
+}
+
+.no_info_box {
+  width: 100%;
+}
+
+.no_info_box_img {
+  width: 130rpx;
+  height: 130rpx;
+  margin: 0 auto;
+  margin-bottom: 30rpx;
+}
+
+.no_info_box_img>image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.no_info_box_text {
+  width: 100%;
+  text-align: center;
+  font-size: 28rpx;
+  color: #595959;
+}
+
+.no_info_button_box {
+  margin-top: 245rpx;
+  padding: 0 75rpx;
+}
+
+.no_info_button_but {
+  width: 100%;
+  height: 90rpx;
+  background-color: #09bb07;
+  border-radius: 10rpx;
+  text-align: center;
+  color: #fff;
+  line-height: 90rpx;
+  font-size: 30rpx;
+}
+/*滑动的时候的样式*/
+.content {
+  width: 100%;
+  height: 200rpx;
+  margin-right: 0;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  -webkit-transform: translateX(180px);
+  transform: translateX(180px);
+  margin-left: -180px;
+}
+.button {
+  width: 180px;
+  height: 100%;
+  color: #fff;
+  -webkit-transform: translateX(180px);
+  transform: translateX(180px);
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  font-size: 14px;
+}
+.desText {
+  background-color: #e6e5e5;
+  width: 90px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  float: left;
+}
+.del {
+  background-color: orangered;
+  width: 90px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 90px;
+}
+
+.touch-move-active .content, .touch-move-active .button {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}

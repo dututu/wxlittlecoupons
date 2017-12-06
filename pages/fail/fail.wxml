@@ -1,0 +1,12 @@
+<!--pages/bindClerk/bindClerk.wxml-->
+<view class="container">
+    <view class="bindClerk_info">
+        <view class="bindClerk_info_box">
+            <view class="bindClerk_info_box_img">
+                <image src="../../imgs/fail.png"></image>
+            </view>
+            <view class="bindClerk_info_box_text">支付失败</view>
+        </view>
+    </view>
+    <view class="bindClerk_button" bindtap="jumpPage">完成</view>
+</view>

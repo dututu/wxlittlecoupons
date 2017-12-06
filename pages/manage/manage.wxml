@@ -1,0 +1,55 @@
+
+<!--pages/publish/publish.wxml-->
+<view class="container">
+  <scroll-view scroll-y="true" bindscrolltolower="scrolltolower" lower-threshold="0" upper-threshold="0" bindscrolltolower="bindscrolltoupper" style="width:{{scrollStyle.width}}px;height:{{scrollStyle.height}}px">
+    <!--这是已发布优惠券的内容-->
+    <view class="publish_info">
+
+      <!--已经发布过优惠券-->
+      <view class="publish_info_detail">
+        <view class="publish_info_box {{item.isTouchMove ? 'touch-move-active' : ''}}" wx:if="{{noPub==false}}" wx:for="{{publishList}}"   bindtouchstart="touchstart" bindtouchmove="touchmove" data-index="{{index}}">
+          <image src="../../imgs/bgc.png"></image>
+          <view class="content" data-item="{{item}}"  bindtap="jumpData" >
+            <view class="publish_info_box_left">
+              <view class="box_left">
+                <image src="{{item.img}}"></image>
+              </view>
+              <view class="box_right">
+                <view class="box_right_text">{{item.name}}</view>
+                <view class="box_right_bot">发布时间:{{item.createtime}}</view>
+              </view>
+            </view>
+            <view class="publish_info_box_right">
+
+              <!--<view class="publish_info_button" style="{{item.status==1?'background-color:#ec4b41;':item.status==0?'background-color:#09bb07;':'background-color:#a1a1a1;'}}" bindtap="switch" data-index="{{index}}">
+              {{item.status==1?'下架':item.status==0?'上架':item.status==2?'已过期':item.status==3?'审核中':'未通过'}}
+            </view>-->
+              <view class="publish_info_button">
+                查看数据
+              </view>
+            </view>
+          </view>
+          <view class="button">
+            <view class="desText" data-index="{{index}}" bindtap="switch">{{item.status==0?'上架':item.status==1?'下架':item.status==2?'已过期':item.status==3?'审核中':'未通过'}}</view>
+            <view class="del" bindtap="delete" data-item="{{item}}">删除</view>
+          </view>
+          
+        </view>
+      </view>
+
+      <!--没有发布过优惠券-->
+      <view class="no_info_detail" wx:if="{{noPub==true}}" style="height: 100%;">
+        <view class="no_info_box">
+          <view class="no_info_box_img">
+            <image src="../../imgs/no.png"></image>
+          </view>
+          <view class="no_info_box_text">您还没有发布优惠券</view>
+          <view class="no_info_box_text">快去点击发布按钮发布吧</view>
+        </view>
+        <view class="no_info_button_box">
+          <view class="no_info_button_but" bindtap="jumpNew">发布优惠券</view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

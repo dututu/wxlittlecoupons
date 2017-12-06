@@ -1,0 +1,93 @@
+/* pages/addClerk/addClerk.wxss */
+.container {
+    width: 100%;
+    height: 100%;
+    background-color: #ebebeb;
+}
+/*添加核销员头部的样式*/
+.clerk_tit {
+    width: 100%;
+    height: 400rpx;
+    background-color: #09bb07;
+    padding-top: 55rpx;
+}
+.clerk_tit_img {
+    width: 235rpx;
+    height: 235rpx;
+    background-color: #fff;
+    /*padding: 15rpx 20rpx;*/
+    margin: 0 auto;
+}
+.clerk_tit_img>image {
+    width: 100%;
+    height: 100%;
+}
+.clerk_tit_text {
+    width: 100%;
+    margin-top: 35rpx;
+    font-size: 28rpx;
+    color: #fff;
+    text-align: center;
+}
+/*添加核销员内容部分的样式*/
+.clerk_info {
+    width: 100%;
+    background-color: #fff;
+}
+.clerk_info_tit {
+    padding: 0 30rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    border-bottom: 2rpx solid #e7e8ea;
+    font-size: 28rpx;
+    color: #000;
+}
+.clerk_info_con {
+    width: 100%;
+}
+.clerk_info_con_box {
+    padding: 0 30rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    border-bottom: 1rpx solid #e7e8ea;
+    position: relative;
+}
+.clerk_info_con_box_img {
+    width: 70rpx;
+    height: 70rpx;
+    border-radius: 50%;
+    position: absolute;
+    top: 10rpx;
+    left: 30rpx;
+}
+.clerk_info_con_box_img>image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: block;
+}
+.clerk_info_con_box_text {
+    font-size: 28rpx;
+    color: #595959;
+    position: absolute;
+    left: 120rpx;
+}
+.clerk_info_con_box_time {
+    font-size: 24rpx;
+    color: #b0b0b0;
+    position: absolute;
+    right: 180rpx;
+}
+.clerk_info_con_box_button {
+    width: 125rpx;
+    height: 40rpx;
+    background-color: #ec4b41;
+    border-radius: 20rpx;
+    line-height: 40rpx;
+    font-size: 20rpx;
+    color: #fff;
+    text-align: center;
+    position: absolute;
+    right: 30rpx;
+    top: 25rpx;
+}

@@ -1,0 +1,57 @@
+<!--index.wxml-->
+<scroll-view scroll-y="true" bindscrolltolower="scrolltolower" lower-threshold="0" upper-threshold="0px" bindscrolltolower="bindscrolltolower"   style="width:{{scrollStyle.width}}px;height:{{scrollStyle.height}}px">
+<view class="container">
+  <view class="wxapp-toast-content-box" wx:if="{{isShowToast}}">
+    <view class="wxapp-toast-content">
+      <view class="wxapp-toast-content-text"> {{toastText}} </view>
+    </view>
+  </view>
+    <view class="index_tit">
+      <view class="index_tit_info" bindtap="jumpSearch">
+        <image class="index_tit_icon" src="../../imgs/search.png"></image>
+        <text class="index_tit_text">搜索优惠券</text>
+      </view>
+    </view>
+    <view class="index_banner">
+      <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class="banner_box">
+        <block wx:for="{{imgUrls}}">
+          <swiper-item bindtap="jumpPage" data-item="{{item}}">
+            <image src="{{item.imgurl}}" class="slide-image" />
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <view class="index_nav">
+      <view class="index_nav_per" wx:for="{{navList}}" wx:for-item="item" bindtap="changeImg" data-index="{{index}}">
+        <image src="{{item.imgSrc}}"></image>
+        <text class="{{item.color}}">{{item.text}}</text>
+      </view>
+    </view>
+
+    <view class="index_info">
+      <view class="index_info_box" wx:for="{{infoList}}" wx:for-item="item"  data-item="{{item}}" bindtap="jumpDetail" >
+        <image src="../../imgs/bgc.png"></image>
+        <view class="index_info_box_left" >
+          <view class="box_left">
+            <image src="{{item.img}}"></image>
+          </view>
+          <view class="box_right">
+            <view class="box_right_text">{{item.name}}</view>
+            <view class="box_right_bot">
+              <image class="eyes" src="../../imgs/eyes.png"></image>
+              <text>{{item.browse}}</text>
+              <image class="add" src="../../imgs/add.png"></image>
+              <text>{{item.distance}}</text>
+            </view>
+          </view>
+        </view>
+        <view class="index_info_box_right">
+          <view class="index_info_button">
+            <text wx:if="{{item.price!=0}}">{{item.price}}元领</text>
+            <text wx:if="{{item.price==0}}">免费领取</text>
+          </view>
+        </view>
+      </view>
+    </view>
+</view>
+  </scroll-view>

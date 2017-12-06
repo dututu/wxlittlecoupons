@@ -1,0 +1,33 @@
+/* pages/authorize/authorize.wxss */
+.container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.index {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.index>image  {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.index_button {
+  position: absolute;
+  z-index: 3;
+  bottom: 55rpx;
+  width: 80%;
+  left: 10%;
+  height: 90rpx;
+  font-size: 30rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 90rpx;
+  background-color: #09bb07;
+  border-radius: 10rpx;
+}

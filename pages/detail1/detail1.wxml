@@ -1,0 +1,119 @@
+
+<!--pages/detail/detail.wxml-->
+<scroll-view scroll-y="true" bindscrolltolower="scrolltolower" lower-threshold="0" upper-threshold="0" bindscrolltolower="bindscrolltoupper" style="height:{{scrollStyle.height}}px">
+<view class="wxapp-toast-content-box" wx:if="{{isShowToast}}">
+    <view class="wxapp-toast-content">
+      <view class="wxapp-toast-content-text"> {{toastText}} </view>
+    </view>
+  </view>
+  <view class="container {{codeShow==true?'hidden':''}}">
+    <view class="detail_info">
+      <view class="detail_info_tit">
+        <text>{{detailInfo.name}}</text>
+      </view>
+      <view class="detail_info_bot">
+        <view class="detail_info_bot_box_top">
+          <view class="detail_info_button" bindtap="popCode" wx:if="{{detailInfo.infostatus==1}}">立即使用</view>
+          <view class="detail_info_button" style="background-color: #a1a1a1;" wx:if="{{detailInfo.infostatus==2}}">已使用</view>
+          <view class="detail_info_button" style="background-color: #a1a1a1;" wx:if="{{detailInfo.infostatus==3}}">已过期</view>
+          <!-- <view class="detail_info_bot_box_text">已领:{{detailInfo.alyLingNum }} 已用:{{detailInfo.alyUseNum}}</view> -->
+          <view class="detail_info_bot_box_text">{{detailInfo.alyLingNum }}人已领</view>
+        </view>
+        <view class="detail_info_detail">
+          <view class="detail_info_box">
+            <view class="detail_info_detail_left">说明:</view>
+            <view class="detail_info_detail_right">{{detailInfo.limit}}</view>
+          </view>
+          <view class="detail_info_box">
+            <view class="detail_info_detail_left">时间:</view>
+            <view class="detail_info_detail_right">{{detailInfo.start}}-{{detailInfo.end}} {{detailInfo.week}} {{detailInfo.time}}可用</view>
+          </view>
+          <view class="detail_info_box" style="height: 50rpx;">
+            <view class="detail_info_detail_left">位置:</view>
+            <view class="detail_info_detail_right" style="height: auto; width: 85%;">{{detailInfo.address}} | {{detailInfo.distance}}
+              <view class="detail_info_detail_right_img" bindtap="nav">
+                <image src="../../imgs/daohang.png"></image>
+              </view>
+            </view>
+          </view>
+          <view class="detail_info_box">
+            <view class="detail_info_detail_left">电话:</view>
+            <view class="detail_info_detail_right">
+              {{detailInfo.phone}}
+              <view class="detail_info_detail_right_img" bindtap="tel">
+                <image src="../../imgs/phone.png"></image>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="detail_pinglun">
+      <view class="detail_pinglun_tit">
+        <view class="detail_pinglun_tit_left">
+          <image src="../../imgs/info.png"></image>
+          <text>精彩评论</text>
+        </view>
+        <view class="detail_pinglun_tit_right" bindtap="popComment">
+          <image src="../../imgs/write.png"></image>
+          <text>写评论</text>
+        </view>
+      </view>
+      <view style="clear: both;"></view>
+
+      <!--这是没有评论的时候-->
+      <view class="detail_pinglun_info" wx:if="{{commentList.length==0}}">
+        <view class="detail_pinglun_info_box">
+          <image src="../../imgs/no.png"></image>
+          <text>没有评论,争当第一</text>
+        </view>
+      </view>
+
+      <!--这是有评论的时候-->
+      <view class="detail_pinglun_box" wx:if="{{commentList.length!=0}}">
+        <view class="detail_pinglun_info_per" wx:for="{{commentList}}" wx:for-item="item">
+          <view class="detail_pinglun_info_per_left">
+            <image src="{{item.avatar}}"></image>
+          </view>
+          <view class="detail_pinglun_info_per_right">
+            <view class="detail_pinglun_top">
+              <view class="detail_pinglun_top_left">{{item.name}}</view>
+              <view class="detail_pinglun_top_right" bindtap="good" data-index="{{index}}">
+                <image src="{{item.imgSrc}}"></image>
+                <text class="{{item.showColor==true?'color':''}}">{{item.num}}</text>
+              </view>
+            </view>
+            <view style="clear: both;"></view>
+            <view class="detail_pinglun_time">{{item.time}}</view>
+            <view class="detail_pinglun_question">{{item.content}}</view>
+          </view>
+        </view>
+        <view style="clear: both;"></view>
+      </view>
+
+      <!--评论弹出的盒子-->
+      <view class="comment" wx:if="{{commentShow}}">
+        <view class="cover" style="position:absolute;width:100%;height:100%;left:0;top:0;background-color:rgba(0,0,0,.3);" bindtap="popClose"> </view>
+        <view class="comment_box">
+          <view class="comment_box_info">
+            <textarea placeholder="快来说点什么吧..." value="{{searchText}}" bindinput="inputInfo" />
+          </view>
+          <view class="comment_box_submit" bindtap="submit">提交</view>
+        </view>
+      </view>
+
+      <!--二维码弹出盒子-->
+      <view class="code" wx:if="{{codeShow}}">
+        <view class="code_box">
+          <view class="code_box_close" bindtap="closePop">
+            <image src="../../imgs/close.png"></image>
+          </view>
+          <view class="code_box_img">
+            <image src="{{imgSrc}}"></image>
+          </view>
+          <view class="code_box_text">向商家出示此二维码享受优惠</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

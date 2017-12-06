@@ -1,0 +1,41 @@
+<scroll-view scroll-y="true"  lower-threshold="0" upper-threshold="0px"  style="width:{{scrollStyle.width}}px;height:{{scrollStyle.height}}px;background-color: #ebebeb;">
+<!--pages/search/search.wxml-->
+<view class="container">
+
+  <!--搜索内容顶部-->
+  <view class="search_tit">
+    <form bindsubmit="doSearch">
+      <view class="search-input-view">
+        <image src="../../imgs/search.png"></image>
+        <input placeholder="请输入搜索内容" name="search" value="" type="text" focus bindconfirm="search" placeholder-class="active" confirm-hold="true"/>
+      </view>
+      <button class="search_tit_text"  plain="true" form-type="submit" hover-class="none">搜索</button>
+    </form>
+  </view>
+
+  <!--搜索内容部分-->
+  <view class="index_info">
+    <view class="index_info_box" wx:for="{{infoList}}" wx:for-item="item" bindtap="getId" data-item="{{item}}" >
+      <image src="../../imgs/bgc.png"></image>
+      <view class="index_info_box_left">
+        <view class="box_left">
+          <image src="{{item.img}}"></image>
+        </view>
+        <view class="box_right">
+          <view class="box_right_text">{{item.name}}</view>
+          <view class="box_right_bot">
+            <image class="eyes" src="../../imgs/eyes.png"></image>
+            <text>{{item.browse}}</text>
+            <image class="add" src="../../imgs/add.png"></image>
+            <text>{{item.distance}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="index_info_box_right">
+        <view class="index_info_button" wx:if="{{item.price!=0}}">{{item.price}}元领</view>
+        <view class="index_info_button" wx:if="{{item.price==0}}">免费领取</view>
+      </view>
+    </view>
+  </view>
+</view>
+  </scroll-view>

@@ -1,0 +1,152 @@
+<!--pages/money/money.wxml-->
+<view class="container">
+  <scroll-view class="order" scroll-y="true" style="height:{{scrollHeight}}px;" bindscrolltolower="bindDownLoad" >
+  <view class="wxapp-toast-content-box" wx:if="{{isShowToast}}">
+    <view class="wxapp-toast-content">
+      <view class="wxapp-toast-content-text"> {{toastText}} </view>
+    </view>
+  </view>
+  <view class="money_tit">
+    <view class="money_tit_des">总金额(元)</view>
+    <view class="money_tit_num">
+        <text style="color: red;" wx:if="{{totalMoney>0}}">￥</text>{{totalMoney}}
+    </view>
+  </view>
+  <view class="money_con">
+    <view class="money_con_tit">
+      <view class="money_con_tit_left {{currentTab==0?'active':''}}" bindtap='swichNav' data-current="0">
+        奖励资金
+        <image src="../../imgs/wenhao.png" data-reward="reward"></image>
+      </view>
+      <view class="money_con_tit_right {{currentTab==1?'active':''}}" bindtap='swichNav' data-current="1">
+        营销资金
+        <image src="../../imgs/wenhao.png" data-marketing="marketing"></image>
+      </view>
+    </view>
+    <view class="money_con_info">
+      <!-- 这是奖励资金 -->
+      <view class="money_con_info_box" wx:if="{{currentTab==0}}">
+        <view class="money_con_info_per" >
+          <view class="money_con_info_per_top">
+            <view class="money_con_info_per_top_left">
+              可用金额:
+              <text class="money_con_info_per_top_left_num">￥{{partMoney}}</text>
+            </view>
+            <view class="money_con_info_per_top_right" bindtap="withdraw">
+              提现
+            </view>
+          </view>
+          <view class="money_con_info_per_bottom">
+            <view class="money_con_info_per_bottom_per" wx:for="{{list1}}" wx:for-item="item">
+              <view class="money_con_info_per_bottom_per_image">
+                <image src="{{item.avatar}}"></image>
+              </view>
+              <view class="money_con_info_per_bottom_per_name">
+                {{item.nickname}}
+              </view>
+              <view class="money_con_info_per_bottom_per_des">
+                {{item.type==1?'制券':item.type==2?'核销':'提现'}}
+              </view>
+              <view class="money_con_info_per_bottom_per_time">
+                {{item.created_at}}
+              </view>
+              <view class="money_con_info_per_bottom_per_num {{item.money<0?'bgc':''}}">
+                 {{item.money}} 
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 这是营销资金 -->
+      <view class="money_con_info_box" wx:if="{{currentTab==1}}">
+        <view class="money_con_info_per">
+          <view class="money_con_info_per_top">
+            <view class="money_con_info_per_top_left">
+              可用金额:
+              <text class="money_con_info_per_top_left_num">￥{{partMoney}}</text>
+            </view>
+            <view class="money_con_info_per_top_right" bindtap="openRecharge">
+              充值
+            </view>
+          </view>
+          <view class="money_con_info_per_bottom">
+            <view class="money_con_info_per_bottom_per"  wx:for="{{list2}}" wx:for-item="item">
+              <view class="money_con_info_per_bottom_per_image">
+                <image src="{{item.avatar}}"></image>
+              </view>
+              <view class="money_con_info_per_bottom_per_name">
+                {{item.nickname}}
+              </view>
+              <view class="money_con_info_per_bottom_per_des">
+                {{item.type==1?'充值':item.type==2?'制券':'核销'}}
+              </view>
+              <view class="money_con_info_per_bottom_per_time">
+                {{item.created_at}}
+              </view>
+              <view class="money_con_info_per_bottom_per_num {{item.money<0?'bgc':''}}">
+                {{item.money}}
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 奖励资金说明 -->
+      <view class="reward" wx:if="{{reward}}">
+        <view class="cover"></view>
+        <view class="reward_box">
+          <view class="reward_box_tit">奖励资金</view>
+          <view class="reward_box_close" bindtap="closeReward">
+            <image src="../../imgs/bclose.png"></image>
+          </view>
+          <view class="reward_box_des">
+            这是您获得的红包奖励,多参与分享,传播,就会获得更多红包.
+          </view>
+        </view>
+      </view>
+      <!-- 营销资金说明 -->
+      <view class="reward" wx:if="{{marketing}}">
+        <view class="cover"></view>
+        <view class="reward_box">
+          <view class="reward_box_tit">营销资金</view>
+          <view class="reward_box_close" bindtap="closeMas">
+            <image src="../../imgs/bclose.png"></image>
+          </view>
+          <view class="reward_box_des">
+            这是您用来制作优惠券的资金,在制作优惠券会扣除相应数额.
+          </view>
+        </view>
+      </view>
+      <!-- 充值弹出框 -->
+      <view class="recharge" wx:if="{{recharge}}">
+        <view class="cover"></view>
+        <view class="recharge_box">
+          <view class="recharge_box_tit">充值营销资金</view>
+          <view class="recharge_box_close" bindtap="closeRecharge">
+            <image src="../../imgs/bclose.png"></image>
+          </view>
+          <view class="recharge_box_info">
+            <view class="recharge_box_info_top">
+              <view class="recharge_box_info_top_tit">充值金额</view>
+              <view class="recharge_box_info_top_con">
+                <radio-group class="radio-group" bindchange="radioChange">
+                  <label class="radio" wx:for="{{items}}" style="margin-top: 30rpx;">
+                    <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.value}}
+                  </label>
+                  <input class="input" value="{{bieMoney}}"  bindinput="inputMoney"></input>
+                </radio-group>
+              </view>
+            </view>
+            <view class="recharge_box_info_bottom">
+              <view class="recharge_box_info_bottom_left">支付方式</view>
+              <view class="recharge_box_info_bottom_right">
+                <radio value="{{item.name}}" checked="true" />微信支付
+              </view>
+            </view>
+          </view>
+          <view class="recharge_box_button" bindtap="pay">支付</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  </scroll-view>
+</view>

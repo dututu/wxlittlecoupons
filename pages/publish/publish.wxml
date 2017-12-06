@@ -1,0 +1,268 @@
+
+<!--pages/publish/publish.wxml-->
+<view class="container">
+<view class="wxapp-toast-content-box" wx:if="{{isShowToast}}">
+    <view class="wxapp-toast-content">
+      <view class="wxapp-toast-content-text"> {{toastText}} </view>
+    </view>
+  </view>
+  <scroll-view scroll-y="true" bindscrolltolower="scrolltolower" lower-threshold="0" upper-threshold="0" bindscrolltolower="bindscrolltoupper" style="width:{{scrollStyle.width}}px;height:{{scrollStyle.height}}px">
+
+    <!--这是已发布优惠券的内容-->
+    <view class="publish_info" wx:if="{{currentTab==0}}">
+      <!--已经发布过优惠券-->
+      <view class="publish_info_detail">
+        <view class="publish_info_box" wx:if="{{publishList.length!=0}}" wx:for="{{publishList}}">
+          <image src="../../imgs/bgc.png"></image>
+          <view class="publish_info_box_left">
+            <view class="box_left">
+              <image src="{{item.img}}"></image>
+            </view>
+            <view class="box_right">
+              <view class="box_right_text">{{item.name}}</view>
+              <view class="box_right_bot">有效期:{{item.start}}到{{item.end}}</view>
+            </view>
+          </view>
+          <view class="publish_info_box_right">
+            <view class="publish_info_button" style="{{item.status==1?'background-color:#ec4b41;':item.status==0?'background-color:#09bb07;':'background-color:#a1a1a1;'}}" bindtap="switch" data-index="{{index}}">
+              {{item.status==1?'下架':item.status==0?'上架':item.status==2?'已过期':item.status==3?'审核中':'未通过'}}
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!--没有发布过优惠券-->
+      <view class="no_info_detail" wx:if="{{publishList.length==0}}" style="height: 100%;">
+        <view class="no_info_box">
+          <view class="no_info_box_img">
+            <image src="../../imgs/no.png"></image>
+          </view>
+          <view class="no_info_box_text">您还没有发布优惠券</view>
+          <view class="no_info_box_text">快去点击发布按钮发布吧</view>
+        </view>
+        <view class="no_info_button_box">
+          <view class="no_info_button_but" bindtap="jumpNew">发布优惠券</view>
+        </view>
+      </view>
+    </view>
+
+    <!--这是发布新优惠券的内容-->
+    <view class="newpublish_info" wx:if="{{currentTab==1}}">
+      <form bindsubmit="submit">
+        <view class="newpublish_info_tit">
+          <view class="newpublish_info_tit_left">
+            <view class="newpublish_info_tit_left_top">
+              <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="输入优惠券名称" placeholder-class="input" value="{{name}}" bindblur="inputName" />
+            </view>
+            <view class="newpublish_info_tit_left_bot">
+              <view class="newpublish_info_tit_left_bot_left">
+                <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input style="width: 90%;" placeholder="优惠金额" placeholder-class="input" value="{{countPrice}}" bindblur="inputCount" />
+              </view>
+              <view class="newpublish_info_tit_left_bot_right" bindtap="bindSale" style="color: #000;">
+                {{saleText}}
+                <image src="../../imgs/sanjiao.png"></image>
+              </view>
+            </view>
+          </view>
+          
+          <view class="newpublish_info_tit_right">
+            <view class="newpublish_info_tit_right_top" bindtap="bindType">
+              <view class="newpublish_info_tit_right_top_left">
+                <text style="color: red;">*</text><text wx:if="{{typeShow}}" style="color: #c7c7cd;">选择行业</text>
+                <text style="color: #000;">{{typeText}}</text>
+              </view>
+              <view class="newpublish_info_tit_right_top_right">
+                <image src="../../imgs/sanjiao.png"></image>
+              </view>
+            </view>
+            <view class="newpublish_info_tit_right_bot">
+              <view class="newpublish_info_tit_right_bot_left">
+                <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input style="width: 90%;" placeholder="发放数量" placeholder-class="input" value="{{num}}" bindblur="inputNum" />
+              </view>
+              <view class="newpublish_info_tit_right_bot_right">张</view>
+            </view>
+          </view>
+        </view>
+        <view class="newpublish_info_con">
+            <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="卡券售价(元)" type="digit" placeholder-class="input" value="{{price}}" bindblur="inputPrice" />
+        </view>
+        <view class="newpublish_info_choose">
+          <view class="newpublish_info_choose_left">
+            <view class="newpublish_info_choose_left_top">
+              <picker mode="date" start="{{time}}"   end="2040-12-01" bindchange="bindDateChange">
+                <view class="picker" style="position: relative; font-size: 30rpx; color: #c7c7cd;">
+                  <text style="color: red;">*</text><text wx:if="{{startTime==true}}" style="color: #c7c7cd;">开始时间</text>
+                  <text wx:if="{{startTime==false}}" style="color: #000;">{{startDate}}</text>
+                  <image src="../../imgs/sanjiao.png" style="width: 17rpx; height: 11rpx; position: absolute;right: 0; top: 50%; transform: transform: translateY(-50%);"></image>
+                </view>
+              </picker>
+            </view>
+            <view class="newpublish_info_choose_left_bot" bindtap="bindWeek">
+              <view class="newpublish_info_choose_left_bot_left">
+                <text style="color: red;">*</text><text wx:if="{{weekShow}}" style="color: #c7c7cd;">周几可用</text>
+                <text style="color: #000;">{{weekText}}</text>
+              </view>
+              <view class="newpublish_info_choose_left_bot_right">
+                <image src="../../imgs/sanjiao.png"></image>
+              </view>
+            </view>
+          </view>
+          <view class="newpublish_info_choose_right">
+            <view class="newpublish_info_choose_right_top">
+              <picker mode="date" value="{{date}}" start="{{startDate}}" end="2040-12-01" bindchange="bindEndDate">
+                <view class="picker" style="position: relative; font-size: 30rpx; color: #c7c7cd;">
+                  <text style="color: red;">*</text><text wx:if="{{endTime}}" style="color: #c7c7cd;">结束时间</text><text style="color: #000;">{{endDate}}</text>
+                  <image src="../../imgs/sanjiao.png" style="width: 17rpx; height: 11rpx; position: absolute;right: 0; top: 50%; transform: transform: translateY(-50%);"></image>
+                </view>
+              </picker>
+            </view>
+            <view class="newpublish_info_choose_right_bot" bindtap="bindChoose">
+              <view class="newpublish_info_choose_right_top_left">
+                <text style="color: red;">*</text><text wx:if="{{chooseShow}}" style="color: #c7c7cd;">可用时间段</text>
+                <text style="color: #000;">{{chooseText}}</text>
+              </view>
+              <view class="newpublish_info_choose_right_bot_right">
+                <image src="../../imgs/sanjiao.png"></image>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="newpublish_info_con">
+          <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="使用说明" placeholder-class="input" value="{{des}}" bindblur="inputDes" />
+          <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="关键字,逗号隔开" placeholder-class="input" value="{{key}}" bindblur="inputKey" />
+          
+          <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="门店电话" type="number" placeholder-class="input" value="{{tel}}" bindblur="inputTel" />
+          <view class="newpublish_info_con_box">
+            <view class="newpublish_info_con_box_left">
+              <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="门店地址" style="width: 90%;" placeholder-class="input" value="{{add}}" bindblur="inputAdd" />
+            </view>
+            <view class="newpublish_info_con_box_right" bindtap="getLon">
+              <image src="../../imgs/pos.png"></image>
+              <text>获取位置</text>
+            </view>
+          </view>
+          <view class="newpublish_info_con_photo">
+            <view class="newpublish_info_con_photo_top" bindtap="chooseImg">
+              <image src="../../imgs/photo.png" wx:if="{{imgShow}}"></image>
+              <image src="{{image_photo}}"></image>
+            </view>
+            <view class="newpublish_info_con_photo_bot">点击上传图片</view>
+          </view>
+          <view style="clear: both;"></view>
+         
+          <view class="newpublish_info_con_button">
+            <button class="newpublish_info_con_button_text" plain="true" hover-class="none" style="background-color:#ccc;" wx:if="{{button==false}}">提交审核</button>
+            <button class="newpublish_info_con_button_text" plain="true" form-type="submit" hover-class="none" wx:if="{{button==true}}">提交审核</button>
+          </view>
+        </view>
+      </form>
+
+      <!--这是选择行业类别的弹出盒子-->
+      <view class="type_box" wx:if="{{type}}">
+        <view class="type_box_per" wx:for="{{typeList}}" wx:for-item="item" bindtap="changeType" data-index="{{index}}">
+          <view class="type_box_per_left">{{item.name}}</view>
+          <view class="type_box_per_right">
+            <image src="../../imgs/duigou.png" wx:if="{{item.isOpen}}"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!--优惠元还是折弹出框盒子-->
+    <view class="sale_box" wx:if="{{sale}}">
+      <view class="sale_box_per" wx:for="{{saleList}}" wx:for-item="item" bindtap="changeSale" data-index="{{index}}">
+        <view class="type_box_per_left">{{item.name}}</view>
+        <view class="type_box_per_right">
+          <image src="../../imgs/duigou.png" wx:if="{{item.isOpen}}"></image>
+        </view>
+      </view>
+    </view>
+
+    <!--选择周几可用的弹出框盒子-->
+    <view class="week_box" wx:if="{{week}}">
+      <view class="sale_box_per" wx:for="{{weekList}}" wx:for-item="item" bindtap="changeWeek" data-index="{{index}}">
+        <view class="type_box_per_left">{{item.name}}</view>
+        <view class="type_box_per_right">
+          <image src="../../imgs/duigou.png" wx:if="{{item.isOpen}}"></image>
+        </view>
+      </view>
+    </view>
+
+    <!--选择可用时间段弹出框盒子-->
+    <view class="choose_box" wx:if="{{shijian}}">
+      <view class="choose_box_per" wx:for="{{chooseList}}" wx:for-item="item" bindtap="changeChoose" data-index="{{index}}">
+        <view class="type_box_per_left">{{item.name}}</view>
+        <view class="type_box_per_right">
+          <image src="../../imgs/duigou.png" wx:if="{{item.isOpen}}"></image>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <!--弹出协议-->
+
+    <view class="modal {{showAmountModal.showModal}}">
+      
+        <view class="modal-content" style="height: 750rpx;">
+          <scroll-view scroll-y style="height: 530rpx;">
+          <view class="modal-line-box amount-info">
+          <view class="modal-tittle">欢迎发券</view>
+            <view>欢迎您的加入！</view>
+            <view>在这里您可以免费为贵店发放优惠券，您的优惠券将会得到免费的浏览、推广和传播。</view>
+            <view>当有消费者在您门店附近时，您的优惠券将会自动显示在消费者的优惠券列表首页，消费者离您的门店越近，您的优惠券显示越靠前，这是优惠券显示顺序的唯一规则，所以请您在制作优惠券时，填写准确的门店地址，方便附近的消费者及时看到您的优惠券，我们有地图引导消费者找到您的门店。</view>
+            <view>为了防止他人冒用贵店资质，保护贵店信誉，请您授权给我们您经过认证的微信身份信息，在您第一次制券后，我们可能会和您电话联系，确认您的优惠券信息填写无误。</view>
+            <view>根据我们的经验，发放优惠券被浏览、推广和传播后，有效转化为到店消费的比例约为20%，我们只针对到店消费的有效服务收取服务费，每次核销优惠券时扣3元营销资金。建议您首次制券时给营销资金充值300元，发行500张优惠券，预计可为您导流100位消费者到店消费。</view>
+            <view>当消费者领券并到店消费时，请您打开微信，扫描消费者出示的优惠券二维码进行核销，核销后优惠券不能再次使用。您也可以添加其他店员成为核销员，协助您一起完成优惠券的核销工作。</view>
+            <view>建议您和您的同事们将自己的优惠券广为分享传播，如果消费者是通过您的传播第一次进入“附近优惠券”小程序，消费者以后无论在哪里用“附近优惠券”小程序里的优惠券消费，您都将获得1元的鼓励金；同时也强烈建议您将这个“附近优惠券”小程序分享给您身边的商家，您发展的商家在此发放优惠券并有消费者到店消费时，您也将获得1元的鼓励金。鼓励金可以直接提现到您的微信零钱包里！您发展的消费者和商家，将终身获得鼓励金的分配。</view>
+            <view>感谢您的耐心阅读，让我们开始吧！</view>
+            
+          </view>
+          </scroll-view>
+           <view class="xieyibox">
+            <checkbox-group bindchange="xieyi">
+              <label class="checkbox xieyi_box">
+                <checkbox class="checkbox " value="1" checked="{{xieyicheck}}"/>您已经阅
+              </label>
+              <text class="newpublish_info_user_xieyi" bindtap="showxieyi">《商户协议》</text>
+            </checkbox-group>
+          </view>
+          <view class="modal-line-box amount-button">
+            
+            
+            <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" size="mini" id="1" class="button-color_agree">我知道了</button>
+          </view>
+
+        </view>
+        
+      </view>
+       <view class="mask {{showAmountModal.showMask}}"></view>
+       <!-- 充值弹出框 -->
+      <view class="recharge" wx:if="{{recharge}}">
+        <view class="cover"></view>
+        <view class="recharge_box">
+          <view class="recharge_box_tit">营销资金不足请充值</view>
+          <view class="recharge_box_close" bindtap="closeRecharge">
+            <image src="../../imgs/bclose.png"></image>
+          </view>
+          <view class="recharge_box_info">
+            <view class="recharge_box_info_top">
+              <view class="recharge_box_info_top_tit">充值金额（元）</view>
+              <view class="recharge_box_info_top_con">
+                <radio-group class="radio-group" bindchange="radioChange">
+                  <label class="radio" wx:for="{{items}}" style="margin-top: 30rpx;">
+                    <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.value}}
+                  </label>
+                  <input class="input" value="{{bieMoney}}"  bindinput="inputMoney"></input>
+                </radio-group>
+              </view>
+            </view>
+            <view class="recharge_box_info_bottom">
+              <view class="recharge_box_info_bottom_left">支付方式</view>
+              <view class="recharge_box_info_bottom_right">
+                <radio value="{{item.name}}" checked="true" />微信支付
+              </view>
+            </view>
+          </view>
+          <view class="recharge_box_button" bindtap="pay">支付</view>
+        </view>
+      </view>
+</view>

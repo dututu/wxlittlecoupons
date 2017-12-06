@@ -1,0 +1,294 @@
+/* pages/mineCoupon/mineCoupon.wxss */
+.container {
+    width: 100%;
+    height: 100%;
+    background-color: #ebebeb;
+}
+/*优惠券头部的样式*/
+.coupon_tit {
+    height: 90rpx;
+    background-color: #fff;
+    position: relative;
+}
+.coupon_tit_per {
+    height: 100%;
+    line-height: 90rpx;
+    position: absolute;
+    top: 50%;
+    padding: 0 15rpx;
+    font-size: 28rpx;
+}
+.active {
+    color: #09bb07;
+    border-bottom: 4rpx solid #09bb07;
+}
+.coupon_tit_per:nth-child(1){
+    left: 48rpx;
+    transform: translateY(-50%);
+}
+.coupon_tit_per:nth-child(2){
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.coupon_tit_per:last-child {
+    right: 48rpx;
+    transform: translateY(-50%);
+}
+/*这是没有优惠券的样式*/
+.no_info_detail {
+    width: 100%;
+    padding-top: 300rpx;
+}
+.no_info_box {
+    width: 100%;
+}
+.no_info_box_img {
+    width: 130rpx;
+    height: 130rpx;
+    margin: 0 auto;
+    margin-bottom: 30rpx;
+}
+.no_info_box_img>image {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.no_info_box_text {
+   width: 100%;
+   text-align: center;
+   font-size: 28rpx;
+   color: #595959;
+}
+.no_info_button_box {
+    margin-top: 245rpx;
+    padding: 0 75rpx;
+}
+/*优惠券内容得样式*/
+.coupon_info {
+  margin-top: 20rpx;
+  padding: 0 20rpx;
+}
+.coupon_info_box {
+  width: 100%;
+  height: 200rpx;
+  position: relative;
+  margin-bottom: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.coupon_info_box>image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.coupon_info_box_left {
+  width: 557rpx;
+  padding: 28rpx 0;
+  z-index: 1000;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.box_left {
+  width: 145rpx;
+  height: 145rpx;
+  margin-left: 35rpx;
+  margin-right: 32rpx;
+  float: left;
+}
+.box_left>image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.box_right {
+  overflow: hidden;
+  height: 100%;
+}
+.box_right_text {
+  margin-top: 12rpx;
+  height: 90rpx;
+  overflow: hidden;
+  font-size: 30rpx;
+  color: #000;
+  font-family: "苹方";
+}
+.box_right_bot {
+  font-size: 24rpx;
+  color: #666666;
+}
+.coupon_info_box_right {
+  width: 153rpx;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 557rpx;
+  z-index: 1000;
+}
+.coupon_info_button {
+  width: 125rpx;
+  height: 40rpx;
+  background-color: #09bb07;
+  margin: 80rpx auto 0;
+  color: #fff;
+  font-size: 20rpx;
+  text-align: center;
+  line-height: 42rpx;
+  border-radius: 20rpx;
+}
+/*已使用优惠券部分的样式*/
+.coupon_info_img {
+    width: 120rpx;
+    height: 120rpx;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.coupon_info_img>image {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+/*二维码弹出盒子样式*/
+.code {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 1000;
+}
+.code_box {
+  width: 100%;
+  height: 100%;
+}
+.code_box_close {
+  width: 32rpx;
+  height: 34rpx;
+  padding-top: 260rpx;
+  padding-left: 580rpx;
+}
+.code_box_close>image {
+  width: 100%;
+  height: 100%;
+}
+.code_box_img {
+  width: 350rpx;
+  height: 360rpx;
+  background-color: #fff;
+  margin: 20rpx auto 0;
+  /*padding: 20rpx 25rpx;*/
+}
+.code_box_img >image {
+  width: 100%;
+  height: 100%;
+}
+.code_box_text {
+  width: 100%;
+  margin-top: 38rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 30rpx;
+}
+/*滑动的时候的样式*/
+.content {
+  width: 100%;
+  height: 200rpx;
+  margin-right: 0;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  -webkit-transform: translateX(180px);
+  transform: translateX(180px);
+  margin-left: -180px;
+}
+.button {
+  width: 180px;
+  height: 100%;
+  color: #fff;
+  -webkit-transform: translateX(180px);
+  transform: translateX(180px);
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  font-size: 14px;
+  /* position: relative; */
+}
+.desText1 {
+  background-color: #e6e5e5;
+  width: 90px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+   position: absolute;
+  left: 0; 
+}
+.del1 {
+  background-color: orangered;
+  width: 90px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* margin-left: 120px; */
+  position: absolute;
+  right: 0;
+}
+.desText {
+  background-color: #e6e5e5;
+  width: 60px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+   float: left; 
+  /* position: absolute;
+  left: 0; */
+}
+.retreat {
+  background-color: #ff9d00;
+   width: 60px;
+  height: 100%;
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* margin-left: 60px; */
+  /* position: absolute;
+  left: 60px; */
+  float: right;
+}
+ .del {
+   background-color: orangered;
+  width: 60px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  float: left; 
+  /* margin-left: 120px; */
+  /* position: absolute;
+  right: 0; */
+} 
+.touch-move-active .content, .touch-move-active .button {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+.right {
+  float: right;
+}
+.left {
+  float: left;
+}
+.width {
+  width: 120px !important;
+}
+

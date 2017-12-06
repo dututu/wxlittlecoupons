@@ -1,0 +1,7 @@
+<!--pages/xieyi/xieyi.wxml-->
+<view class='content'>
+  <view class='content_tittle'>{{tittle}}</view>
+  <view class='content_pra'>{{content}}</view>
+<button class='content_button' bindtap='makecoupon'>已经阅读</button>
+</view>
+

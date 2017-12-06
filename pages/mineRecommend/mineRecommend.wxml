@@ -1,0 +1,40 @@
+<!--pages/mineRecommend/mineRecommend.wxml-->
+<view class="container">
+ <scroll-view class="order" scroll-y="true" style="height:{{scrollHeight}}px;" 
+  bindscrolltolower="bindDownLoad" >
+<view class="wxapp-toast-content-box" wx:if="{{isShowToast}}">
+    <view class="wxapp-toast-content">
+      <view class="wxapp-toast-content-text"> {{toastText}} </view>
+    </view>
+  </view>
+  <view class="recommend_tit" >
+    <view class="recommend_tit_img" bindtap="previewImage">
+        <image src="{{code}}"></image>
+    </view>
+     <view class="recommend_tit_text">
+      我的传播码(点此处分享)
+     </view>
+  </view>
+  <view class="recommend_info">
+    <view class="recommend_info_tit">
+      累计传播 {{numObj.member_num}} 个用户; {{numObj.shop_num}} 个商户
+    </view>
+    <view class="recommend_info_con">
+      <view class="recommend_info_con_per" wx:for="{{list}}" wx:for-item="item">
+          <view class="recommend_info_con_per_img">
+            <image src="{{item.avatar}}"></image>
+          </view>
+          <view class="recommend_info_con_per_name">
+            {{item.nickname}}
+          </view>
+          <view class="recommend_info_con_per_des">
+            {{item.status}}
+          </view>
+          <view class="recommend_info_con_per_time">
+             {{item.created_at}} 
+          </view>
+      </view>
+    </view>
+  </view>
+  </scroll-view >
+</view>

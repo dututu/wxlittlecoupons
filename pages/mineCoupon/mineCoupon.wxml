@@ -1,0 +1,135 @@
+
+<!--pages/mineCoupon/mineCoupon.wxml-->
+<view class="container" >
+  <view class="wxapp-toast-content-box" wx:if="{{isShowToast}}">
+    <view class="wxapp-toast-content">
+      <view class="wxapp-toast-content-text"> {{toastText}} </view>
+    </view>
+  </view>
+  <scroll-view scroll-y="true" bindscrolltolower="scrolltolower" lower-threshold="0px" upper-threshold="0px" bindscrolltolower="bindscrolltoupper" style="height:{{scrollHeight}}px;" >
+    <view class="coupon_tit">
+      <view class="coupon_tit_per {{currentTab==0?'active':''}}" data-current="0" bindtap="swichNav">未使用({{num.unused}})</view>
+      <view class="coupon_tit_per {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">已使用({{num.used}})</view>
+      <view class="coupon_tit_per {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">已过期({{num.overtime}})</view>
+    </view>
+
+    <!--这是没有任何优惠券的样式-->
+     <view class="no_info_detail" wx:if="{{unShow==true}}">
+      <view class="no_info_box">
+        <view class="no_info_box_img">
+          <image src="../../imgs/no.png"></image>
+        </view>
+        <view class="no_info_box_text">您还没有优惠券</view>
+        <view class="no_info_box_text">快去领取吧</view>
+      </view>
+    </view> 
+
+    <!--这是未使用优惠券的样式-->
+    <view class="coupon_info" wx:for="{{infoList}}" wx:for-item="item" wx:if="{{unShow==true==false&&currentTab==0}}">
+      <view class="coupon_info_box {{item.isTouchMove ? 'touch-move-active' : ''}}" bindtouchstart="touchstart" bindtouchmove="touchmove" data-index="{{index}}">
+         <image src="../../imgs/bgc.png" wx:if="{{item.istop==0}}"></image>   
+        <image src="../../imgs/bgc_bgc.png" wx:if="{{item.istop==1}}"></image>
+        <view class="content">
+          <view class="coupon_info_box_left" bindtap="jumpDetail" data-item="{{item}}">
+            <view class="box_left">
+              <image src="{{item.img}}"></image>
+            </view>
+            <view class="box_right">
+              <view class="box_right_text">{{item.name}}</view>
+              <view class="box_right_bot">{{item.overday}}天后过期  <text wx:if="{{item.price>0}}" style="color: red;">{{item.status==2?'':item.status==3?'待退款':'已退款'}}</text></view>
+            </view>
+          </view>
+          <view class="coupon_info_box_right" wx:if="{{item.status==2}}" bindtap="use" data-item="{{item}}">
+            <view class="coupon_info_button">立即使用</view>
+          </view>
+        </view>
+        <view class="button {{item.status==6?'':'width'}}" wx:if="{{item.price>0}}">
+          <view class="desText" bindtap="stick" data-item="{{item}}" wx:if="{{item.istop==1}}">取消置顶</view>
+          <view class="desText" bindtap="stick" data-item="{{item}}" wx:if="{{item.istop==0}}">置顶</view>
+          <view class="retreat {{item.price>0&&item.status==3?'left':''}}" wx:if="{{item.price>0}}" bindtap="retreat" data-item="{{item}}">
+            {{item.status==2?'退券':item.status==3?'退款中':'已退款'}}
+          </view>  
+           <view wx:if="{{item.price>0&&item.status==6}}" class="del {{item.price>0&&item.status==6?'left':''}}" bindtap="delete" data-item="{{item}}">删除</view>  
+           
+        </view>
+        <view class="button" style="width: 120px;" wx:if="{{item.price==0}}">
+          <view class="desText" bindtap="stick" data-item="{{item}}" wx:if="{{item.istop==1}}">取消置顶</view>
+          <view class="desText" bindtap="stick" data-item="{{item}}" wx:if="{{item.istop==0}}">置顶</view> 
+          <view wx:if="{{item.price==0}}" class="del" bindtap="delete" data-item="{{item}}">删除</view>   
+           
+        </view>
+      </view>
+    </view>
+
+    <!--这是已使用优惠券的样式-->
+    <view class="coupon_info" wx:for="{{infoList}}" wx:for-item="item" wx:if="{{unShow==false&&currentTab==1}}">
+      <view class="coupon_info_box {{item.isTouchMove ? 'touch-move-active' : ''}}" bindtouchstart="touchstart" bindtouchmove="touchmove" data-index="{{index}}">
+        <image src="../../imgs/bgc.png" wx:if="{{item.istop==0}}"></image>
+        <image src="../../imgs/bgc_bgc.png" wx:if="{{item.istop==1}}"></image>
+        <view class="content" bindtap="jumpDetail" data-item="{{item}}">
+          <view class="coupon_info_box_left">
+            <view class="box_left">
+              <image src="{{item.img}}"></image>
+            </view>
+            <view class="box_right">
+              <view class="box_right_text">{{item.name}}</view>
+              <view class="box_right_bot">核销:{{item.hexiao}}</view>
+            </view>
+          </view>
+          <view class="coupon_info_box_right">
+            <view class="coupon_info_img">
+              <image src="../../imgs/use.png"></image>
+            </view>
+          </view>
+        </view>
+        <view class="button">
+          <view class="desText1" bindtap="stick" data-item="{{item}}" wx:if="{{item.istop==1}}">取消置顶</view>
+          <view class="desText1" bindtap="stick" data-item="{{item}}" wx:if="{{item.istop==0}}">置顶</view>
+          <view class="del1" bindtap="delete" data-item="{{item}}">删除</view>
+        </view>        
+      </view>
+    </view>
+
+    <!--这是已过期优惠券的样式  -->
+    <view class="coupon_info" wx:for="{{infoList}}" wx:for-item="item" wx:if="{{unShow==false&&currentTab==2}}">
+      <view class="coupon_info_box {{item.isTouchMove ? 'touch-move-active' : ''}}" bindtouchstart="touchstart" bindtouchmove="touchmove" data-index="{{index}}">
+        <image src="../../imgs/bgc.png" wx:if="{{item.istop==0}}"></image>
+        <image src="../../imgs/bgc_bgc.png" wx:if="{{item.istop==1}}"></image>
+        <view class="content" bindtap="jumpDetail" data-item="{{item}}">
+        <view class="coupon_info_box_left">
+          <view class="box_left">
+            <image src="{{item.img}}"></image>
+          </view>
+          <view class="box_right">
+            <view class="box_right_text">{{item.name}}</view>
+            <view class="box_right_bot">有效期:{{item.start}}-{{item.end}}</view>
+          </view>
+        </view>
+        <view class="coupon_info_box_right">
+          <view class="coupon_info_img">
+            <image src="../../imgs/guoqi.png"></image>
+          </view>
+        </view>
+        </view>
+        <view class="button">
+           <view class="desText1" bindtap="stick" data-item="{{item}}" wx:if="{{item.istop==1}}">取消置顶</view>
+          <view class="desText1" bindtap="stick" data-item="{{item}}" wx:if="{{item.istop==0}}">置顶</view>
+          <view class="del1" bindtap="delete" data-item="{{item}}">删除</view>
+        </view>
+      </view>
+    </view>
+
+    <!--立即使用二维码弹出盒子-->
+    <view class="code" wx:if="{{codeShow}}">
+      <view class="code_box">
+        <view class="code_box_close" bindtap="closePop">
+          <image src="../../imgs/close.png"></image>
+        </view>
+        <view class="code_box_img">
+          <image src="{{imgSrc}}"></image>
+        </view>
+        <view class="code_box_text">向商家出示此二维码享受优惠</view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

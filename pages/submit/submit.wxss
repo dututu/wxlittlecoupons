@@ -1,0 +1,29 @@
+/* pages/submit/submit.wxss */
+/* pages/submitOff/submitOff.wxss */
+.container {
+    width: 100%;
+    height: 100%;
+    padding-top: 185rpx;
+    background-color: #ebebeb;
+}
+.submit_info {
+    width: 100%;
+    text-align: center;
+}
+.submit_info image {
+    width: 195rpx;
+    height: 195rpx;
+}
+.submit_info_text {
+    margin-top: 60rpx;
+}
+.submit_button {
+    margin: 210rpx 95rpx 0;
+    height: 90rpx;
+    background-color: #26c73d;
+    text-align: center;
+    line-height: 90rpx;
+    color: #fff;
+    border-radius: 10rpx;
+    font-size: 32rpx;
+}

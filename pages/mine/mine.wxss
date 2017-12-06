@@ -1,0 +1,116 @@
+/* pages/mine/mine.wxss */
+.container {
+    width: 100%;
+    height: 100%;
+    background-color: #ebebeb
+}
+/*我的上半部分的样式*/
+.mine_tit {
+    width: 100%;
+    height: 310rpx;
+    background-color: #09bb07;
+    padding-top: 80rpx; 
+}
+.mine_tit_img {
+    width: 176rpx;
+    height: 176rpx;
+    border-radius: 50%;
+    margin: 0 auto;
+    border: 10rpx solid #08a906;
+}
+.mine_tit_img>image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: block;
+}
+.mine-tit_text {
+    margin-top: 25rpx;
+    width: 100%;
+    text-align: center;
+    font-size: 30rpx;
+    color: #fff;
+}
+/* 新增部分的样式 */
+.mine_code {
+  height: 100rpx;
+  background-color: #fff;
+  padding: 30rpx 0;
+}
+.mine_code_left {
+  width: 50%;
+  height: 100%;
+  border-right: 1rpx solid #e5e5e5;
+  box-sizing: border-box;
+  float: left;
+}
+.left {
+  margin-left: 85rpx;
+  float: left;
+  text-align: center;
+  vertical-align: middle;
+}
+.left_top > image{
+  width: 45rpx;
+  height: 45rpx;
+  display: block;
+} 
+.left_bottom {
+  margin-top: 20rpx;
+  font-size: 26rpx;
+  color: #565656;
+  margin-left: -2px;
+}
+.right {
+  float: right;
+  margin-right: 55rpx; 
+  font-size: 30rpx;
+  line-height: 100rpx;
+}
+.mine_code_right {
+  width: 50%;
+  height: 100%;
+  float: right;
+}
+
+/*我的下半部分的样式*/
+.mine_info {
+    margin-top: 20rpx;
+    width: 100%;
+    background-color: #fff;
+}
+.min_info_box {
+    padding: 0 30rpx;
+    height: 88rpx;
+    line-height: 88rpx;
+    border-bottom: 1rpx solid #ebebeb;
+}
+.min_info_box_icon {
+    width: 45rpx;
+    height: 45rpx;
+    border-radius: 50%;
+    float: left;
+    margin-top: 22rpx;
+    margin-right: 22rpx;
+}
+.min_info_box_icon>image {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.min_info_box_text {
+    font-size: 28rpx;
+    color: #000;
+    float: left;
+}
+.min_info_box_right {
+    width: 14rpx;
+    height: 24rpx;
+    float: right;
+    margin-top: 30rpx;
+}
+.min_info_box_right>image {
+    width: 100%;
+    height: 100%;
+    display: block;
+}

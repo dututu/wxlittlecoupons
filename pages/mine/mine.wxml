@@ -1,0 +1,97 @@
+<!--pages/mine/mine.wxml-->
+<view class="container">
+<view class="wxapp-toast-content-box" wx:if="{{isShowToast}}">
+    <view class="wxapp-toast-content">
+      <view class="wxapp-toast-content-text"> {{toastText}} </view>
+    </view>
+  </view>
+    <view class="mine_tit">
+        <view class="mine_tit_img">
+            <image src="{{user.avatar}}"></image>
+        </view>
+        <view class="mine-tit_text">
+            {{user.nickname}}
+        </view>
+    </view>
+    <view class="mine_code">
+      <view class="mine_code_left" bindtap="jumpMoney">
+          <view class="left">
+            <view class="left_top">
+              <image src="../../imgs/money.png"></image>
+            </view>
+            <view class="left_bottom">
+              钱包
+            </view>
+          </view>
+          <view class="right">
+            ￥{{totalMoney}}
+          </view>
+      </view>
+      <view class="mine_code_right" bindtap="jumpSale">
+        <view class="left">
+            <view class="left_top">
+              <image src="../../imgs/code.png"></image>
+            </view>
+            <view class="left_bottom">
+              推荐
+            </view>
+          </view>
+          <view class="right">
+            {{person}}人
+          </view>
+      </view>
+    </view> 
+    <view class="mine_info">
+        <view style="clear: both;"></view>
+        <navigator url="../../pages/mineCoupon/mineCoupon" hover-class="none" class="min_info_box">
+            <view class="min_info_box_icon">
+                <image src="../../imgs/icon2.png"></image>
+            </view>
+            <view class="min_info_box_text">
+                我的优惠券
+            </view>
+            <view class="min_info_box_right">
+                <image src="../../imgs/right_jiantou.png"></image>
+            </view>
+        </navigator>
+        <view style="clear: both;"></view>
+        <navigator class="min_info_box"  url="../../pages/manage/manage" 
+        hover-class="none" wx:if="{{user.status==1}}">
+            <view class="min_info_box_icon">
+                <image src="../../imgs/icon4.png"></image>
+            </view>
+            <view class="min_info_box_text">
+                管理优惠券
+            </view>
+            <view class="min_info_box_right">
+                <image src="../../imgs/right_jiantou.png"></image>
+            </view>
+        </navigator>
+        <view style="clear: both;"></view>
+        <navigator class="min_info_box" url="../../pages/addClerk/addClerk" 
+        hover-class="none" wx:if="{{user.status==1}}">
+            <view class="min_info_box_icon">
+                <image src="../../imgs/icon5.png"></image>
+            </view>
+            <view class="min_info_box_text">
+                添加核销员
+            </view>
+            <view class="min_info_box_right">
+                <image src="../../imgs/right_jiantou.png"></image>
+            </view>
+        </navigator>
+        <view style="clear: both;"></view>
+        <navigator class="min_info_box" url="../../pages/redPac/redPac" hover-class="none" style="display: none;">
+            <view class="min_info_box_icon">
+                <image src="../../imgs/icon6.png"></image>
+            </view>
+            <view class="min_info_box_text">
+                购券返红包
+            </view>
+            <view class="min_info_box_right">
+                <image src="../../imgs/right_jiantou.png"></image>
+            </view>
+        </navigator>
+        <view style="clear: both;"></view>
+    </view>
+</view> 

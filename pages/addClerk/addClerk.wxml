@@ -1,0 +1,22 @@
+<!--pages/addClerk/addClerk.wxml-->
+<view class="container">
+    <view class="clerk_tit">
+        <view class="clerk_tit_img">
+            <image src="{{imgSrc}}"></image>
+        </view>
+        <view class="clerk_tit_text">微信扫一扫,添加核销员</view>
+    </view>
+    <view class="clerk_info">
+        <view class="clerk_info_tit">核销员</view>
+        <view class="clerk_info_con">
+            <view class="clerk_info_con_box" wx:for="{{clerkList}}" wx:for-item="item">
+                <view class="clerk_info_con_box_img">
+                    <image src="{{item.avator}}"></image>
+                </view>
+                <view class="clerk_info_con_box_text">{{item.name}}</view>
+                <view class="clerk_info_con_box_time">{{item.created_at.date}}</view>
+                <view class="clerk_info_con_box_button" data-item="{{item}}" bindtap="getId">删除</view>
+            </view>
+        </view>
+    </view>
+</view>

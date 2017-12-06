@@ -1,0 +1,13 @@
+/* pages/xieyi/xieyi.wxss */
+.content{
+
+}
+.content_tittle {
+  text-align: center;
+  font-size: 50rpx;
+}
+.content_button {
+  width: 80%;
+  margin: 30rpx auto;
+  font-size: 30rpx;
+}

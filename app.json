@@ -1,0 +1,58 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/publish/publish",
+    "pages/money/money",
+    "pages/mineCoupon/mineCoupon",
+    "pages/manage/manage",
+    "pages/chooseCoupon/chooseCoupon",
+    "pages/mineRecommend/mineRecommend",
+    "pages/mine/mine",
+    "pages/bindClerk/bindClerk",
+    "pages/detail/detail",
+    "pages/addClerk/addClerk",
+    "pages/clerkPage/clerkPage",
+    "pages/search/search",
+    "pages/redPac/redPac", 
+    "pages/detail1/detail1",
+    "pages/calcle/calcle",
+    "pages/authorize/authorize",
+    "pages/successOff/successOff",
+    "pages/failOff/failOff",
+    "pages/submit/submit",
+    "pages/fail/fail",
+    "pages/success/success",
+    "pages/xieyi/xieyi"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ebebeb",
+    "navigationBarTitleText": "附近优惠券",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#000",
+    "selectedColor": "#09bb07",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "领券",
+        "iconPath": "./imgs/img2.png",
+        "selectedIconPath": "./imgs/img1.png"
+      },
+      {
+        "pagePath": "pages/publish/publish",
+        "text": "发券",
+        "iconPath": "./imgs/img6.png",
+        "selectedIconPath": "./imgs/img5.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "奖励金",
+        "iconPath": "./imgs/img4.png",
+        "selectedIconPath": "./imgs/img3.png"
+      }
+    ]
+  }
+}

@@ -1,0 +1,90 @@
+/* pages/mineRecommend/mineRecommend.wxss */
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: #ebebeb;
+}
+/* 头部 */
+.recommend_tit {
+  width: 100%;
+  height: 398rpx;
+  padding-top: 56rpx;
+  background-color: #09bb07;
+  color: #fff;
+  font-size: 30rpx;
+}
+.recommend_tit_img {
+  width: 204rpx;
+  height: 204rpx;
+  background-color: #fff;
+  margin: 0 auto;
+  padding: 16rpx;
+}
+.recommend_tit_img>image {
+  width: 204rpx;
+  height: 204rpx;
+  display: block;
+}
+.recommend_tit_text {
+  font-size: 30rpx;
+  text-align: center;
+  margin-top: 20rpx;
+}
+/* 内容 */
+.recommend_info_tit {
+  font-size: 30rpx;
+  color: #000;
+  width: 100%;
+  height: 90rpx;
+  background-color: #fff;
+  text-align: center;
+  line-height: 90rpx;
+}
+.recommend_info_con {
+  margin-top: 20rpx;
+  background-color: #fff;
+}
+.recommend_info_con_per {
+  padding: 0 30rpx;
+  height: 94rpx;
+  line-height: 94rpx;
+  border-bottom: 1rpx solid #ebebeb;
+}
+.recommend_info_con_per_img {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  float: left;
+  margin-top: 12rpx;
+  margin-right: 20rpx;
+  overflow: hidden;
+}
+.recommend_info_con_per_img>image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.recommend_info_con_per_name {
+  width: 180rpx;
+  float: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
+  font-size: 30rpx;
+  color: #000;
+}
+.recommend_info_con_per_des {
+  font-size: 30rpx;
+  color: #a3a3a3;
+  width: 120rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  float: left;
+}
+.recommend_info_con_per_time {
+  float: right;
+  font-size: 30rpx;
+  color: #a3a3a3;
+}
+

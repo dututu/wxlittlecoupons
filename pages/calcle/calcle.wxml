@@ -1,0 +1,12 @@
+<!--pages/bindClerk/bindClerk.wxml-->
+<view class="container">
+    <view class="bindClerk_info">
+        <view class="bindClerk_info_box">
+            <view class="bindClerk_info_box_img">
+                <image src="../../imgs/bindClerk.png"></image>
+            </view>
+            <view class="bindClerk_info_box_text">取消支付</view>
+        </view>
+    </view>
+    <view class="bindClerk_button" bindtap="getBind">确定</view>
+</view>
