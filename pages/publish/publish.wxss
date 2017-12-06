@@ -603,12 +603,16 @@
   z-index: 3;
   background-color: #fff;
   border-radius: 10rpx;
-  margin: 100rpx 110rpx 0;
+  margin: 100rpx 50rpx 0;
   padding: 37rpx 45rpx 50rpx;
 }
 .recharge_box_tit {
   text-align: center;
   font-size: 36rpx;
+  color: #000;
+}
+.recharge_box_tit_content {
+  font-size: 24rpx;
   color: #000;
 }
 .recharge_box_close {

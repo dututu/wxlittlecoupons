@@ -202,8 +202,8 @@
 
     <view class="modal {{showAmountModal.showModal}}">
       
-        <view class="modal-content" style="height: 750rpx;">
-          <scroll-view scroll-y style="height: 530rpx;">
+        <view class="modal-content" style="height: 950rpx;">
+          <scroll-view scroll-y style="height: 730rpx;">
           <view class="modal-line-box amount-info">
           <view class="modal-tittle">欢迎发券</view>
             <view>欢迎您的加入！</view>
@@ -222,7 +222,7 @@
               <label class="checkbox xieyi_box">
                 <checkbox class="checkbox " value="1" checked="{{xieyicheck}}"/>您已经阅
               </label>
-              <text class="newpublish_info_user_xieyi" bindtap="showxieyi">《商户协议》</text>
+              <text class="newpublish_info_user_xieyi" bindtap="showxieyi">《商户须知》</text>
             </checkbox-group>
           </view>
           <view class="modal-line-box amount-button">
@@ -240,6 +240,8 @@
         <view class="cover"></view>
         <view class="recharge_box">
           <view class="recharge_box_tit">营销资金不足请充值</view>
+          <icon type="warn" size="14" color="red"/>
+          <text class="recharge_box_tit_content">尊敬的用户,您的处置账户余额不足,为了不影响您发布优惠券顺利审核,请根据发布优惠券的数量酌情充值</text>
           <view class="recharge_box_close" bindtap="closeRecharge">
             <image src="../../imgs/bclose.png"></image>
           </view>

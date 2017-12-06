@@ -16,13 +16,12 @@ Page({
           { name: '900', value: '900' },
           { name: '其它金额', value: '其它金额' },
         ],
-        xieyicheck:true,
-        recharge:false,
         //协议
         showAmountModal:{
-          showModal:'showModal',
-          showMask:'showMask',
+          showModal:'hideModal',
+          showMask:'hideMask',
         },
+        xieyicheck:true,
         //
         currentTab: 1,
         publishShow: true,
@@ -130,19 +129,15 @@ Page({
       this.setData({
         time: time[0].split("/").join("-")
       });
-      let xieyicheck = wx.getStorageSync('xieyi') || true;
       let mobiled  = wx.getStorageSync('mobiled') || false;
-      if(mobiled) {
+      if(!mobiled) {
          this.setData({
           showAmountModal:{
-            showModal:'hideModal',
-            showMask:'hideMask',
+            showModal:'showModal',
+            showMask:'showMask',
           }
         });
       }
-      this.setData({
-        xieyicheck:xieyicheck
-      })
         this.setData({
           unique_id: wx.getStorageSync('unique_id')
         })
@@ -476,9 +471,25 @@ Page({
         })
     },
     // 点击提交的时候执行的函数
-    submit: function () {
+    submit: function() {
+      let _this = this
+      //是否新用户
+      let isnew = wx.getStorageSync('isnew') || false;
+      //判断是不是新用户
+      if (!isnew) {
+        _this.setData({
+          recharge: true
+        })
+      } else {
+        _this.aftersubmit();
+      }
+      wx.setStorage({
+        key: 'isnew',
+        data: true,
+      })
+    },
+    aftersubmit: function () {
         let _this = this
-        
         if (this.data.name == undefined) {
           app.showToast('输入优惠券名称', this, 2000)
         } else if (this.data.name.length > 15) {
@@ -541,7 +552,10 @@ Page({
                   image_photo: '',
                   imgShow: true
                 })
-                app.showToast('数据已提交,等待审核', _this, 2000)
+                setTimeout(function () {
+                  app.showToast('数据已提交,等待审核', _this, 2000)
+                }, 2000)
+                
                 setTimeout(function(){
                   wx.switchTab({
                     url: '/pages/mine/mine'
@@ -569,26 +583,8 @@ Page({
             
         }
     },
-    xieyi: function (e) {
-        if (e.detail.value[0]==1) {
-            wx.setStorage({
-              key:"xieyi",
-              data:true
-            })
-             this.setData({
-                xieyicheck: true
-            })
-        }
-    },
     showxieyi: function () {
         //this.showAmountModal();
-        this.setData({
-            xieyicheck: true
-        })
-        wx.setStorage({
-          key:"xieyi",
-          data:true
-        })
         wx.navigateTo({
             url: '/pages/xieyi/xieyi'
         })
@@ -619,7 +615,6 @@ Page({
               key:"xieyi",
               data:true
             })
-
         }
     },
     getPhoneNumber: function(e) {
@@ -644,20 +639,12 @@ Page({
                             key:"mobiled",
                             data:true
                         }) 
-                    }
-                    
-                    that.setData({
-                        recharge:true
-                    })
+                    }  
                 }).catch(res =>{
                     wx.setStorage({
                         key:"mobiled",
                         data:false
                     }) 
-                    
-                    that.setData({
-                        recharge:true
-                    })
                 })
             }
         })
@@ -718,6 +705,10 @@ Page({
                   _this.setData({
                     recharge: false,
                     bieMoney: ''
+                  })
+                  wx.setStorage({
+                    key: "isnew",
+                    data: true
                   })
                 },
                 'fail': function (res) {

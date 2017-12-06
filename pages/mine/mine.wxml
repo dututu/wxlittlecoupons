@@ -91,7 +91,12 @@
             <view class="min_info_box_right">
                 <image src="../../imgs/right_jiantou.png"></image>
             </view>
-        </navigator>
+        </navigator>  
         <view style="clear: both;"></view>
     </view>
+     <view class="deg">  
+          <button  open-type="contact" session-from="weapp">
+            <image src="/imgs/m_service_ico.png" mode="widthFix"></image>客服
+          </button>  
+      </view>
 </view> 

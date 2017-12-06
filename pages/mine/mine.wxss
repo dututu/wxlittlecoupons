@@ -114,3 +114,21 @@
     height: 100%;
     display: block;
 }
+
+/*客服  */
+.deg {
+  position: absolute;
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 1000rpx;
+  z-index: 1000;
+}
+.deg button{
+  
+  border:none;
+  height:80rpx;
+  border-radius:40rpx;
+  font-size:20rpx;
+  text-align:center; 
+}
+.deg button:after{border:none;}  

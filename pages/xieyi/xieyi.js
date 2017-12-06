@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tittle:'商户协议',
+    tittle:'商户须知',
     content: '1.1本《协议》双方为xxxxxxxx与xxxx用户，本《协议》具有合同效力。',  
   },
   makecoupon:function () {
