@@ -117,18 +117,24 @@
 
 /*客服  */
 .deg {
-  position: absolute;
-  width: 80rpx;
+  position: fixed;
+  width: 100rpx;
   height: 80rpx;
-  margin-right: 1000rpx;
+  bottom: 0;
+  right: 20rpx;
   z-index: 1000;
+  text-align: center;
 }
 .deg button{
-  
   border:none;
-  height:80rpx;
-  border-radius:40rpx;
+  height:96rpx;
+  width: 96rpx;
+  /* border-radius:48rpx; */
   font-size:20rpx;
   text-align:center; 
 }
-.deg button:after{border:none;}  
+.deg .img {
+  width: 48rpx;
+  height: 48rpx;
+
+}

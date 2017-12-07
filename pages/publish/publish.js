@@ -615,36 +615,31 @@ Page({
         }
     },
     getPhoneNumber: function(e) {
-        var that = this;
-        that.setData({
-          showAmountModal:{
-            showModal:'hideModal',
-            showMask:'hideMask',
-          }
-        });
-        wx.login({
-            success: function (data) {
-                common.post('/member/handle', {
-                    code: data.code,
-                    encryptedData: e.detail.encryptedData,
-                    iv: e.detail.iv,
-                    mobile:1,
-                    unique_id:wx.getStorageSync('unique_id')
-                }).then(res =>{
-                    if(res.statusCode==200) {
-                        wx.setStorage({
-                            key:"mobiled",
-                            data:true
-                        }) 
-                    }  
-                }).catch(res =>{
-                    wx.setStorage({
-                        key:"mobiled",
-                        data:false
-                    }) 
-                })
-            }
-        })
+      var that = this;
+      that.setData({
+        showAmountModal:{
+          showModal:'hideModal',
+          showMask:'hideMask',
+        }
+      });
+      common.post('/member/mobile', {
+          session_key: wx.getStorageSync('session_key'),
+          encryptedData: e.detail.encryptedData,
+          iv: e.detail.iv,
+          unique_id:wx.getStorageSync('unique_id')
+      }).then(res =>{
+          if(res.statusCode==200) {
+              wx.setStorage({
+                  key:"mobiled",
+                  data:true
+              }) 
+          }  
+      }).catch(res =>{
+          wx.setStorage({
+              key:"mobiled",
+              data:false
+          }) 
+      })
     } ,
      // 关闭充值盒子
     closeRecharge(){

@@ -56,15 +56,13 @@
             </view>
             <view class="newpublish_info_tit_left_bot">
               <view class="newpublish_info_tit_left_bot_left">
-                <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input style="width: 90%;" placeholder="优惠金额" placeholder-class="input" value="{{countPrice}}" bindblur="inputCount" />
+                <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input style="width: 90%;" placeholder="减免金额或折扣" placeholder-class="input" value="{{countPrice}}" bindblur="inputCount" />
               </view>
-              <view class="newpublish_info_tit_left_bot_right" bindtap="bindSale" style="color: #000;">
-                {{saleText}}
+              <view class="newpublish_info_tit_left_bot_right" bindtap="bindSale" style="color: #000;">{{saleText}}
                 <image src="../../imgs/sanjiao.png"></image>
               </view>
             </view>
           </view>
-          
           <view class="newpublish_info_tit_right">
             <view class="newpublish_info_tit_right_top" bindtap="bindType">
               <view class="newpublish_info_tit_right_top_left">
@@ -83,7 +81,6 @@
             </view>
           </view>
         </view>
-        
         <view class="newpublish_info_choose">
           <view class="newpublish_info_choose_left">
             <view class="newpublish_info_choose_left_top">
@@ -229,7 +226,7 @@
             <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" size="mini" id="1" class="button-color_agree">我知道了</button>
           </view>
 
-        </view>
+      </view>
         
       </view>
        <view class="mask {{showAmountModal.showMask}}"></view>
@@ -238,8 +235,7 @@
         <view class="cover"></view>
         <view class="recharge_box">
           <view class="recharge_box_tit">营销资金不足</view>
-          <icon type="warn" size="14" color="yellow"/>
-          <text class="recharge_box_tit_content">尊敬的用户,您的储值账户余额不足,为了不影响您发布优惠券顺利核销,请根据发布优惠券的数量酌情充值</text>
+          <text class="recharge_box_tit_content">尊敬的用户，您的储值账户余额不足，根据我们的经验，免费领取优惠券的使用转化率约为20%，请根据发布优惠券的数量酌情充值。</text>
           <view class="recharge_box_close" bindtap="closeRecharge">
             <image src="../../imgs/bclose.png"></image>
           </view>
@@ -265,4 +261,5 @@
           <view class="recharge_box_button" bindtap="pay">支付</view>
         </view>
       </view>
+
 </view>

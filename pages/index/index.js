@@ -119,6 +119,7 @@ Page({
                     unique_id: unique_id.data.data.data
                   })
                   wx.setStorageSync('unique_id', _this.data.unique_id)
+                  wx.setStorageSync('session_key', unique_id.data.data.session_key)
                   _this.bindPerson();
                 })
               })
@@ -153,6 +154,7 @@ Page({
                     unique_id: unique_id.data.data.data
                   })
                   wx.setStorageSync('unique_id', _this.data.unique_id)
+                  wx.setStorageSync('session_key', unique_id.data.data.session_key)
                   _this.bindPerson()
                 })
               })
@@ -221,6 +223,7 @@ Page({
               unique_id: unique_id.data.data.data
             })
             wx.setStorageSync('unique_id', self.data.unique_id)
+            wx.setStorageSync('session_key', unique_id.data.data.session_key)
             self.bindPerson();
           })
         })
@@ -254,6 +257,7 @@ Page({
               unique_id: unique_id.data.data.data
             })
             wx.setStorageSync('unique_id', self.data.unique_id)
+            wx.setStorageSync('session_key', unique_id.data.data.session_key)
             self.bindPerson()
           })
         })
@@ -342,6 +346,7 @@ Page({
           unique_id: unique_id.data.data.data
         })
         wx.setStorageSync('unique_id', self.data.unique_id)
+        wx.setStorageSync('session_key', unique_id.data.data.session_key)
       })
     })
   },
