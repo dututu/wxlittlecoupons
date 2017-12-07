@@ -612,7 +612,7 @@
   color: #000;
 }
 .recharge_box_tit_content {
-  font-size: 24rpx;
+  font-size: 23rpx;
   color: #000;
 }
 .recharge_box_close {

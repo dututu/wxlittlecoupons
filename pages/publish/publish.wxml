@@ -83,9 +83,7 @@
             </view>
           </view>
         </view>
-        <view class="newpublish_info_con">
-            <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="卡券售价(元)" type="digit" placeholder-class="input" value="{{price}}" bindblur="inputPrice" />
-        </view>
+        
         <view class="newpublish_info_choose">
           <view class="newpublish_info_choose_left">
             <view class="newpublish_info_choose_left_top">
@@ -130,7 +128,7 @@
         <view class="newpublish_info_con">
           <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="使用说明" placeholder-class="input" value="{{des}}" bindblur="inputDes" />
           <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="关键字,逗号隔开" placeholder-class="input" value="{{key}}" bindblur="inputKey" />
-          
+            <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="卡券售价(元)" type="digit" placeholder-class="input" value="{{price}}" bindblur="inputPrice" />
           <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="门店电话" type="number" placeholder-class="input" value="{{tel}}" bindblur="inputTel" />
           <view class="newpublish_info_con_box">
             <view class="newpublish_info_con_box_left">
@@ -239,9 +237,9 @@
       <view class="recharge" wx:if="{{recharge}}">
         <view class="cover"></view>
         <view class="recharge_box">
-          <view class="recharge_box_tit">营销资金不足请充值</view>
-          <icon type="warn" size="14" color="red"/>
-          <text class="recharge_box_tit_content">尊敬的用户,您的处置账户余额不足,为了不影响您发布优惠券顺利审核,请根据发布优惠券的数量酌情充值</text>
+          <view class="recharge_box_tit">营销资金不足</view>
+          <icon type="warn" size="14" color="yellow"/>
+          <text class="recharge_box_tit_content">尊敬的用户,您的储值账户余额不足,为了不影响您发布优惠券顺利核销,请根据发布优惠券的数量酌情充值</text>
           <view class="recharge_box_close" bindtap="closeRecharge">
             <image src="../../imgs/bclose.png"></image>
           </view>

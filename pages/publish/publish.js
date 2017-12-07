@@ -552,10 +552,7 @@ Page({
                   image_photo: '',
                   imgShow: true
                 })
-                setTimeout(function () {
-                  app.showToast('数据已提交,等待审核', _this, 2000)
-                }, 2000)
-                
+                app.showToast('数据已提交,等待审核', _this, 2000)
                 setTimeout(function(){
                   wx.switchTab({
                     url: '/pages/mine/mine'
@@ -648,10 +645,6 @@ Page({
                 })
             }
         })
-        // //充值
-        // that.setData({
-        //   recharge:true
-        // })
     } ,
      // 关闭充值盒子
     closeRecharge(){
