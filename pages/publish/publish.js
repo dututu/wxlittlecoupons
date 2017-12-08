@@ -5,7 +5,7 @@ let util = require('../../utils/util.js');
 Page({
     data: {
         //手机号
-        mobiled:false,
+        mobiled:true,
         //充值
         chongzhi:true,
         money:'300',
@@ -21,7 +21,7 @@ Page({
           showModal:'hideModal',
           showMask:'hideMask',
         },
-        xieyicheck:true,
+       
         //
         currentTab: 1,
         publishShow: true,
@@ -580,13 +580,6 @@ Page({
             
         }
     },
-    showxieyi: function () {
-        //this.showAmountModal();
-        wx.navigateTo({
-            url: '/pages/xieyi/xieyi'
-        })
-        
-    },
     showAmountModal:function(e){
         var that = this;
         that.setData({
@@ -596,24 +589,6 @@ Page({
           }
         })
     },
-    agree:function(e){
-        var that = this;
-        that.setData({
-          showAmountModal:{
-            showModal:'hideModal',
-            showMask:'hideMask',
-          }
-        });
-        if(e.target.id==1) {
-            that.setData({
-                xieyicheck: true
-            })
-            wx.setStorage({
-              key:"xieyi",
-              data:true
-            })
-        }
-    },
     getPhoneNumber: function(e) {
       var that = this;
       that.setData({
@@ -622,23 +597,62 @@ Page({
           showMask:'hideMask',
         }
       });
-      common.post('/member/mobile', {
-          session_key: wx.getStorageSync('session_key'),
-          encryptedData: e.detail.encryptedData,
-          iv: e.detail.iv,
-          unique_id:wx.getStorageSync('unique_id')
-      }).then(res =>{
-          if(res.statusCode==200) {
+      wx.checkSession({
+        success: function () {
+          //session没过期
+          common.post('/member/mobile', {
+            session_key: wx.getStorageSync('session_key'),
+            encryptedData: e.detail.encryptedData,
+            iv: e.detail.iv,
+            unique_id: wx.getStorageSync('unique_id'),
+            expire:false
+          }).then(res => {
+            console.log(res);
+            if (res.statusCode == 200) {
               wx.setStorage({
-                  key:"mobiled",
-                  data:true
-              }) 
-          }  
-      }).catch(res =>{
-          wx.setStorage({
-              key:"mobiled",
-              data:false
-          }) 
+                key: "mobiled",
+                data: true
+              })
+            }
+          }).catch(res => {
+            wx.setStorage({
+              key: "mobiled",
+              data: false
+            })
+          })
+        },
+        fail: function () {
+          //登录态过期
+          wx.login({
+            success: function (res) {
+              common.post('/member/mobile', {
+                session_key: wx.getStorageSync('session_key'),
+                encryptedData: e.detail.encryptedData,
+                iv: e.detail.iv,
+                unique_id: wx.getStorageSync('unique_id'),
+                code:res.code,
+                expire: true
+              }).then(res => {
+                console.log(res);
+                if (res.statusCode == 200) {
+                  wx.setStorage({
+                    key: 'session_key',
+                    data: res.data.data.data,
+                  })
+                  wx.setStorage({
+                    key: "mobiled",
+                    data: true
+                  })
+                }
+              }).catch(res => {
+                wx.setStorage({
+                  key: "mobiled",
+                  data: false
+                })
+              })
+            }
+          })
+        }
       })
     } ,
      // 关闭充值盒子

@@ -197,28 +197,17 @@
 
     <view class="modal {{showAmountModal.showModal}}">
       
-        <view class="modal-content" style="height: 950rpx;">
-          <scroll-view scroll-y style="height: 730rpx;">
+        <view class="modal-content" style="height: 700rpx;">
+          <view style="height: 550rpx;">
           <view class="modal-line-box amount-info">
-          <view class="modal-tittle">欢迎发券</view>
-            <view>欢迎您的加入！</view>
-            <view>在这里您可以免费为贵店发放优惠券，您的优惠券将会得到免费的浏览、推广和传播。</view>
-            <view>当有消费者在您门店附近时，您的优惠券将会自动显示在消费者的优惠券列表首页，消费者离您的门店越近，您的优惠券显示越靠前，这是优惠券显示顺序的唯一规则，所以请您在制作优惠券时，填写准确的门店地址，方便附近的消费者及时看到您的优惠券，我们有地图引导消费者找到您的门店。</view>
-            <view>为了防止他人冒用贵店资质，保护贵店信誉，请您授权给我们您经过认证的微信身份信息，在您第一次制券后，我们可能会和您电话联系，确认您的优惠券信息填写无误。</view>
-            <view>根据我们的经验，发放优惠券被浏览、推广和传播后，有效转化为到店消费的比例约为20%，我们只针对到店消费的有效服务收取服务费，每次核销优惠券时扣3元营销资金。建议您首次制券时给营销资金充值300元，发行500张优惠券，预计可为您导流100位消费者到店消费。</view>
-            <view>当消费者领券并到店消费时，请您打开微信，扫描消费者出示的优惠券二维码进行核销，核销后优惠券不能再次使用。您也可以添加其他店员成为核销员，协助您一起完成优惠券的核销工作。</view>
-            <view>建议您和您的同事们将自己的优惠券广为分享传播，如果消费者是通过您的传播第一次进入“附近优惠券”小程序，消费者以后无论在哪里用“附近优惠券”小程序里的优惠券消费，您都将获得1元的鼓励金；同时也强烈建议您将这个“附近优惠券”小程序分享给您身边的商家，您发展的商家在此发放优惠券并有消费者到店消费时，您也将获得1元的鼓励金。鼓励金可以直接提现到您的微信零钱包里！您发展的消费者和商家，将终身获得鼓励金的分配。</view>
-            <view>感谢您的耐心阅读，让我们开始吧！</view>
-            
+          <view class="modal-tittle">商户须知</view>
+            <view>1、商户在附近优惠券平台上免费发放优惠券；</view>
+            <view>2、商户信息和优惠券信息须真实有效；</view>
+            <view>3、商户发放的优惠券被核销时，平台收取核销费用￥3元/张；</view>
+            <view>4、为保证优惠券顺利核销，商户须按发放的优惠券数量的20%充值核销资金；</view>
+            <view>5、商户未使用的优惠券核销资金平台可退款；</view>
+            <view>6、商户不得发放虚假优惠券信息、发布恶意评论，以及违背国家信息安全的违法信息，如有发生，平台将清退违规商户并保留追究法律责任的权利。</view>
           </view>
-          </scroll-view>
-           <view class="xieyibox">
-            <checkbox-group bindchange="xieyi">
-              <label class="checkbox xieyi_box">
-                <checkbox class="checkbox " value="1" checked="{{xieyicheck}}"/>您已经阅
-              </label>
-              <text class="newpublish_info_user_xieyi" bindtap="showxieyi">《商户须知》</text>
-            </checkbox-group>
           </view>
           <view class="modal-line-box amount-button">
             
