@@ -21,7 +21,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 5,
 			"list": [
 				{
 					"id": 0,
@@ -62,7 +62,7 @@
 					"id": 5,
 					"name": "核销",
 					"pathName": "pages/clerkPage/clerkPage",
-					"query": "q=http%3A%2F%2Fcoupons3.com   %2Fapi%2Forder%2Fconfirm%3Forderid%3D813%26unique_id%3D15107097064hGNX",
+					"query": "q=http%3A%2F%2Fcoupons3.com   %2Fapi%2Forder%2Fconfirm%3Forderid%3D2423%26unique_id%3D15107097064hGNX",
 					"scene": "1011"
 				},
 				{
@@ -90,6 +90,13 @@
 					"name": "奖励金",
 					"pathName": "pages/mine/mine",
 					"query": ""
+				},
+				{
+					"id": 10,
+					"name": "核销",
+					"pathName": "pages/bindClerk/bindClerk",
+					"query": "q=http%3A%2F%2Fcoupons3.com   %2Fapi%2Forder%2Fconfirm%3Forderid%3D15130476069TpW5%26unique_id%3D15107097064hGNX",
+					"scene": "1011"
 				}
 			]
 		}

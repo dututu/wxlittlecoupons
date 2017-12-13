@@ -7,6 +7,7 @@ Page({
         //手机号
         mobiled:true,
         //充值
+        checkSum:true,
         chongzhi:true,
         money:'300',
         recharge:false,
@@ -473,20 +474,34 @@ Page({
     // 点击提交的时候执行的函数
     submit: function() {
       let _this = this
-      //是否新用户
-      let isnew = wx.getStorageSync('isnew') || false;
-      //判断是不是新用户
-      if (!isnew) {
-        _this.setData({
-          recharge: true
+      if(_this.data.checkSum==true) {
+        common.post('/surplusmoney',{
+          unique_id: this.data.unique_id,
+          status: 2
+        }).then(res=>{
+             _this.setData({
+                  checkSum: false
+            })
+            //校验优惠券数量和金额(非强制...)//用户输入数量为0的时候会有bug
+            if(res.data.surplus_money>=parseInt(_this.data.num*0.2*3+3)) {
+                _this.aftersubmit();
+            } else {
+                 _this.setData({
+                  recharge: true
+                })
+            }
+        }).catch(res=>{
+          let reason = [];
+          for (let i in res.data.errors) {
+            reason.push(res.data.errors[i][0])
+          }
+          app.showToast(reason[0] || res.data.message, this, 2000)
         })
       } else {
-        _this.aftersubmit();
+         _this.aftersubmit();
       }
-      wx.setStorage({
-        key: 'isnew',
-        data: true,
-      })
+      //判断营销资金
+       
     },
     aftersubmit: function () {
         let _this = this
@@ -521,6 +536,9 @@ Page({
                 // keyword: '蛋糕',
                 // price: 0.05
               }).then(e => {
+                _this.setData({
+                      checkSum: true
+                })
                 setTimeout(function () {
                   _this.setData({
                     publish: true
@@ -570,11 +588,6 @@ Page({
                 }
                 console.log(res.data.status_code);
                 app.showToast(reason[0] || res.data.message, this, 2000);
-                if(res.data.status_code==400) {
-                     _this.setData({
-                      recharge:true
-                    })
-                }
               })
             }
             
@@ -599,7 +612,7 @@ Page({
       });
       wx.checkSession({
         success: function () {
-          //session没过期
+          //session没过
           common.post('/member/mobile', {
             session_key: wx.getStorageSync('session_key'),
             encryptedData: e.detail.encryptedData,
@@ -623,6 +636,7 @@ Page({
         },
         fail: function () {
           //登录态过期
+          
           wx.login({
             success: function (res) {
               common.post('/member/mobile', {
@@ -707,10 +721,6 @@ Page({
                   _this.setData({
                     recharge: false,
                     bieMoney: ''
-                  })
-                  wx.setStorage({
-                    key: "isnew",
-                    data: true
                   })
                 },
                 'fail': function (res) {
