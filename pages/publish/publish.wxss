@@ -500,6 +500,7 @@
 }
 .button-color_agree {
   color:green;
+  /* width: 50%; */
 }
 .button-color_refuse {
   color:red;
@@ -514,13 +515,13 @@
 }
 
 .modal-content{
-  width: 90%;
-  height: 900rpx;
-  margin: 0 auto;
+  width: 80%;
+  height: 60%;
+  margin: 7% auto;
   background: #fff;
   font-size: 30rpx;
   font-family: "微软雅黑";
-  padding: 20rpx;
+  padding: 10rpx;
   border-radius: 5px;
 }
 
@@ -555,21 +556,30 @@
 .modal-line-box .amount-style{
   color: #FF617C;
 }
+.modal_line {
+  border-bottom: 1rpx solid #c7c7cd;
+  margin-bottom: 10rpx;
+}
 .modal-tittle {
   font-size: 50rpx;
   text-align: center;
-  padding-bottom: 10rpx;
+  padding-bottom: 20rpx;
+}
+.modal_content {
+  padding-top: 10rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
 }
 .modal-line-box.amount-button{
   text-align: center;
-  margin-top: 30rpx; 
+  margin-top: 40rpx; 
 }
 .modal-line-box.amount-button button{
   margin:auto 10rpx;  
   height: 75rpx;
   line-height: 75rpx;
-  width: 90%;
-  font-size: 30rpx;
+  width: 50%;
+  font-size: 35rpx;
 }
 
 .mask{
@@ -603,16 +613,17 @@
   z-index: 3;
   background-color: #fff;
   border-radius: 10rpx;
-  margin: 100rpx 50rpx 0;
+  margin: 150rpx 50rpx 0;
   padding: 37rpx 45rpx 50rpx;
 }
 .recharge_box_tit {
   text-align: center;
+  font-family: '微软雅黑';
   font-size: 36rpx;
   color: #000;
 }
 .recharge_box_tit_content {
-  font-size: 24rpx;
+  font-size: 28rpx;
   color: #000;
 }
 .recharge_box_close {
@@ -639,9 +650,17 @@
   font-size: 30rpx;
 }
 .recharge_box_info {
-   margin-top: 50rpx; 
+  margin-top: 30rpx; 
   font-size: 32rpx;
   color: #000;
+}
+.recharge_box_info_top{
+  text-align: center;
+}
+.recharge_box_info_top_tit {
+  width: 50%;
+  display: inline-block;
+
 }
 .recharge_box_info_top_con {
   width: 100%;
@@ -665,9 +684,6 @@
 }
 .recharge .input {
   width: 50%;
-  height: 100%;
-  float: right;
-  margin-top: 50rpx;
   border-bottom: 1rpx solid #000;
   color: red;
 }

@@ -52,7 +52,7 @@
         <view class="newpublish_info_tit">
           <view class="newpublish_info_tit_left">
             <view class="newpublish_info_tit_left_top">
-              <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="输入优惠券名称" placeholder-class="input" value="{{name}}" bindblur="inputName" />
+              <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="优惠券名称" placeholder-class="input" value="{{name}}" bindblur="inputName" />
             </view>
             <view class="newpublish_info_tit_left_bot">
               <view class="newpublish_info_tit_left_bot_left">
@@ -123,13 +123,13 @@
           </view>
         </view>
         <view class="newpublish_info_con">
-          <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="使用说明" placeholder-class="input" value="{{des}}" bindblur="inputDes" />
-          <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="关键字,逗号隔开" placeholder-class="input" value="{{key}}" bindblur="inputKey" />
-            <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="卡券售价(元)" type="digit" placeholder-class="input" value="{{price}}" bindblur="inputPrice" />
-          <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="门店电话" type="number" placeholder-class="input" value="{{tel}}" bindblur="inputTel" />
+          <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="使用说明，示例：消费满100元使用" placeholder-class="input" value="{{des}}" bindblur="inputDes" />
+          <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="关键字,逗号隔开，方便消费者用关键字搜索到优惠券" placeholder-class="input" value="{{key}}" bindblur="inputKey" />
+            <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="卡券售价(元)，免费券不填" type="digit" placeholder-class="input" value="{{price}}" bindblur="inputPrice" />
+          <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="门店电话，方便消费者电话联系" type="number" placeholder-class="input" value="{{tel}}" bindblur="inputTel" />
           <view class="newpublish_info_con_box">
             <view class="newpublish_info_con_box_left">
-              <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="门店地址" style="width: 90%;" placeholder-class="input" value="{{add}}" bindblur="inputAdd" />
+              <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="门店地址，方便地图导航消费者" style="width: 90%;" placeholder-class="input" value="{{add}}" bindblur="inputAdd" />
             </view>
             <view class="newpublish_info_con_box_right" bindtap="getLon">
               <image src="../../imgs/pos.png"></image>
@@ -141,7 +141,7 @@
               <image src="../../imgs/photo.png" wx:if="{{imgShow}}"></image>
               <image src="{{image_photo}}"></image>
             </view>
-            <view class="newpublish_info_con_photo_bot">点击上传图片</view>
+            <view class="newpublish_info_con_photo_bot">优惠券头图，请选择等代表门店或者优惠券信息的图片，图片大小最好不超过200K</view>
           </view>
           <view style="clear: both;"></view>
          
@@ -197,22 +197,22 @@
 
     <view class="modal {{showAmountModal.showModal}}">
       
-        <view class="modal-content" style="height: 700rpx;">
-          <view style="height: 550rpx;">
+        <view class="modal-content">
+          <view>
           <view class="modal-line-box amount-info">
           <view class="modal-tittle">商户须知</view>
-            <view>1、商户在附近优惠券平台上免费发放优惠券；</view>
-            <view>2、商户信息和优惠券信息须真实有效；</view>
-            <view>3、商户发放的优惠券被核销时，平台收取核销费用￥3元/张；</view>
-            <view>4、为保证优惠券顺利核销，商户须按发放的优惠券数量的20%充值核销资金；</view>
-            <view>5、商户未使用的优惠券核销资金平台可退款；</view>
-            <view>6、商户不得发放虚假优惠券信息、发布恶意评论，以及违背国家信息安全的违法信息，如有发生，平台将清退违规商户并保留追究法律责任的权利。</view>
+            <view class="modal_line"></view>
+            <view class="modal_content">1、商户在此可免费发布、推广和传播优惠券，当客人到店消费时，收取优惠券核销费用￥3元/张；</view>
+            <view class="modal_content">2、为保证优惠券顺利核销，须按发放优惠券数量的20%充值核销资金；</view>
+            <view class="modal_content">3、未使用的优惠券核销资金可申请退款；</view>
+            <view class="modal_content">4、商户信息和优惠券信息须真实有效，不得发放虚假优惠券信息、发布恶意评论，以及违背国家信息安全的违法信息，如有发生，平台将驳回优惠券的发布；</view>
+            <view class="modal_content">5、请授权获取您的手机号，方便与您联系确认优惠券的发布。</view>
           </view>
           </view>
           <view class="modal-line-box amount-button">
             
             
-            <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" size="mini" id="1" class="button-color_agree">我知道了</button>
+            <button type="primary" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" size="mini" id="1" class="button-color_agree">我已了解</button>
           </view>
 
       </view>
@@ -223,28 +223,21 @@
       <view class="recharge" wx:if="{{recharge}}">
         <view class="cover"></view>
         <view class="recharge_box">
-          <view class="recharge_box_tit">营销资金不足</view>
-          <text class="recharge_box_tit_content">尊敬的用户，您的储值账户余额不足，根据我们的经验，免费领取优惠券的使用转化率约为20%，请根据发布优惠券的数量酌情充值。</text>
+          <view class="recharge_box_tit">温馨提示</view>
+          <text class="recharge_box_tit_content"> 根据我们的经验，优惠券的转化率约为20%，您本次发行的优惠券数量为{{num}}张，目前营销资金账户余额为{{surplus_money}}元，为保障您正常核销，建议充值{{needrecharge}}元。</text>
           <view class="recharge_box_close" bindtap="closeRecharge">
             <image src="../../imgs/bclose.png"></image>
           </view>
           <view class="recharge_box_info">
             <view class="recharge_box_info_top">
               <view class="recharge_box_info_top_tit">充值金额（元）</view>
-              <view class="recharge_box_info_top_con">
-                <radio-group class="radio-group" bindchange="radioChange">
-                  <label class="radio" wx:for="{{items}}" style="margin-top: 30rpx;">
-                    <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.value}}
-                  </label>
-                  <input class="input" value="{{bieMoney}}"  bindinput="inputMoney"></input>
-                </radio-group>
+              <view class="recharge_box_info_top_tit">
+                <input class="input" value="{{needrecharge}}"  bindinput="inputMoney"></input>
               </view>
+              </view>
+              <view class="recharge_box_info_top_con">   
             </view>
             <view class="recharge_box_info_bottom">
-              <view class="recharge_box_info_bottom_left">支付方式</view>
-              <view class="recharge_box_info_bottom_right">
-                <radio value="{{item.name}}" checked="true" />微信支付
-              </view>
             </view>
           </view>
           <view class="recharge_box_button" bindtap="pay">支付</view>

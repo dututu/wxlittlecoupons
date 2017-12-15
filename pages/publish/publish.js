@@ -5,12 +5,14 @@ let util = require('../../utils/util.js');
 Page({
     data: {
         //手机号
+        surplus_money:0,
+        needrecharge:0,
         mobiled:true,
         //充值
         checkSum:true,
         chongzhi:true,
         money:'300',
-        recharge:false,
+        recharge:true,
         items: [
           { name: '300', value: '300', checked: 'true'  },
           { name: '600', value: '600',},
@@ -120,8 +122,9 @@ Page({
         total: null,
         scrollStyle: {},
         button: false,
-        price:'',
+        price:0,
         count:'',
+        num:0,
         publish:true
     },
     onLoad: function (options) {
@@ -474,32 +477,45 @@ Page({
     // 点击提交的时候执行的函数
     submit: function() {
       let _this = this
-      if(_this.data.checkSum==true) {
-        common.post('/surplusmoney',{
-          unique_id: this.data.unique_id,
-          status: 2
-        }).then(res=>{
-             _this.setData({
-                  checkSum: false
+      if(_this.num<=0){
+        app.showToast('优惠券发行数量应大于0', this, 2000)
+      } else {
+        if (_this.data.checkSum == true) {
+          common.post('/surplusmoney', {
+            unique_id: this.data.unique_id,
+            status: 2
+          }).then(res => {
+            _this.setData({
+              checkSum: false
+            })
+            _this.setData({
+              surplus_money: res.data.surplus_money
             })
             //校验优惠券数量和金额(非强制...)//用户输入数量为0的时候会有bug
-            if(res.data.surplus_money>=parseInt(_this.data.num*0.2*3+3)) {
-                _this.aftersubmit();
+            let docharge = parseInt(_this.data.num * 0.2 * 3 + 3)
+            if (res.data.surplus_money >= docharge) {
+              _this.aftersubmit();
             } else {
-                 _this.setData({
-                  recharge: true
-                })
+              let needrecharge = docharge - parseInt(res.data.surplus_money)
+              _this.setData({
+                recharge: true
+              })
+              _this.setData({
+                needrecharge: needrecharge
+              })
             }
-        }).catch(res=>{
-          let reason = [];
-          for (let i in res.data.errors) {
-            reason.push(res.data.errors[i][0])
-          }
-          app.showToast(reason[0] || res.data.message, this, 2000)
-        })
-      } else {
-         _this.aftersubmit();
+          }).catch(res => {
+            let reason = [];
+            for (let i in res.data.errors) {
+              reason.push(res.data.errors[i][0])
+            }
+            app.showToast(reason[0] || res.data.message, this, 2000)
+          })
+        } else {
+          _this.aftersubmit();
+        }
       }
+      
       //判断营销资金
        
     },
@@ -570,7 +586,7 @@ Page({
                   image_photo: '',
                   imgShow: true
                 })
-                app.showToast('数据已提交,等待审核', _this, 2000)
+                app.showToast('支付成功，正在提交优惠券信息', _this, 2000)
                 setTimeout(function(){
                   wx.switchTab({
                     url: '/pages/mine/mine'

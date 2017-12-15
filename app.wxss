@@ -33,7 +33,7 @@ page {
 
 .wxapp-toast-content {
   width: 50%;
-  padding: 20rpx;
+  padding: 40rpx;
   background: rgba(0, 0, 0, 0.7);
   border-radius: 20rpx;
 }
