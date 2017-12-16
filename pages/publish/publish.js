@@ -11,14 +11,7 @@ Page({
         //充值
         checkSum:true,
         chongzhi:true,
-        money:'300',
-        recharge:true,
-        items: [
-          { name: '300', value: '300', checked: 'true'  },
-          { name: '600', value: '600',},
-          { name: '900', value: '900' },
-          { name: '其它金额', value: '其它金额' },
-        ],
+        recharge:false,
         //协议
         showAmountModal:{
           showModal:'hideModal',
@@ -122,9 +115,9 @@ Page({
         total: null,
         scrollStyle: {},
         button: false,
-        price:0,
+        price:'',
         count:'',
-        num:0,
+        num:'',
         publish:true
     },
     onLoad: function (options) {
@@ -477,8 +470,9 @@ Page({
     // 点击提交的时候执行的函数
     submit: function() {
       let _this = this
-      if(_this.num<=0){
-        app.showToast('优惠券发行数量应大于0', this, 2000)
+      if(_this.data.num==0 || _this.data.num==''||_this.data.num==undefined){
+        console.log(_this.num)
+        app.showToast('请输入优惠券发放数量', this, 2000)
       } else {
         if (_this.data.checkSum == true) {
           common.post('/surplusmoney', {
@@ -492,16 +486,16 @@ Page({
               surplus_money: res.data.surplus_money
             })
             //校验优惠券数量和金额(非强制...)//用户输入数量为0的时候会有bug
-            let docharge = parseInt(_this.data.num * 0.2 * 3 + 3)
+            let docharge = Math.ceil(_this.data.num * 0.2) * 3
             if (res.data.surplus_money >= docharge) {
               _this.aftersubmit();
             } else {
               let needrecharge = docharge - parseInt(res.data.surplus_money)
               _this.setData({
-                recharge: true
+                needrecharge: needrecharge
               })
               _this.setData({
-                needrecharge: needrecharge
+                recharge: true
               })
             }
           }).catch(res => {
@@ -515,9 +509,7 @@ Page({
           _this.aftersubmit();
         }
       }
-      
-      //判断营销资金
-       
+      //判断营销资金 
     },
     aftersubmit: function () {
         let _this = this
@@ -526,6 +518,7 @@ Page({
         } else if (this.data.name.length > 15) {
           app.showToast('输入的优惠券名称少于15个字', this, 2000)
         } else {
+            let price = this.data.price || 0
             if(_this.data.publish){
               _this.data.publish=false
               common.post('/coupon/publish', {
@@ -546,7 +539,7 @@ Page({
                 phone: this.data.tel,
                 limit: this.data.des,
                 keyword: this.data.key,
-                price: this.data.price
+                price: price
                 // phone: 18132020205,
                 // limit: '无',
                 // keyword: '蛋糕',
@@ -586,7 +579,7 @@ Page({
                   image_photo: '',
                   imgShow: true
                 })
-                app.showToast('支付成功，正在提交优惠券信息', _this, 2000)
+                app.showToast('提交成功，请等待审核通过', _this, 2000)
                 setTimeout(function(){
                   wx.switchTab({
                     url: '/pages/mine/mine'
@@ -693,25 +686,8 @@ Page({
     },
     inputMoney(e){
         this.setData({
-          bieMoney:e.detail.value
+          needrecharge:e.detail.value
         })
-      },
-      // 点击切换金额
-      radioChange: function (e) {
-        let _this=this
-        if(e.detail.value=='其它金额'){
-          _this.setData({
-            part:true
-          })
-          console.log(_this.data.part)
-          _this.inputMoney();
-        }else {
-          _this.setData({
-            part:false,
-            bieMoney:'',
-            money:e.detail.value
-          })
-        }
       },
       pay(){
         let _this=this
@@ -719,7 +695,7 @@ Page({
           _this.data.chongzhi=false
           common.post('/member/recharge', {
             unique_id: _this.data.unique_id,
-            money: _this.data.part == true ? _this.data.bieMoney : _this.data.money
+            money: _this.data.needrecharge
           }).then(res => {
             setTimeout(function () {
               _this.setData({
@@ -736,7 +712,6 @@ Page({
                 'success': function (res) {
                   _this.setData({
                     recharge: false,
-                    bieMoney: ''
                   })
                 },
                 'fail': function (res) {

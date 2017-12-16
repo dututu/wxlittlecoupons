@@ -123,9 +123,9 @@
           </view>
         </view>
         <view class="newpublish_info_con">
-          <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="使用说明，示例：消费满100元使用" placeholder-class="input" value="{{des}}" bindblur="inputDes" />
-          <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="关键字,逗号隔开，方便消费者用关键字搜索到优惠券" placeholder-class="input" value="{{key}}" bindblur="inputKey" />
-            <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="卡券售价(元)，免费券不填" type="digit" placeholder-class="input" value="{{price}}" bindblur="inputPrice" />
+          <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;" decode='true'>&ensp;</text><input placeholder="使用说明，示例：消费满100元使用" placeholder-class="input" value="{{des}}" bindblur="inputDes" />
+          <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;" decode='true'>&ensp;</text><input placeholder="关键字,逗号隔开，方便消费者用关键字搜索到优惠券" placeholder-class="input" value="{{key}}" bindblur="inputKey" />
+            <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;" decode='true'>&ensp;</text><input placeholder="卡券售价(元)，免费券不填" type="digit" placeholder-class="input" value="{{price}}" bindblur="inputPrice" />
           <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="门店电话，方便消费者电话联系" type="number" placeholder-class="input" value="{{tel}}" bindblur="inputTel" />
           <view class="newpublish_info_con_box">
             <view class="newpublish_info_con_box_left">
@@ -224,15 +224,14 @@
         <view class="cover"></view>
         <view class="recharge_box">
           <view class="recharge_box_tit">温馨提示</view>
-          <text class="recharge_box_tit_content"> 根据我们的经验，优惠券的转化率约为20%，您本次发行的优惠券数量为{{num}}张，目前营销资金账户余额为{{surplus_money}}元，为保障您正常核销，建议充值{{needrecharge}}元。</text>
-          <view class="recharge_box_close" bindtap="closeRecharge">
-            <image src="../../imgs/bclose.png"></image>
-          </view>
+          <text class="recharge_box_tit_content">根据我们的经验，优惠券的转化率约为20%，您本次发行的优惠券数量为{{num}}张，目前营销资金账户余额为{{surplus_money}}元，为保障您正常核销，建议充值{{needrecharge}}元。</text>
+         
           <view class="recharge_box_info">
             <view class="recharge_box_info_top">
-              <view class="recharge_box_info_top_tit">充值金额（元）</view>
               <view class="recharge_box_info_top_tit">
-                <input class="input" value="{{needrecharge}}"  bindinput="inputMoney"></input>
+              <view>充值金额（元）</view></view>
+              <view class="recharge_box_info_top_tit">
+                <input class="input" maxlength="4" type="number" value="{{needrecharge}}"  bindinput="inputMoney"></input>
               </view>
               </view>
               <view class="recharge_box_info_top_con">   
@@ -240,7 +239,10 @@
             <view class="recharge_box_info_bottom">
             </view>
           </view>
-          <view class="recharge_box_button" bindtap="pay">支付</view>
+          <view class='rechange_box_button_pre'>
+            <view class='recharge_box_botton_not' bindtap='closeRecharge'>暂不充值</view>
+            <view class="recharge_box_button" bindtap="pay">立刻充值</view>
+          </view>          
         </view>
       </view>
 

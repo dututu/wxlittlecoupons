@@ -638,6 +638,21 @@
   height: 100%;
   display: block;
 }
+.rechange_box_button_pre {
+  text-align: center;
+}
+.recharge_box_botton_not {
+  display: inline-block;
+  margin: 45rpx auto 0;
+  width: 250rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  /* background-color: #09bb07; */
+  border-radius: 30rpx;
+  color: #c7c7cd;
+  font-size: 30rpx;
+}
 .recharge_box_button {
   margin: 45rpx auto 0;
   width: 300rpx;
@@ -648,19 +663,23 @@
   border-radius: 30rpx;
   color: #fff;
   font-size: 30rpx;
+  display: inline-block;
 }
 .recharge_box_info {
   margin-top: 30rpx; 
   font-size: 32rpx;
   color: #000;
+  text-align: center;
 }
 .recharge_box_info_top{
   text-align: center;
 }
 .recharge_box_info_top_tit {
-  width: 50%;
   display: inline-block;
-
+  line-height: 30rpx;
+  padding-bottom: 10rpx;
+  padding-top: 10rpx;
+  
 }
 .recharge_box_info_top_con {
   width: 100%;
@@ -683,9 +702,12 @@
   margin-right: 30rpx;
 }
 .recharge .input {
-  width: 50%;
+  width: 100rpx;
   border-bottom: 1rpx solid #000;
-  color: red;
+  color: red; 
+  display: inline-block;
+  line-height: 40rpx;
+  font-size: 35rpx;
 }
 .cover {
   position: absolute;
