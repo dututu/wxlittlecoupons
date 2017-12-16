@@ -97,6 +97,12 @@
 					"pathName": "pages/bindClerk/bindClerk",
 					"query": "q=http%3A%2F%2Fcoupons3.com   %2Fapi%2Forder%2Fconfirm%3Forderid%3D15130476069TpW5%26unique_id%3D15107097064hGNX",
 					"scene": "1011"
+				},
+				{
+					"id": -1,
+					"name": "优惠券管理",
+					"pathName": "pages/manage/manage",
+					"query": ""
 				}
 			]
 		}

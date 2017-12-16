@@ -220,3 +220,8 @@
   -webkit-transform: translateX(0);
   transform: translateX(0);
 }
+
+/*审核图片样式  */
+.need_verify {
+  width:100rpx;
+}

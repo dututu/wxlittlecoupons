@@ -75,7 +75,7 @@
             </view>
             <view class="newpublish_info_tit_right_bot">
               <view class="newpublish_info_tit_right_bot_left">
-                <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input style="width: 90%;" placeholder="发放数量" placeholder-class="input" value="{{num}}" bindblur="inputNum" />
+                <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input type="number" style="width: 90%;" placeholder="发放数量" placeholder-class="input" value="{{num}}" bindblur="inputNum" />
               </view>
               <view class="newpublish_info_tit_right_bot_right">张</view>
             </view>

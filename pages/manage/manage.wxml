@@ -9,6 +9,7 @@
       <view class="publish_info_detail">
         <view class="publish_info_box {{item.isTouchMove ? 'touch-move-active' : ''}}" wx:if="{{noPub==false}}" wx:for="{{publishList}}"   bindtouchstart="touchstart" bindtouchmove="touchmove" data-index="{{index}}">
           <image src="../../imgs/bgc.png"></image>
+          <image class="need_verify" wx:if="{{item.status == 3}}"  style='width:100rpx;height:100rpx;position:absolute;left:458rpx;' src="../../imgs/need_verify.png"></image>
           <view class="content" data-item="{{item}}"  bindtap="jumpData" >
             <view class="publish_info_box_left">
               <view class="box_left">
