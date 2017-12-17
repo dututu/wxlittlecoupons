@@ -358,7 +358,7 @@
     color: #09bb07;
 }
 .newpublish_info_con_photo {
-    padding: 30rpx 30rpx 0;
+    /* padding: 30rpx 30rpx 0; */
     height: 150rpx;
 }
 .newpublish_info_con_photo_top {
@@ -376,12 +376,14 @@
     height: 100%;
 }
 .newpublish_info_con_photo_bot {
-    margin-left: 20rpx;
-    font-size: 24rpx;
-    color: #c7c7cd;
-    height: 100%;
+    /* margin-left: 0.5em; */
+    font-size: 28rpx;
+     color: #c7c7cd; 
+    /* height: 100%; */
     overflow: hidden;
-    padding-top: 100rpx;
+    /* padding-top: 100rpx; */
+    font-family:'苹方';
+
 }
 .newpublish_info_con_button {
     padding: 0 95rpx 75rpx;

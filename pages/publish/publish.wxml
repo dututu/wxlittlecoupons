@@ -52,11 +52,11 @@
         <view class="newpublish_info_tit">
           <view class="newpublish_info_tit_left">
             <view class="newpublish_info_tit_left_top">
-              <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="优惠券名称" placeholder-class="input" value="{{name}}" bindblur="inputName" />
+              <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="优惠券名称" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{name}}" bindblur="inputName" />
             </view>
             <view class="newpublish_info_tit_left_bot">
               <view class="newpublish_info_tit_left_bot_left">
-                <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input style="width: 90%;" placeholder="减免金额或折扣" placeholder-class="input" value="{{countPrice}}" bindblur="inputCount" />
+                <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input style="width: 90%;" placeholder="面值或折扣" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{countPrice}}" bindblur="inputCount" />
               </view>
               <view class="newpublish_info_tit_left_bot_right" bindtap="bindSale" style="color: #000;">{{saleText}}
                 <image src="../../imgs/sanjiao.png"></image>
@@ -66,7 +66,7 @@
           <view class="newpublish_info_tit_right">
             <view class="newpublish_info_tit_right_top" bindtap="bindType">
               <view class="newpublish_info_tit_right_top_left">
-                <text style="color: red;">*</text><text wx:if="{{typeShow}}" style="color: #c7c7cd;">选择行业</text>
+                <text style="color: red;">*</text><text wx:if="{{typeShow}}" style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;">选择行业</text>
                 <text style="color: #000;">{{typeText}}</text>
               </view>
               <view class="newpublish_info_tit_right_top_right">
@@ -75,7 +75,7 @@
             </view>
             <view class="newpublish_info_tit_right_bot">
               <view class="newpublish_info_tit_right_bot_left">
-                <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input type="number" style="width: 90%;" placeholder="发放数量" placeholder-class="input" value="{{num}}" bindblur="inputNum" />
+                <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input style="width: 90%;" placeholder="发放数量" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{num}}" bindblur="inputNum" />
               </view>
               <view class="newpublish_info_tit_right_bot_right">张</view>
             </view>
@@ -86,7 +86,7 @@
             <view class="newpublish_info_choose_left_top">
               <picker mode="date" start="{{time}}"   end="2040-12-01" bindchange="bindDateChange">
                 <view class="picker" style="position: relative; font-size: 30rpx; color: #c7c7cd;">
-                  <text style="color: red;">*</text><text wx:if="{{startTime==true}}" style="color: #c7c7cd;">开始时间</text>
+                  <text style="color: red;">*</text><text wx:if="{{startTime==true}}" style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;">开始时间</text>
                   <text wx:if="{{startTime==false}}" style="color: #000;">{{startDate}}</text>
                   <image src="../../imgs/sanjiao.png" style="width: 17rpx; height: 11rpx; position: absolute;right: 0; top: 50%; transform: transform: translateY(-50%);"></image>
                 </view>
@@ -94,7 +94,7 @@
             </view>
             <view class="newpublish_info_choose_left_bot" bindtap="bindWeek">
               <view class="newpublish_info_choose_left_bot_left">
-                <text style="color: red;">*</text><text wx:if="{{weekShow}}" style="color: #c7c7cd;">周几可用</text>
+                <text style="color: red;">*</text><text wx:if="{{weekShow}}" style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;">周几可用</text>
                 <text style="color: #000;">{{weekText}}</text>
               </view>
               <view class="newpublish_info_choose_left_bot_right">
@@ -106,14 +106,14 @@
             <view class="newpublish_info_choose_right_top">
               <picker mode="date" value="{{date}}" start="{{startDate}}" end="2040-12-01" bindchange="bindEndDate">
                 <view class="picker" style="position: relative; font-size: 30rpx; color: #c7c7cd;">
-                  <text style="color: red;">*</text><text wx:if="{{endTime}}" style="color: #c7c7cd;">结束时间</text><text style="color: #000;">{{endDate}}</text>
+                  <text style="color: red;">*</text><text wx:if="{{endTime}}" style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;">结束时间</text><text style="color: #000;">{{endDate}}</text>
                   <image src="../../imgs/sanjiao.png" style="width: 17rpx; height: 11rpx; position: absolute;right: 0; top: 50%; transform: transform: translateY(-50%);"></image>
                 </view>
               </picker>
             </view>
             <view class="newpublish_info_choose_right_bot" bindtap="bindChoose">
               <view class="newpublish_info_choose_right_top_left">
-                <text style="color: red;">*</text><text wx:if="{{chooseShow}}" style="color: #c7c7cd;">可用时间段</text>
+                <text style="color: red;">*</text><text wx:if="{{chooseShow}}" style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;">可用时间段</text>
                 <text style="color: #000;">{{chooseText}}</text>
               </view>
               <view class="newpublish_info_choose_right_bot_right">
@@ -123,13 +123,13 @@
           </view>
         </view>
         <view class="newpublish_info_con">
-          <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;" decode='true'>&ensp;</text><input placeholder="使用说明，示例：消费满100元使用" placeholder-class="input" value="{{des}}" bindblur="inputDes" />
-          <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;" decode='true'>&ensp;</text><input placeholder="关键字,逗号隔开，方便消费者用关键字搜索到优惠券" placeholder-class="input" value="{{key}}" bindblur="inputKey" />
-            <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;" decode='true'>&ensp;</text><input placeholder="卡券售价(元)，免费券不填" type="digit" placeholder-class="input" value="{{price}}" bindblur="inputPrice" />
-          <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="门店电话，方便消费者电话联系" type="number" placeholder-class="input" value="{{tel}}" bindblur="inputTel" />
+          <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;" decode='true'>&ensp;</text><input placeholder="使用说明，示例：消费满100元使用" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{des}}" bindblur="inputDes" />
+          <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;" decode='true'>&ensp;</text><input placeholder="关键字,逗号隔开，方便消费者用关键字搜索到优惠券" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{key}}" bindblur="inputKey" />
+            <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;" decode='true'>&ensp;</text><input placeholder="卡券售价(元)，免费券不填" type="digit" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{price}}" bindblur="inputPrice" />
+          <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="门店电话，方便消费者电话联系" type="number" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{tel}}" bindblur="inputTel" />
           <view class="newpublish_info_con_box">
             <view class="newpublish_info_con_box_left">
-              <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="门店地址，方便地图导航消费者" style="width: 90%;" placeholder-class="input" value="{{add}}" bindblur="inputAdd" />
+              <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="门店地址，方便地图导航消费者" style="width: 90%;" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{add}}" bindblur="inputAdd" />
             </view>
             <view class="newpublish_info_con_box_right" bindtap="getLon">
               <image src="../../imgs/pos.png"></image>
@@ -137,11 +137,12 @@
             </view>
           </view>
           <view class="newpublish_info_con_photo">
+          <view class="newpublish_info_con_photo_bot"><text style="color: red; float: left; font-size: 26rpx;">*</text>优惠券头图，请选择能代表门店或者优惠券信息的图片，图片大小最好不超过200K</view>
             <view class="newpublish_info_con_photo_top" bindtap="chooseImg">
               <image src="../../imgs/photo.png" wx:if="{{imgShow}}"></image>
               <image src="{{image_photo}}"></image>
             </view>
-            <view class="newpublish_info_con_photo_bot">优惠券头图，请选择等代表门店或者优惠券信息的图片，图片大小最好不超过200K</view>
+            
           </view>
           <view style="clear: both;"></view>
          
@@ -231,7 +232,7 @@
               <view class="recharge_box_info_top_tit">
               <view>充值金额（元）</view></view>
               <view class="recharge_box_info_top_tit">
-                <input class="input" maxlength="4" type="number" value="{{needrecharge}}"  bindinput="inputMoney"></input>
+                <input class="input" maxlength="7" type="number" value="{{needrecharge}}"  bindinput="inputMoney"></input>
               </view>
               </view>
               <view class="recharge_box_info_top_con">   
@@ -240,8 +241,8 @@
             </view>
           </view>
           <view class='rechange_box_button_pre'>
-            <view class='recharge_box_botton_not' bindtap='closeRecharge'>暂不充值</view>
-            <view class="recharge_box_button" bindtap="pay">立刻充值</view>
+            <view class='recharge_box_botton_not' bindtap="closeRecharge">暂不充值</view>
+            <view class="recharge_box_button" bindtap="pay">充值</view>
           </view>          
         </view>
       </view>

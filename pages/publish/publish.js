@@ -490,7 +490,7 @@ Page({
             if (res.data.surplus_money >= docharge) {
               _this.aftersubmit();
             } else {
-              let needrecharge = docharge - parseInt(res.data.surplus_money)
+              let needrecharge = (docharge - parseInt(res.data.surplus_money)).toFixed(2);
               _this.setData({
                 needrecharge: needrecharge
               })
