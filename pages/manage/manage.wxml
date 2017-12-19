@@ -17,7 +17,8 @@
               </view>
               <view class="box_right">
                 <view class="box_right_text">{{item.name}}</view>
-                <view class="box_right_bot">发布时间:{{item.createtime}}</view>
+                <view class="box_right_bot" wx:if="{{item.status == 3}}">提交时间:{{item.createtime}}</view>
+                <view class="box_right_bot" wx:if="{{item.status != 3}}">发布时间:{{item.updatetime}}</view>
               </view>
             </view>
             <view class="publish_info_box_right">

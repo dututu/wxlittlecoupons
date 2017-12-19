@@ -1,5 +1,6 @@
 //app.js
 // var aldstat = require("./utils/ald-stat.js");
+import WxValidate from 'assets/js/WxValidate';//验证函数
 App({
   data:{
     currentClickNavIndex:0
@@ -74,5 +75,6 @@ App({
   },
   globalData:{
     userInfo:null
-  }
+  },
+  WxValidate: (rules, messages) => new WxValidate(rules, messages)
 })

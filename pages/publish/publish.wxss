@@ -704,7 +704,7 @@
   margin-right: 30rpx;
 }
 .recharge .input {
-  width: 100rpx;
+  width: 130rpx;
   border-bottom: 1rpx solid #000;
   color: red; 
   display: inline-block;

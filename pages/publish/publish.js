@@ -7,6 +7,7 @@ Page({
         //手机号
         surplus_money:0,
         needrecharge:0,
+        needrecharged:0,
         mobiled:true,
         //充值
         checkSum:true,
@@ -135,18 +136,116 @@ Page({
           }
         });
       }
-        this.setData({
-          unique_id: wx.getStorageSync('unique_id')
+      this.setData({
+        unique_id: wx.getStorageSync('unique_id')
+      })
+      this.getPublish(this.data.page);
+      // 页面加载的时候获取到unique_id
+      let res = wx.getSystemInfoSync()
+      this.setData({
+          scrollStyle: {
+              width: res.windowWidth,
+              height: res.windowHeight
+          }
+      })
+      //验证
+      this.WxValidate = app.WxValidate({
+        inputName: {
+          required: true,
+          // minlength: 2,
+          maxlength: 15,
+        },
+        //行业
+        type: {
+          required: true,
+        },
+        //折扣
+        inputCount: {
+          required: true,
+          number: true,
+          range:[
+            0,
+            999.99
+          ],
+        },
+        //发放数量
+        inputNum: {
+          required: true,
+          number: true,
+        },
+        //开始时间
+        startTime: {
+          required: true,
+        },
+        //结束时间
+        endTime: {
+          required: true,
+        },
+        //周几可用
+        week: {
+          required: true,
+        },
+        //可用时段
+        time: {
+          required: true,
+        },
+        phone: {
+          required: true,
+          tel: true         
+        },
+        add: {
+          required: true,
+        },
+        image: {
+          required: true,
+        },
+      }, {
+          inputName: {
+            required: '输入优惠券名称',
+            maxlength: '输入的优惠券名称不多于15个字',
+          },
+          inputCount: {
+            required: '请填写优惠值',
+            number:'优惠值必须是数字',
+            range:'优惠值必须介于0~999.99之间',
+          },
+          type: {
+            required: '请选择行业类型',
+          },
+          inputNum: {
+            required: '数量不能为空',
+            number: '数量必须为数字',
+          },
+          //开始时间
+          startTime: {
+            required: '请选择开始日期',
+          },
+          //结束时间
+          endTime: {
+            required: '请选择过期日期',
+          },
+          //周几可用
+          week: {
+            required: '请填写周几可用',
+          },
+          //可用时段
+          time: {
+            required: '请填写可用时间段',
+          },
+          phone: {
+            required: '请填写联系电话',
+            tel:'请填写正确的手机号'
+          },
+          add: {
+            required: '请填写地址',
+          },
+          image: {
+            required: '请上传图片',
+          },
         })
-        this.getPublish(this.data.page);
-        // 页面加载的时候获取到unique_id
-        let res = wx.getSystemInfoSync()
-        this.setData({
-            scrollStyle: {
-                width: res.windowWidth,
-                height: res.windowHeight
-            }
-        })
+    
+
+
     },
     onShareAppMessage: function () {
         return {
@@ -468,12 +567,13 @@ Page({
         })
     },
     // 点击提交的时候执行的函数
-    submit: function() {
+    submit: function(e) {
       let _this = this
-      if(_this.data.num==0 || _this.data.num==''||_this.data.num==undefined){
-        console.log(_this.num)
-        app.showToast('请输入优惠券发放数量', this, 2000)
-      } else {
+      if (!this.WxValidate.checkForm(e)) {
+         const error = this.WxValidate.errorList[0]
+         app.showToast(error.msg, _this, 2000)
+         return false
+       } else {
         if (_this.data.checkSum == true) {
           common.post('/surplusmoney', {
             unique_id: this.data.unique_id,
@@ -488,9 +588,13 @@ Page({
             //校验优惠券数量和金额(非强制...)//用户输入数量为0的时候会有bug
             let docharge = Math.ceil(_this.data.num * 0.2) * 3
             if (res.data.surplus_money >= docharge) {
-              _this.aftersubmit();
+              //余额够传1
+              _this.aftersubmit(1);
             } else {
               let needrecharge = (docharge - parseInt(res.data.surplus_money)).toFixed(2);
+              _this.setData({
+                needrecharged: needrecharge
+              })
               _this.setData({
                 needrecharge: needrecharge
               })
@@ -506,12 +610,13 @@ Page({
             app.showToast(reason[0] || res.data.message, this, 2000)
           })
         } else {
-          _this.aftersubmit();
+          //如果没跳转再次提交
+          _this.aftersubmit(2);
         }
       }
       //判断营销资金 
     },
-    aftersubmit: function () {
+    aftersubmit: function (flag) {
         let _this = this
         if (this.data.name == undefined) {
           app.showToast('输入优惠券名称', this, 2000)
@@ -579,12 +684,25 @@ Page({
                   image_photo: '',
                   imgShow: true
                 })
-                app.showToast('提交成功，请等待审核通过', _this, 2000)
+                if(flag==1) {
+                  //资金够
+                  app.showToast('提交成功，请等待审核通过', _this, 2000)
+                } else if(flag==2) {
+                  //再次提交
+                  app.showToast('提交成功，请等待审核通过', _this, 2000)
+                } else if(flag==3) {
+                  app.showToast('支付成功，正在提交优惠券信息', _this, 2000)
+                  //支付成功
+                } else if(flag==4) {
+                  //取消支付
+                  app.showToast('如果需要，请在奖励金->钱包->营销资金进行充值，正在提交优惠券信息', _this, 3000)
+                }
+               
                 setTimeout(function(){
                   wx.switchTab({
                     url: '/pages/mine/mine'
                   })
-                },2000)
+                },3000)
               }).catch(res => {
                 setTimeout(function(){
                   _this.setData({
@@ -683,6 +801,7 @@ Page({
         this.setData({
           recharge:false
         })
+        this.aftersubmit(4);
     },
     inputMoney(e){
         this.setData({
@@ -713,9 +832,17 @@ Page({
                   _this.setData({
                     recharge: false,
                   })
+                  _this.aftersubmit(3);
                 },
                 'fail': function (res) {
                   console.log(res)
+                  //支付失败重新跳起支付
+                  app.showToast('支付失败，请重新支付', _this, 2000)
+                  setTimeout(function () {
+                    _this.setData({
+                      recharge: true
+                    })
+                  }, 2000)
                 }
               })
             } else {
