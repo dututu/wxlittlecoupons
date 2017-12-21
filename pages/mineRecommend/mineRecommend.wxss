@@ -76,15 +76,16 @@
 .recommend_info_con_per_des {
   font-size: 30rpx;
   color: #a3a3a3;
-  width: 120rpx;
+  width: 80rpx;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   float: left;
 }
 .recommend_info_con_per_time {
-  float: right;
+  float: left;
   font-size: 30rpx;
   color: #a3a3a3;
+  margin-left: 20rpx;
 }
 

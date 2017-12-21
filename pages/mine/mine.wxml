@@ -48,7 +48,7 @@
                 <image src="../../imgs/icon2.png"></image>
             </view>
             <view class="min_info_box_text">
-                我的优惠券
+                我领的券
             </view>
             <view class="min_info_box_right">
                 <image src="../../imgs/right_jiantou.png"></image>
@@ -61,7 +61,7 @@
                 <image src="../../imgs/icon4.png"></image>
             </view>
             <view class="min_info_box_text">
-                管理优惠券
+                我发的券
             </view>
             <view class="min_info_box_right">
                 <image src="../../imgs/right_jiantou.png"></image>

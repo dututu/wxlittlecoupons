@@ -24,15 +24,9 @@
           <view class="recommend_info_con_per_img">
             <image src="{{item.avatar}}"></image>
           </view>
-          <view class="recommend_info_con_per_name">
-            {{item.nickname}}
-          </view>
-          <view class="recommend_info_con_per_des">
-            {{item.status}}
-          </view>
-          <view class="recommend_info_con_per_time">
-             {{item.created_at}} 
-          </view>
+          <view class="recommend_info_con_per_name">{{item.nickname}}</view>
+          <view class="recommend_info_con_per_des">{{item.status}}</view>
+          <view class="recommend_info_con_per_time">{{item.created_at}}</view>
       </view>
     </view>
   </view>
