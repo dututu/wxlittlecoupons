@@ -8,7 +8,8 @@ Page({
    */
   data: {
     isShowToast: false,
-    page:1
+    page:1,
+    totalpage:1,
   },
   /**
    * 生命周期函数--监听页面加载
@@ -20,8 +21,9 @@ Page({
     })
     wx.getSystemInfo({
       success: function (res) {
+        let windowHeight = res.windowHeight*0.53
         that.setData({
-          scrollHeight: res.windowHeight
+          scrollHeight: windowHeight
         });
       }
     });
@@ -62,9 +64,14 @@ Page({
     common.get('/recommend',{
       unique_id: this.data.unique_id
     }).then(res=>{
+      
       this.setData({
         list:res.data.data
       })
+      this.setData({
+        totalpage: res.data.meta.pagination.total_pages
+      })
+      
     }).catch(res=>{
       let reason = [];
       for (let i in res.data.errors) {
@@ -89,23 +96,28 @@ Page({
       app.showToast(reason[0] || res.data.message, this, 2000)
     })
   },
-  // 下拉加载更多
-  // bindDownLoad(){
-  //   this.data.page++
-  //   this.setData({
-  //     page: this.data.page
-  //   })
-  //   common.get('/recommend',{
-  //     unique_id: this.data.unique_id
-  //   }).then(res=>{
-  //     if (res.data.data.length > 0) {
-  //       this.data.list = [...this.data.list, ...res.data.data]
-  //       this.setData({
-  //         list: this.data.list
-  //       })
-  //     } else {
-  //       return false
-  //     }
-  //   })
-  // }
+  //下拉加载更多
+  bindDownLoad(){
+    this.data.page++
+    this.setData({
+      page: this.data.page
+    })
+    if(this.data.page>this.data.totalpage) {
+      //已经达到最大页数
+      return false;
+    }
+    common.get('/recommend',{
+      unique_id: this.data.unique_id,
+      page: this.data.page
+    }).then(res=>{
+      if (res.data.data.length > 0) {
+        this.data.list = [...this.data.list, ...res.data.data]
+        this.setData({
+          list: this.data.list
+        })
+      } else {
+        return false
+      }
+    })
+  }
 })
