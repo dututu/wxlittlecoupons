@@ -119,7 +119,8 @@ Page({
         price:'',
         count:'',
         num:'',
-        publish:true
+        publish:true,
+        max:'',
     },
     onLoad: function (options) {
       var time = util.formatTime(new Date());
@@ -189,9 +190,17 @@ Page({
         time: {
           required: true,
         },
+        //最大领取量限制
+        max: {
+          range: [
+            1,
+            99
+          ],
+          digits: true,
+        },
         phone: {
           required: true,
-          tel: true         
+          // tel: true         
         },
         add: {
           required: true,
@@ -199,6 +208,8 @@ Page({
         image: {
           required: true,
         },
+        //
+        
       }, {
           inputName: {
             required: '输入优惠券名称',
@@ -232,9 +243,12 @@ Page({
           time: {
             required: '请填写可用时间段',
           },
+          max: {
+            digits: '请输入整数',
+            range: '请输入1~99的整数',
+          },
           phone: {
             required: '请填写联系电话',
-            tel:'请填写正确的手机号'
           },
           add: {
             required: '请填写地址',
@@ -242,6 +256,7 @@ Page({
           image: {
             required: '请上传图片',
           },
+          
         })
     
 
@@ -492,6 +507,11 @@ Page({
             num: e.detail.value
         })
     },
+    inputMax: function(e) {
+        this.setData({
+          max: e.detail.value
+        })
+    },
     // 输入使用限制
     inputDes: function (e) {
         this.setData({
@@ -624,6 +644,7 @@ Page({
           app.showToast('输入的优惠券名称少于15个字', this, 2000)
         } else {
             let price = this.data.price || 0
+            let max = this.data.max > 0 ? this.data.max : 99
             if(_this.data.publish){
               _this.data.publish=false
               common.post('/coupon/publish', {
@@ -644,7 +665,8 @@ Page({
                 phone: this.data.tel,
                 limit: this.data.des,
                 keyword: this.data.key,
-                price: price
+                price: price,
+                max: max
                 // phone: 18132020205,
                 // limit: '无',
                 // keyword: '蛋糕',
@@ -682,7 +704,8 @@ Page({
                   typeShow: true,
                   typeText: '',
                   image_photo: '',
-                  imgShow: true
+                  imgShow: true,
+                  max: '',
                 })
                 if(flag==1) {
                   //资金够
