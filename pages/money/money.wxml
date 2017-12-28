@@ -78,7 +78,7 @@
                 {{item.nickname}}
               </view>
               <view class="money_con_info_per_bottom_per_des">
-                {{item.type==1?'充值':item.type==2?'制券':'核销'}}
+                {{item.type==1?'充值':item.type==2?'制券':item.type==3?'核销':'奖励'}}
               </view>
               <view class="money_con_info_per_bottom_per_time">
                 {{item.created_at}}

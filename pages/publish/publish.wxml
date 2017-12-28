@@ -48,7 +48,7 @@
 
     <!--这是发布新优惠券的内容-->
     <view class="newpublish_info" wx:if="{{currentTab==1}}">
-      <form bindsubmit="submit">
+      <form bindsubmit="submit" report-submit='true'>
         <view class="newpublish_info_tit">
           <view class="newpublish_info_tit_left">
             <view class="newpublish_info_tit_left_top">

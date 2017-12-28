@@ -588,6 +588,8 @@ Page({
     },
     // 点击提交的时候执行的函数
     submit: function(e) {
+      console.log(e.detail.formId);
+      return;
       let _this = this
       if (!this.WxValidate.checkForm(e)) {
          const error = this.WxValidate.errorList[0]
