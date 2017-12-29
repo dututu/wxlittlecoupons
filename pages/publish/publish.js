@@ -121,6 +121,7 @@ Page({
         num:'',
         publish:true,
         max:'',
+        form_id:''
     },
     onLoad: function (options) {
       var time = util.formatTime(new Date());
@@ -244,8 +245,8 @@ Page({
             required: '请填写可用时间段',
           },
           max: {
-            digits: '请输入整数',
-            range: '请输入1~99的整数',
+            digits: '最大领取量请输入整数',
+            range: '最大领取量请输入1~99的整数',
           },
           phone: {
             required: '请填写联系电话',
@@ -589,7 +590,7 @@ Page({
     // 点击提交的时候执行的函数
     submit: function(e) {
       console.log(e.detail.formId);
-      return;
+      let form_id = e.detail.formId;
       let _this = this
       if (!this.WxValidate.checkForm(e)) {
          const error = this.WxValidate.errorList[0]
@@ -621,7 +622,8 @@ Page({
                 needrecharge: needrecharge
               })
               _this.setData({
-                recharge: true
+                recharge: true,
+                form_id: e.detail.formId
               })
             }
           }).catch(res => {
@@ -668,7 +670,8 @@ Page({
                 limit: this.data.des,
                 keyword: this.data.key,
                 price: price,
-                max: max
+                max: max,
+                form_id: this.data.form_id
                 // phone: 18132020205,
                 // limit: '无',
                 // keyword: '蛋糕',

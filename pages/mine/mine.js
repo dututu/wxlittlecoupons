@@ -20,7 +20,7 @@ Page({
       unique_id: this.data.unique_id
     }).then(res=>{
       this.setData({
-        person: res.data.member_num + res.data.shop_num
+        person: res.data.total + res.data.second_num + res.data.third_num
       })
     })
   },
