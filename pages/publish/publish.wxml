@@ -136,7 +136,7 @@
           <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="门店电话，方便消费者电话联系" type="number" name="phone" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{tel}}" bindblur="inputTel" />
           <view class="newpublish_info_con_box">
             <view class="newpublish_info_con_box_left">
-              <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="门店地址，方便地图导航消费者" style="width: 90%;" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{add}}" bindblur="inputAdd" name="add"/>
+              <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="门店地址，方便地图导航消费者" style="width: 90%;" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{add}}" disabled='true' bindblur="inputAdd" name="add"/>
             </view>
             <view class="newpublish_info_con_box_right" bindtap="getLon">
               <image src="../../imgs/pos.png"></image>

@@ -92,6 +92,7 @@ Page({
             isOpen: false,
             imgSrc: ''
         }],
+        name:'',
         startDate: '',
         startTime: true,
         endDate: '',
@@ -124,6 +125,53 @@ Page({
         form_id:''
     },
     onLoad: function (options) {
+      let that = this
+      console.log(options.id);
+      if(options.id!=undefined) {
+        let coupon_id = options.id;
+        common.get('/coupon/infofromid', {
+          id:coupon_id,
+        }).then(res=>{
+          console.log(res.data.data);
+          that.setData({
+            couponId: options.id,
+            name: res.data.data.name,
+            typeText: res.data.data.typetext,
+            typeIndex: res.data.data.type,
+            typeShow: false,
+            saleText: res.data.data.prefertext,
+            sale: false,
+            prefer_type_Index: res.data.data.prefer_index-1,
+            countPrice: res.data.data.prefer_value,
+            num: res.data.data.total,
+            startTime:false,
+            endTime:false,
+            startDate: res.data.data.start,
+            endDate: res.data.data.end,
+            weekShow: false,
+            weekText: res.data.data.weektext,
+            weekIndex: res.data.data.week,
+            chooseText: res.data.data.timetext,
+            chooseIndex: res.data.data.time-1,
+            chooseShow: false,
+            max: res.data.data.times,
+            des: res.data.data.limit,
+            key: res.data.data.keywords,
+            price: res.data.data.price,
+            tel: res.data.data.phone,
+            add: res.data.data.address,
+            longitude: res.data.data.lng,
+            latitude: res.data.data.lat,
+            image_photo: res.data.data.img,
+            button: true,
+            imgId: res.data.data.img.substr(res.data.data.img.lastIndexOf('/') + 1),
+            imgShow: false
+          })
+          console.log(11111);
+        }).catch(res=>{
+          console.log(res);
+        })
+      }
       var time = util.formatTime(new Date());
       time = time.split(" ");
       this.setData({
@@ -592,6 +640,9 @@ Page({
       console.log(e.detail.formId);
       let form_id = e.detail.formId;
       let _this = this
+      _this.setData({
+        form_id: e.detail.formId
+      })
       if (!this.WxValidate.checkForm(e)) {
          const error = this.WxValidate.errorList[0]
          app.showToast(error.msg, _this, 2000)
@@ -652,6 +703,7 @@ Page({
             if(_this.data.publish){
               _this.data.publish=false
               common.post('/coupon/publish', {
+                id: this.data.couponId || '',
                 unique_id: this.data.unique_id,
                 name: this.data.name,
                 type: this.data.typeIndex,
