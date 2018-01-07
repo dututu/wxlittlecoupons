@@ -80,6 +80,18 @@
                 <image src="../../imgs/right_jiantou.png"></image>
             </view>
         </navigator>
+         <view style="clear: both;"></view>
+        <navigator url="../../pages/clerkRecord/clerkRecord" hover-class="none" class="min_info_box">
+            <view class="min_info_box_icon">
+                <image src="../../imgs/icon2.png"></image>
+            </view>
+            <view class="min_info_box_text">
+                核销记录
+            </view>
+            <view class="min_info_box_right">
+                <image src="../../imgs/right_jiantou.png"></image>
+            </view>
+        </navigator>
         <view style="clear: both;"></view>
         <navigator class="min_info_box" url="../../pages/redPac/redPac" hover-class="none" style="display: none;">
             <view class="min_info_box_icon">

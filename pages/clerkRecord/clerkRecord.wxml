@@ -1,0 +1,56 @@
+<view class='contain'>
+<view>
+<view>搜索</view>
+<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
+  <view animation="{{animationData}}" class="drawer_attr_box" wx:if="{{showModalStatus}}">
+  <!--drawer content-->
+  <view class="drawer_content">
+    <view class="drawer_title line">菜单1</view>
+    <view class="drawer_title line">菜单2</view>
+    <view class="drawer_title line">菜单3</view>
+    <view class="drawer_title line">菜单4</view>
+    <view class="drawer_title">菜单5</view>
+  </view>
+</view>
+  </view>
+  <view class='total'>
+  <view class='total_content'>
+    <view class='total_tittle'>核销总量</view>
+    <view class='total_count'>{{total}} 张</view>
+  </view>
+  <view class='total_content'>
+    <view class='total_tittle'>面值总金额(代金券)</view>
+    <view class='total_count'>{{faceprice}} 元</view>
+  </view>
+  <view class='total_content'>
+    <view class='total_tittle'>售价总金额</view>
+    <view class='total_count'>{{price}} 元</view>
+  </view>
+  </view>
+  <view class='info' scroll-y="true" bindscrolltolower="bindDownLoad" wx:if='{{has}}'>
+    <view class='info_content'wx:for="{{info}}">
+      <view class='info_head'>
+        <image src="{{item.img}}" class='info_head_img'></image>
+      </view>
+      <view class='info_detail'>
+        <view class='info_name'>
+          <view class='info_user_name'>{{item.nickname}}</view>
+          <view class='info_coupon_time'>{{item.time}}</view>
+        </view>
+        <view class='info_ext'>
+          <view class='coupon_name'>{{item.couponname}}</view>
+          <view class='coupon_value'>{{item.couponvalue}}</view>
+          <view class='coupon_value'>{{item.price}}</view>
+          <view class='coupon_value'>{{item.writeman}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='none' wx:if='{{has==false}}'>
+    <image src='../../imgs/nolist.png' class='none_img'></image>
+    <view>
+      暂无核销记录
+    </view>
+    
+  </view>
+</view>

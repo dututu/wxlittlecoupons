@@ -79,6 +79,7 @@ Page({
           info: res.data.data
         })
       })
-    }
+    },
+  
   
 })

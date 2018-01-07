@@ -1,0 +1,106 @@
+/* pages/search/search.wxss */
+.total {
+  
+  display: flex;
+  text-align: center;
+}
+.total_content {
+  height: 180rpx;
+  width: 33%;
+  background-color: #09BB07;
+  margin:0 2rpx;
+  font-size: 30rpx;
+  color: white;
+}
+.total_tittle {
+  margin-top: 20rpx;
+}
+.total_count {
+  margin-top: 50rpx;
+  font-size: 40rpx;
+  font-weight: 5;
+}
+.info {
+  margin:10rpx 10rpx;
+ 
+}
+.info_content {
+  display: flex;
+  height: 140rpx;
+  font-size: 30rpx;
+}
+.info_detail {
+  height: 100rpx;
+  /* display: flex; */
+}
+.info_name {
+  display: flex;
+  margin: 10rpx;
+}
+.info_ext {
+  display: flex;
+  color: #8B8C83;
+  margin: 10rpx;
+}
+.info_head {
+  width: 140rpx;
+}
+.info_user_name {
+  margin-right: 50rpx;
+}
+.info_coupon_time {
+  margin-left: 70rpx;
+}
+.coupon_value {
+  margin-left: 30rpx;
+}
+.info_head_img {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  
+}
+.none_img{
+  width: 120rpx;
+  height: 120rpx;
+}
+.none {
+  margin-top:200rpx;
+  text-align: center;
+  color: #827F7A
+}
+/*mask*/
+.drawer_screen {
+ width: 100%;
+ height: 100%;
+ position: fixed;
+ top: 0;
+ left: 0;
+ z-index: 1000;
+ background: #000;
+ opacity: 0.2;
+ overflow: hidden;
+}
+/*content*/
+.drawer_attr_box {
+ width: 100%;
+ overflow: hidden;
+ position: fixed;
+ bottom: 0;
+ left: 0;
+ z-index: 1001;
+ background: #fff;
+}
+.drawer_content {
+ padding: 20rpx 40rpx;
+ height: 470rpx;
+ overflow-y: scroll;
+}
+.drawer_title{
+ padding:20rpx;
+ font:42rpx "microsoft yahei";
+ text-align: center;
+}
+.line{
+ border-bottom: 1px solid #f8f8f8;
+}

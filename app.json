@@ -22,7 +22,8 @@
     "pages/submit/submit",
     "pages/fail/fail",
     "pages/success/success",
-    "pages/xieyi/xieyi"
+    "pages/xieyi/xieyi",
+    "pages/clerkRecord/clerkRecord"
   ],
   "window": {
     "backgroundTextStyle": "light",
