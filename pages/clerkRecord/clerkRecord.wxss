@@ -9,7 +9,7 @@
   width: 33%;
   background-color: #09BB07;
   margin:0 2rpx;
-  font-size: 30rpx;
+  font-size: 28rpx;
   color: white;
 }
 .total_tittle {
@@ -68,6 +68,23 @@
   margin-top:200rpx;
   text-align: center;
   color: #827F7A
+}
+.search {
+  background-color: #ccc
+}
+.search_row {
+  display: flex;
+  margin: 10rpx 0;
+}
+.search_button {
+  display: flex;
+  position: absolute;
+  bottom: 40rpx;
+  left: 22%;
+  text-align: center;
+}
+.btn {
+  margin: 20rpx;
 }
 /*mask*/
 .drawer_screen {

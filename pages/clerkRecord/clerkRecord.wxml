@@ -1,15 +1,55 @@
 <view class='contain'>
 <view>
-<view>搜索</view>
+<view class='search' bindtap='powerDrawer' data-statu="open" >
+  <view>{{couponName}};{{userName}}</view>
+  <view>{{startTime}}~{{endTime}}</view>
+  
+</view>
 <view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
   <view animation="{{animationData}}" class="drawer_attr_box" wx:if="{{showModalStatus}}">
   <!--drawer content-->
   <view class="drawer_content">
-    <view class="drawer_title line">菜单1</view>
-    <view class="drawer_title line">菜单2</view>
-    <view class="drawer_title line">菜单3</view>
-    <view class="drawer_title line">菜单4</view>
-    <view class="drawer_title">菜单5</view>
+    <view class='line'>查询条件</view>
+    <view class='search_row'>
+      <view class='view_left'>开始时间:</view>
+      <view class='view_right'>
+        <picker mode="date" value="{{startime}}" bindchange="datepick" data-type='start'>
+          <input value='{{startime}}' placeholder='选择开始时间' disabled='true'></input>
+        </picker>
+      </view>
+    </view>
+    <view class='search_row'>
+      <view class='view_left'>结束时间:</view>
+      <view class='view_right'>
+        <picker mode="date" value="{{endtime}}" bindchange="datepick" data-type='end'>
+          <input value='{{endtime}}' placeholder='选择结束时间' disabled='true'></input>
+        </picker>
+      </view>
+    </view>
+    <view class='search_row'>
+      <view class='view_left'>优惠券名称:</view>
+      <view class='view_right'>
+        <picker mode='selector' value="{{index}}" range="{{couponlist}}" bindchange="bindCardName" range-key='name'>
+          <input value='{{coupon}}' placeholder='选择优惠券名称' ></input>
+        </picker>
+      </view>
+    </view>
+    <view class='search_row' wx:if='{{manShow}}'>
+      <view class='view_left'>核销员:</view>
+      <view class='view_right'>
+        <picker mode="selector" value="{{index}}" bindchange="bindUsers" range="{{users}}" range-key='nickname'>
+          <input value='{{man}}' placeholder='选择核销员'></input>
+        </picker>
+      </view>
+    </view>
+    <view class='search_button'>
+      <view class='btn'> 
+        <button type="primary" bindtap="doSearch" > 搜索 </button>
+      </view>
+      <view class='btn'>
+        <button type="default" bindtap="cSearch"  hover-class="other-button-hover"> 取消 </button>
+        </view>
+    </view>
   </view>
 </view>
   </view>
@@ -28,7 +68,7 @@
   </view>
   </view>
   <view class='info' scroll-y="true" bindscrolltolower="bindDownLoad" wx:if='{{has}}'>
-    <view class='info_content'wx:for="{{info}}">
+    <view class='info_content line'wx:for="{{info}}">
       <view class='info_head'>
         <image src="{{item.img}}" class='info_head_img'></image>
       </view>

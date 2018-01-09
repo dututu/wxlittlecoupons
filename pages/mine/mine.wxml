@@ -81,9 +81,9 @@
             </view>
         </navigator>
          <view style="clear: both;"></view>
-        <navigator url="../../pages/clerkRecord/clerkRecord" hover-class="none" class="min_info_box">
+        <navigator url="../../pages/clerkRecord/clerkRecord" hover-class="none" wx:if="{{user.status==1}}" class="min_info_box">
             <view class="min_info_box_icon">
-                <image src="../../imgs/icon2.png"></image>
+                <image src="../../imgs/hexiao.png"></image>
             </view>
             <view class="min_info_box_text">
                 核销记录
