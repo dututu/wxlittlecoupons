@@ -1,9 +1,11 @@
 <view class='contain'>
 <view>
 <view class='search' bindtap='powerDrawer' data-statu="open" >
-  <view>{{couponName}};{{userName}}</view>
-  <view>{{startTime}}~{{endTime}}</view>
-  
+  <view class='search_tittle'>优惠券：{{couponName}}；核销员：{{userName}}</view>
+  <view class='search_tittle'>起止时间：{{startTime}} ~ {{endTime}}</view>
+</view>
+<view class='search_img' bindtap="powerDrawer" data-statu="open">
+  <image class='search_img_img' src='{{searchSanjiao}}'></image>
 </view>
 <view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>
   <view animation="{{animationData}}" class="drawer_attr_box" wx:if="{{showModalStatus}}">
@@ -13,7 +15,7 @@
     <view class='search_row'>
       <view class='view_left'>开始时间:</view>
       <view class='view_right'>
-        <picker mode="date" value="{{startime}}" bindchange="datepick" data-type='start'>
+        <picker mode="date" value="{{startime}}" end="{{endtime}}" bindchange="datepick" data-type='start'>
           <input value='{{startime}}' placeholder='选择开始时间' disabled='true'></input>
         </picker>
       </view>
@@ -21,24 +23,24 @@
     <view class='search_row'>
       <view class='view_left'>结束时间:</view>
       <view class='view_right'>
-        <picker mode="date" value="{{endtime}}" bindchange="datepick" data-type='end'>
-          <input value='{{endtime}}' placeholder='选择结束时间' disabled='true'></input>
+        <picker mode="date" value="{{startime}}" start='{{startTime}}' bindchange="datepick" data-type='end'>
+          <input value='{{endtime}}'  placeholder='选择结束时间' disabled='true'></input>
         </picker>
       </view>
     </view>
     <view class='search_row'>
       <view class='view_left'>优惠券名称:</view>
       <view class='view_right'>
-        <picker mode='selector' value="{{index}}" range="{{couponlist}}" bindchange="bindCardName" range-key='name'>
-          <input value='{{coupon}}' placeholder='选择优惠券名称' ></input>
+        <picker mode='selector' value="0" range="{{couponlist}}" bindchange="bindCardName" range-key='name'>
+          <input value='{{coupon}}' placeholder='选择优惠券名称' disabled='true'></input>
         </picker>
       </view>
     </view>
     <view class='search_row' wx:if='{{manShow}}'>
       <view class='view_left'>核销员:</view>
       <view class='view_right'>
-        <picker mode="selector" value="{{index}}" bindchange="bindUsers" range="{{users}}" range-key='nickname'>
-          <input value='{{man}}' placeholder='选择核销员'></input>
+        <picker mode="selector" value="0" bindchange="bindUsers" range="{{users}}" range-key='nickname'>
+          <input value='{{man}}' placeholder='选择核销员' disabled='true'></input>
         </picker>
       </view>
     </view>
@@ -53,39 +55,40 @@
   </view>
 </view>
   </view>
-  <view class='total'>
-  <view class='total_content'>
-    <view class='total_tittle'>核销总量</view>
+  <view class='total space'>
+  <view class='total_content '>
+    <view class='total_tittle '>核销总量</view>
     <view class='total_count'>{{total}} 张</view>
   </view>
-  <view class='total_content'>
+  <view class='total_content '>
     <view class='total_tittle'>面值总金额(代金券)</view>
     <view class='total_count'>{{faceprice}} 元</view>
   </view>
-  <view class='total_content'>
+  <view class='total_content '>
     <view class='total_tittle'>售价总金额</view>
     <view class='total_count'>{{price}} 元</view>
   </view>
   </view>
-  <view class='info' scroll-y="true" bindscrolltolower="bindDownLoad" wx:if='{{has}}'>
+  
+  <scroll-view class='info' scroll-y="true" bindscrolltolower="bindDownLoad" wx:if='{{has}}'>
     <view class='info_content line'wx:for="{{info}}">
       <view class='info_head'>
         <image src="{{item.img}}" class='info_head_img'></image>
       </view>
       <view class='info_detail'>
         <view class='info_name'>
-          <view class='info_user_name'>{{item.nickname}}</view>
+          <view class='info_user_name'>{{item.writeman}}</view>
           <view class='info_coupon_time'>{{item.time}}</view>
         </view>
         <view class='info_ext'>
           <view class='coupon_name'>{{item.couponname}}</view>
           <view class='coupon_value'>{{item.couponvalue}}</view>
           <view class='coupon_value'>{{item.price}}</view>
-          <view class='coupon_value'>{{item.writeman}}</view>
+          <view class='coupon_value'>{{item.nickname}}</view>
         </view>
       </view>
     </view>
-  </view>
+  </scroll-view>
   <view class='none' wx:if='{{has==false}}'>
     <image src='../../imgs/nolist.png' class='none_img'></image>
     <view>

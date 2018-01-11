@@ -5,22 +5,24 @@ let common = require('../../assets/js/common');
 Page({
   data: {
     info: {},
-    couponlist:[],
-    users:[],
-    couponName:'所有优惠券',
-    userName:'所有核销员',
+    couponlist:[{'id':'','name':'全部'}],
+    users: [{ 'id': '', 'nickname': '全部' }],
+    couponName:'全部',
+    userName:'全部',
     isShowToast: false,
-    page: 0,
+    page: 1,
     has:false,
     total:'--',
     faceprice:'--',
     price:'--',
     startime:'',
     endtime:'',
-    man:'',
-    coupon:'',
+    man:'全部',
+    coupon:'全部',
     manid:'',
-    couponid:''
+    couponid:'',
+    totalpage:'',
+    searchSanjiao:'../../imgs/down_sanjiao.png',
   },
   onLoad: function (e) {
     let _this = this
@@ -41,7 +43,9 @@ Page({
     let date = this.getNowFormatDate();
     this.setData({
       startTime:date,
-      endTime:date
+      endTime:date,
+      startime:date,
+      endtime:date
     })
   },
   getNowFormatDate:function() {
@@ -70,6 +74,11 @@ Page({
         faceprice: res.data.coupon_money,
         price: res.data.coupon_price,
       })
+    }).catch(res=>{
+      this.setData({
+        faceprice: '-',
+        price: '-',
+      })
     })
   },
   getCouponInfo: function () {
@@ -84,13 +93,20 @@ Page({
       this.setData({
         info: res.data.data,
         has:true,
-        total: res.data.meta.pagination.total
+        total: res.data.meta.pagination.total,
+        totalpage: res.data.meta.pagination.total_pages
       })
     }).catch(res => {
       this.setData({
         has: false,
         total: '--'
       })
+      let reason = [];
+      for (let i in res.data.errors) {
+        reason.push(res.data.errors[i][0])
+      }
+      
+      app.showToast(reason[0] || res.data.message, this, 2000);
     })
   },
   getCouponIds: function () {
@@ -98,7 +114,7 @@ Page({
       unique_id: this.data.unique_id,
     }).then(res => {
       this.setData({
-        couponlist:res.data.couponIds
+        couponlist: [...this.data.couponlist, ...res.data.couponIds]
       })
       
     })
@@ -108,7 +124,7 @@ Page({
       unique_id: this.data.unique_id,
     }).then(res => {
       this.setData({
-        users: res.data.users,
+        users: [...this.data.users, ...res.data.users],
         manShow:true
       })
     }).catch(res=>{
@@ -142,6 +158,10 @@ Page({
     }
     common.get('/coupon/couponuse', {
       unique_id: this.data.unique_id,
+      user_id: this.data.manid,
+      coupon_id: this.data.couponid,
+      start_time: this.data.startTime,
+      end_time: this.data.endTime,
       page: this.data.page
     }).then(res => {
       if (res.data.data.length > 0) {
@@ -157,7 +177,9 @@ Page({
   powerDrawer:function(e) {
     var currentStatu = e.currentTarget.dataset.statu;
     this.util(currentStatu)
-
+    this.setData({
+      searchSanjiao:'../../imgs/up_sanjiao.png'
+    })
   },
   util: function (currentStatu) {
     /* 动画部分 */
@@ -192,7 +214,8 @@ Page({
       if (currentStatu == "close") {
         this.setData(
           {
-            showModalStatus: false
+            showModalStatus: false,
+            searchSanjiao: '../../imgs/down_sanjiao.png'
           }
         );
       }
@@ -202,7 +225,8 @@ Page({
     if (currentStatu == "open") {
       this.setData(
         {
-          showModalStatus: true
+          showModalStatus: true,
+          searchSanjiao: '../../imgs/up_sanjiao.png'
         }
       );
     }
@@ -216,12 +240,16 @@ Page({
         man: '',
         manid: '',
         coupon: '',
-        couponid: ''
+        couponid: '',
+        searchSanjiao: '../../imgs/down_sanjiao.png'
       }
     );
   },
   doSearch: function() {
     let that = this
+    that.setData({
+      page:1
+    });
     if (that.data.startime!='') {
       this.setData({
         startTime: that.data.startime,
@@ -230,6 +258,10 @@ Page({
     if (that.data.endtime != '') {
       this.setData({
         endTime: that.data.endtime,
+      })
+    } else {
+      this.setData({
+        endTime: that.data.startime,
       })
     }
     if (that.data.man != '') {
@@ -244,9 +276,19 @@ Page({
     }
     this.setData({
       showModalStatus: false,
+      searchSanjiao: '../../imgs/down_sanjiao.png'
     })
-    this.getCouponInfo();
-    this.getCouponTotal();
+    //日期判断
+    let t1 = new Date(that.data.startime);
+    let t2 = new Date(that.data.endtime);
+    if(t2.getTime()<t1.getTime()) {
+      app.showToast('结束时间不能大于开始时间', that, 2000)
+      return false;
+    } else {
+      this.getCouponInfo();
+      this.getCouponTotal();
+    }
+    
   },
   datepick:function(e) {
     console.log(e);
