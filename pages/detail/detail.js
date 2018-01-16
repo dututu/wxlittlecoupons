@@ -112,6 +112,15 @@ Page({
   },
   onLoad: function (options) {
     // 页面加载的时候获取到unique_id
+    if(options.q!=undefined) {
+      let src = decodeURIComponent(options.q)
+      options = {
+        quan_id: src.get_query('quan_id'),
+        member_id: src.get_query('member_id'),
+        type: src.get_query('type')
+      }
+      console.log(options)
+    }
     let that = this
     that.setData({
       options: options,
@@ -126,6 +135,9 @@ Page({
         user_id: options.member_id,
         type:options.type
       })
+      console.log(options.member_id);
+      console.log(this.data.user_id)
+      console.log(this.data.user_id);
       if (wx.getStorageSync('unique_id')) {
         that.setData({
           unique_id: wx.getStorageSync('unique_id')
@@ -165,6 +177,8 @@ Page({
             that.getComment();
             // 绑定推荐人
             that.person();
+            // 页面初始化 options为页面跳转所带来的参数
+            
           })
         })
         wx.getLocation({
@@ -238,6 +252,7 @@ Page({
   },
   // 推荐人
   person() {
+    console.log(this.data.user_id);
     common.get('/member/referrer', {
       type:this.data.type,
       id: this.data.unique_id,
@@ -469,5 +484,6 @@ Page({
         app.showToast(reason[0] || res.data.message, this, 2000)
       })
     }
-  }
+  },
+  //二维码程序
 })
