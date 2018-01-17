@@ -253,20 +253,20 @@ Page({
   // 推荐人
   person() {
     console.log(this.data.user_id);
-    common.get('/member/referrer', {
-      type:this.data.type,
-      id: this.data.unique_id,
-      recommend_id:this.data.user_id,
-      coupon_id: this.data.id
-    }).then(res => {
-      console.log("添加人绑定成功")
-    }).catch(res=>{
-      let reason = [];
-      for (let i in res.data.errors) {
-        reason.push(res.data.errors[i][0])
-      }
-      app.showToast(reason[0] || res.data.message, this, 2000)
-    })
+    // common.get('/member/referrer', {
+    //   type:this.data.type,
+    //   id: this.data.unique_id,
+    //   recommend_id:this.data.user_id,
+    //   coupon_id: this.data.id
+    // }).then(res => {
+    //   console.log("添加人绑定成功")
+    // }).catch(res=>{
+    //   let reason = [];
+    //   for (let i in res.data.errors) {
+    //     reason.push(res.data.errors[i][0])
+    //   }
+    //   app.showToast(reason[0] || res.data.message, this, 2000)
+    // })
   },
   // 点击导航图标进行导航
   nav: function () {

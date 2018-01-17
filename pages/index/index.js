@@ -305,26 +305,26 @@ Page({
   onShareAppMessage: function () {
     return {
       title: '附近优惠券',
-      path: '/pages/index/index?user_id=' + this.data.unique_id
+      path: '/pages/index/index?member_id=' + this.data.unique_id+'&type=1'
     }
   },
   bindPerson() {
-    common.get('/member/referrer', {
-      type: this.data.type,
-      id: this.data.unique_id,
-      recommend_id: this.data.user_id
-    }).then(res => {
-      console.log('绑定成功')
-      console.log(this.data.type)
-      console.log('line177' + this.data.unique_id)
-      console.log('line178' + this.data.user_id)
-    }).catch(res => {
-      let reason = [];
-      for (let i in res.data.errors) {
-        reason.push(res.data.errors[i][0])
-      }
-      app.showToast(reason[0] || res.data.message, this, 2000)
-    })
+    // common.get('/member/referrer', {
+    //   type: this.data.type,
+    //   id: this.data.unique_id,
+    //   recommend_id: this.data.user_id
+    // }).then(res => {
+    //   console.log('绑定成功')
+    //   console.log(this.data.type)
+    //   console.log('line177' + this.data.unique_id)
+    //   console.log('line178' + this.data.user_id)
+    // }).catch(res => {
+    //   let reason = [];
+    //   for (let i in res.data.errors) {
+    //     reason.push(res.data.errors[i][0])
+    //   }
+    //   app.showToast(reason[0] || res.data.message, this, 2000)
+    // })
   },
   // 点击每一张banner图片的时候跳转到优惠券详情页
   jumpPage: function (e) {
@@ -499,7 +499,7 @@ Page({
     let id = e.currentTarget.dataset.item.id;
     this.clearData()
     common.post('/coupon/browse', {
-      unique_id: _this.data.unique_id,
+      unique_id: wx.getStorageSync('unique_id'),
       coupon_id: id
     })
     wx.navigateTo({
