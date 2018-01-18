@@ -7,8 +7,6 @@ App({
     currentClickNavIndex:0
   },
   onLaunch: function (options) {
-    console.log('app框架加载时候');
-    console.log(options);
     let that = this
     try {
       var value = wx.getStorageSync('unique_id')
@@ -29,8 +27,6 @@ App({
     }
   },
   login: function (options) {
-    console.log('app框架加载时候');
-    console.log(options);
     let id,type
     if(options.query.q!=undefined) {//扫码进来的
       let src = decodeURIComponent(options.query.q)
@@ -79,40 +75,53 @@ App({
             },
             fail(){
               wx.getSetting({
-                    success: (res) => {
-                      if (res.authSetting['scope.userInfo'] === false || res.authSetting['scope.userLocation'] === false) {
-                        wx.navigateTo({
-                          url: '/pages/authorize/authorize',
-                        })
-                      }
-                    }
-                  }) 
+                success: (res) => {
+                  if (res.authSetting['scope.userInfo'] === false || res.authSetting['scope.userLocation'] === false) {
+                    wx.navigateTo({
+                      url: '/pages/authorize/authorize',
+                    })
+                  }
+                }
+              }) 
             }
-            // complete: function () {
-            //   wx.getLocation({
-            //     type: 'wgs84',
-            //     success: function (res) {
-            //       wx.setStorageSync('latitude', res.latitude)
-            //       wx.setStorageSync('longitude', res.longitude)
-            //     },
-            //     complete(){
-            //       wx.getSetting({
-            //         success: (res) => {
-            //           if (res.authSetting['scope.userInfo'] === false || res.authSetting['scope.userLocation'] === false) {
-            //             wx.navigateTo({
-            //               url: '/pages/authorize/authorize',
-            //             })
-            //           }
-            //         }
-            //       }) 
-            //     }
-            //   })
-            // }
           })
         },
       })
     }
   },
+  updateUsers:function(res,that) {
+    if (res.authSetting['scope.userInfo'] == true) {
+      wx.getUserInfo({
+        success: function (res) {
+          //更新用户信息
+          common.post('/member/save', {
+            user_id: wx.getStorageSync('unique_id'),
+            nickname: res.userInfo.nickName,
+            head: res.userInfo.avatarUrl
+          }).then(data => {
+            that.setData({
+              user: data.data.data
+            })
+          })
+          console.log(res);
+          console.log(wx.getStorageSync('unique_id'))
+        }
+      })
+    }
+  },
+  //用户登录信息
+  checkSetting:function() {
+    wx.getSetting({
+      success: (res) => {
+        if (res.authSetting['scope.userInfo'] === false || res.authSetting['scope.userLocation'] === false) {
+          wx.navigateTo({
+            url: '/pages/authorize/authorize',
+          })
+        }
+      }
+    })
+  },
+  
   showToast: function (text, o, count) {
     var _this = o; count = parseInt(count) ? parseInt(count) : 3000;
     _this.setData({

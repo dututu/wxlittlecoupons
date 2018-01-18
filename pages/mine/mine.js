@@ -6,8 +6,14 @@ Page({
   show:false,
   isShowToast:false,
   onLoad:function(options){
+    let that = this
     this.setData({
       unique_id: wx.getStorageSync('unique_id')
+    })
+    wx.getSetting({
+      success: (res) => {
+        app.updateUsers(res,that);
+      }
     })
     // 获取我的总金额
     this.getMoney();

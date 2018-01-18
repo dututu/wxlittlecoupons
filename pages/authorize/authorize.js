@@ -1,4 +1,6 @@
 // pages/authorize/authorize.js
+var app = getApp()
+let common = require('../../assets/js/common.js');
 Page({
 
   /**
@@ -16,11 +18,16 @@ Page({
   },
   // 进行授权
   quan(){
+    let that = this
     if (this.checkAuthStatus) return
     this.checkAuthStatus = true
     wx.openSetting({
       success: (res) => {
-        
+        app.updateUsers(res,that);
+      },
+      fail:(res)=> {
+        console.log('失败');
+        console.log(res)
       }
     })
   },
