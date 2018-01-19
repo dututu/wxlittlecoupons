@@ -2,7 +2,13 @@
 var app = getApp()
 let common = require('../../assets/js/common');
 Page({
-  data:{},
+  data:{
+    user:{
+      avatar:'',
+      nickname:'匿名用户'
+    }
+  },
+  isNeedAuth: true,
   show:false,
   isShowToast:false,
   onLoad:function(options){
@@ -12,7 +18,19 @@ Page({
     })
     wx.getSetting({
       success: (res) => {
-        app.updateUsers(res,that);
+        console.log(res);
+        if(res.authSetting['scope.userInfo']==true) {
+          that.setData({
+            isNeedAuth:false
+          })
+          app.updateUsers(res, that)
+        } else {
+          that.setData({
+            isNeedAuth: true
+          })
+        } 
+
+        
       }
     })
     // 获取我的总金额
@@ -31,12 +49,28 @@ Page({
     })
   },
   onShow(){
+    let that = this
     // 获取用户信息
-    this.getUserInfo();
+    //this.getUserInfo();
     // 获取我的总金额
     this.getMoney();
     // 获取传播总人数
     this.getPerson();
+    wx.getSetting({
+      success: (res) => {
+        console.log(res);
+        if (res.authSetting['scope.userInfo'] == true) {
+          that.setData({
+            isNeedAuth: false
+          })
+          app.updateUsers(res, that)
+        } else {
+          that.setData({
+            isNeedAuth: true
+          })
+        }
+      }
+    })
   },
   // 获取用户信息
   getUserInfo(){
@@ -52,6 +86,11 @@ Page({
         reason.push(res.data.errors[i][0])
       }
       app.showToast(reason[0] || res.data.message, this, 2000)
+    })
+  },
+  toAuth:function() {
+    wx.navigateTo({
+      url: '/pages/authorize/authorize',
     })
   },
   // 获取我的总金额

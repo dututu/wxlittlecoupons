@@ -9,8 +9,11 @@
         <view class="mine_tit_img">
             <image src="{{user.avatar}}"></image>
         </view>
-        <view class="mine-tit_text">
+        <view class="mine-tit_text" wx:if="{{isNeedAuth===false}}">
             {{user.nickname}}
+        </view>
+        <view class="mine-tit_text" bindtap='toAuth' wx:if="{{isNeedAuth===true}}">
+            获取授权信息失败，请点击授权
         </view>
     </view>
     <view class="mine_code">

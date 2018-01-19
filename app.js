@@ -96,11 +96,13 @@ App({
           //更新用户信息
           common.post('/member/save', {
             user_id: wx.getStorageSync('unique_id'),
-            nickname: res.userInfo.nickName,
-            head: res.userInfo.avatarUrl
+            session_key: wx.getStorageSync('session_key'),
+            iv: res.iv,
+            encryptedData: res.encryptedData
           }).then(data => {
             that.setData({
-              user: data.data.data
+              user: data.data.data,
+              isNeedAuth: false
             })
           })
           console.log(res);
