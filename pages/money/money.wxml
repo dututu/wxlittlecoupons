@@ -45,7 +45,7 @@
                 {{item.nickname}}
               </view>
               <view class="money_con_info_per_bottom_per_des">
-                {{item.type==1?'制券':item.type==2?'核销':'提现'}}
+                {{item.type==1?'制券':item.type==2?'核销':item.type==5?'传播':'提现'}}
               </view>
               <view class="money_con_info_per_bottom_per_time">
                 {{item.created_at}}
