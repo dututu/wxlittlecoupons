@@ -298,6 +298,18 @@ Page({
     // 页面加载的时候获取到轮播图的列表
     this.getBanner();
   },
+  onShow:function() {
+    let unique_id = wx.getStorageSync('unique_id') || false;
+    this.setData({
+      unique_id:unique_id
+    })
+    if(unique_id) {
+      wx.showShareMenu({});
+    } else {
+      wx.hideShareMenu({
+      })
+    }
+  },
   onHide() {
     wx.setStorageSync('type', this.data.type)
   },
@@ -305,7 +317,7 @@ Page({
   onShareAppMessage: function () {
     return {
       title: '附近优惠券',
-      path: '/pages/index/index?member_id=' + this.data.unique_id+'&type=1'
+      path: '/pages/index/index?member_id=' + wx.getStorageSync('unique_id')+'&type=1'
     }
   },
   bindPerson() {

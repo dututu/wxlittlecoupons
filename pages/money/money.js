@@ -110,7 +110,21 @@ Page({
       }
       app.showToast(reason[0] || res.data.message, this, 2000)
     })
-  },  
+  },
+  checkUser: function () {
+    let _this = this
+    wx.getSetting({
+      success: (res) => {
+        if (res.authSetting['scope.userInfo'] === false) {
+          wx.navigateTo({
+            url: '/pages/authorize/authorize',
+          })
+        } else {
+          _this.withdraw()
+        }
+      }
+    })
+  },
   // 点击提现进行提现
   withdraw(){
     let _this=this

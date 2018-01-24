@@ -32,7 +32,7 @@
               可用金额:
               <text class="money_con_info_per_top_left_num">￥{{partMoney}}</text>
             </view>
-            <view class="money_con_info_per_top_right" bindtap="withdraw">
+            <view class="money_con_info_per_top_right" bindtap="checkUser">
               提现
             </view>
           </view>

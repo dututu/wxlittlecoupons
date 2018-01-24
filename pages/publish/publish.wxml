@@ -209,12 +209,12 @@
         <view class="modal-content">
           <view>
           <view class="modal-line-box amount-info">
-          <view class="modal-tittle">商户须知</view>
+          <view class="modal-tittle">商家制券说明</view>
             <view class="modal_line"></view>
-            <view class="modal_content">1、商户在此可免费发布、推广和传播优惠券，当客人到店消费时，收取优惠券核销费用￥3元/张；</view>
-            <view class="modal_content">2、为保证优惠券顺利核销，须按发放优惠券数量的20%充值核销资金；</view>
-            <view class="modal_content">3、未使用的优惠券核销资金可申请退款；</view>
-            <view class="modal_content">4、商户信息和优惠券信息须真实有效，不得发放虚假优惠券信息、发布恶意评论，以及违背国家信息安全的违法信息，如有发生，平台将驳回优惠券的发布；</view>
+            <view class="modal_content">1、在保证信息真实有效的情况下，您可以在此免费发布、推广、传播优惠券，领到优惠券的客人需要到您店内使用；</view>
+            <view class="modal_content">2、请使用微信"扫一扫"功能，扫描客人出示的优惠券二维码进行核销；</view>
+            <view class="modal_content">3、当客人到店核销使用时，收取您优惠券营销服务费3元/张；</view>
+            <view class="modal_content">4、为保证您正常使用，请按发放优惠券数量的20%充值营销资金，未使用的优惠券营销资金可申请退款；</view>
             <view class="modal_content">5、请授权获取您的手机号，方便与您联系确认优惠券的发布。</view>
           </view>
           </view>

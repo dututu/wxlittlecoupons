@@ -342,9 +342,21 @@ Page({
             return false
         }
     },
+    checkLocation:function() {
+      wx.getSetting({
+        success: (res) => {
+          if (res.authSetting['scope.userLocation'] === false) {
+            wx.navigateTo({
+              url: '/pages/authorize/authorize',
+            })
+          }
+        }
+      })
+    },
     // 点击获取位置的时候获取到经纬度
     getLon: function () {
         let _this = this;
+        this.checkLocation();
         wx.getLocation({
             type: 'wgs84',
             success: function (res) {
@@ -356,7 +368,7 @@ Page({
                             longitude: res.longitude,
                             add: res.name
                         })
-                    }
+                    },
                 })
             }
         })
