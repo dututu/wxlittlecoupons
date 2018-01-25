@@ -4,7 +4,7 @@ let common = require('../../assets/js/common');
 Page({
   data:{
     user:{
-      avatar:'',
+      avatar:'../../imgs/default_head1.jpg  ',
       nickname:'匿名用户'
     }
   },
@@ -50,6 +50,9 @@ Page({
   },
   onShow(){
     let that = this
+    this.setData({
+      unique_id: wx.getStorageSync('unique_id')
+    })
     // 获取用户信息
     //this.getUserInfo();
     // 获取我的总金额

@@ -7,10 +7,13 @@ App({
     currentClickNavIndex:0
   },
   onLaunch: function (options) {
+    
+  },
+  onShow: function (options) {
     let that = this
     try {
       var value = wx.getStorageSync('unique_id')
-      if (value!='') {
+      if (value != '') {
         wx.checkSession({
           success: function () {
             //已经登录
@@ -26,19 +29,9 @@ App({
       that.login(options)
     }
   },
-  onShow:function() {
-    wx.getSetting({
-      success(res) {
-        if (!res.authSetting['scope.userInfo']) {
-          wx.authorize({
-            scope: 'scope.userInfo',
-          })
-        }
-      }
-    })
-  },
   login: function (options) {
     let id,type
+    let that = this
     if(options.query.q!=undefined) {//扫码进来的
       let src = decodeURIComponent(options.query.q)
       console.log(src)
@@ -60,6 +53,19 @@ App({
         }).then(r => {
           wx.setStorageSync('unique_id', r.data.data.data)
           wx.setStorageSync('session_key', r.data.data.session_key)
+          wx.getSetting({
+            success(res) {
+              if (!res.authSetting['scope.userInfo']) {
+                wx.authorize({
+                  scope: 'scope.userInfo',
+                  success:function() {
+                    let res = { 'authSetting': {'scope.userInfo':true}}
+                    that.updateUsers(res,that)
+                  }
+                })
+              }
+            }
+          })
         })
       }
     }) 
