@@ -17,6 +17,22 @@ App({
         wx.checkSession({
           success: function () {
             //已经登录
+            console.log('已经登录')
+            wx.getSetting({
+              success(res) {
+                if (!res.authSetting['scope.userInfo']) {
+                  wx.authorize({
+                    scope: 'scope.userInfo',
+                    success: function () {
+                      let res = { 'authSetting': { 'scope.userInfo': true } }
+                      that.updateUsers(res, that)
+                    }
+                  })
+                } else {
+                  that.updateUsers(res, that)
+                }
+              }
+            })
           },
           fail: function () {
             that.login(options);
