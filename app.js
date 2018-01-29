@@ -82,6 +82,9 @@ App({
                     that.updateUsers(res,that)
                   }
                 })
+              } else {
+                let res = { 'authSetting': { 'scope.userInfo': true } }
+                that.updateUsers(res, that)
               }
             }
           })
@@ -130,6 +133,7 @@ App({
       wx.getUserInfo({
         success: function (res) {
           //更新用户信息
+          console.log('更新用户信息')
           common.post('/member/save', {
             user_id: wx.getStorageSync('unique_id'),
             session_key: wx.getStorageSync('session_key'),
