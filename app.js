@@ -7,7 +7,9 @@ App({
     currentClickNavIndex:0
   },
   onLaunch: function (options) {
-    
+    wx.authorize({
+      scope: 'scope.userInfo',
+    })
   },
   onShow: function (options) {
     let that = this
@@ -71,6 +73,7 @@ App({
           wx.setStorageSync('session_key', r.data.data.session_key)
           wx.getSetting({
             success(res) {
+              console.log(res);
               if (!res.authSetting['scope.userInfo']) {
                 wx.authorize({
                   scope: 'scope.userInfo',

@@ -6,7 +6,10 @@
     </view>
   </view>
     <view class="mine_tit">
-        <view class="mine_tit_img">
+        <view class="mine_tit_img" wx:if="{{isNeedAuth===false}}">
+            <image src="{{user.avatar}}"></image>
+        </view>
+        <view class="mine_tit_img" bindtap='toAuth' wx:if="{{isNeedAuth===true}}">
             <image src="{{user.avatar}}"></image>
         </view>
         <view class="mine-tit_text" wx:if="{{isNeedAuth===false}}">

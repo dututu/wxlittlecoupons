@@ -16,10 +16,10 @@
   </view>
   <view class="recommend_info">
     <view class="recommend_info_tit">
-      共传播了 {{numObj.member_num}} 个用户; {{numObj.shop_num}} 个商户
+      共推荐了 {{numObj.member_num}} 个用户; {{numObj.shop_num}} 个商户
     </view>
     <view class='recommend_info_tit_detail'>
-    一级：{{numObj.total}}人、二级：{{numObj.second_num}}人、三级：{{numObj.third_num}}人
+    一级：{{numObj.second_num}}人、二级：{{numObj.third_num}}人
     </view>
     
     <view class="recommend_info_con"   >
@@ -27,8 +27,8 @@
       <view class='table_head_img'></view>
       <view class='table_head_nickname'>昵称</view>
       <view class='table_head_usertype'>身份</view>
-      <view class='table_head_second'>二级传播量</view>
-      <view class='table_head_third'>三级传播量</view>         
+      <view class='table_head_second'>一级传播量</view>
+      <view class='table_head_third'>二级传播量</view>         
       </view>
       <scroll-view scroll-y="true" style="height:{{scrollHeight}}px;" 
   bindscrolltolower="bindDownLoad">

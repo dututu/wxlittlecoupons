@@ -23,6 +23,7 @@ Page({
     this.checkAuthStatus = true
     wx.openSetting({
       success: (res) => {
+        console.log(res)
         app.updateUsers(res,that);
       },
       fail:(res)=> {

@@ -91,6 +91,16 @@ Page({
   onShow() {
     console.log('onShow先执行')
     let _this = this
+    let unique_id = wx.getStorageSync('unique_id') || false;
+    this.setData({
+      unique_id: unique_id
+    })
+    if (unique_id) {
+      wx.showShareMenu({});
+    } else {
+      wx.hideShareMenu({
+      })
+    }
     wx.getSetting({
       success: (res) => {
         if (res.authSetting['scope.userInfo'] === true && res.authSetting['scope.userLocation'] === true) {
@@ -297,18 +307,6 @@ Page({
     });
     // 页面加载的时候获取到轮播图的列表
     this.getBanner();
-  },
-  onShow:function() {
-    let unique_id = wx.getStorageSync('unique_id') || false;
-    this.setData({
-      unique_id:unique_id
-    })
-    if(unique_id) {
-      wx.showShareMenu({});
-    } else {
-      wx.hideShareMenu({
-      })
-    }
   },
   onHide() {
     wx.setStorageSync('type', this.data.type)
