@@ -1,6 +1,7 @@
 /* pages/xieyi/xieyi.wxss */
 .content{
-
+width: 100%;
+height: 100%;
 }
 .content_tittle {
   text-align: center;

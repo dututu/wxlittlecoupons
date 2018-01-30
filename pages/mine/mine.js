@@ -4,7 +4,7 @@ let common = require('../../assets/js/common');
 Page({
   data:{
     user:{
-      avatar:'../../imgs/default_head1.jpg  ',
+      avatar:'../../imgs/default_head1.jpg',
       nickname:'匿名用户'
     }
   },

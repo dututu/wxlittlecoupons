@@ -1,7 +1,4 @@
 <!--pages/xieyi/xieyi.wxml-->
-<view class='content'>
-  <view class='content_tittle'>{{tittle}}</view>
-  <view class='content_pra'>{{content}}</view>
-<button class='content_button' bindtap='makecoupon'>已经阅读</button>
-</view>
+ <canvas style="width: 1079px; height:1364px;" canvas-id="firstCanvas"></canvas> 
 
+ <canvas style="width: 100px; height:100px;" canvas-id="headCanvas"></canvas> 
