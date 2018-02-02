@@ -140,13 +140,15 @@ App({
             iv: res.iv,
             encryptedData: res.encryptedData
           }).then(data => {
+            wx.setStorageSync('nickname', data.data.data.nickname)
+            wx.setStorageSync('avatar', data.data.data.avatar)
+            wx.setStorageSync('cbqrcode', data.data.data.cbqrcode)
             that.setData({
               user: data.data.data,
               isNeedAuth: false
             })
+            
           })
-          console.log(res);
-          console.log(wx.getStorageSync('unique_id'))
         }
       })
     }
@@ -163,7 +165,19 @@ App({
       }
     })
   },
-  
+  getCurrentDate:function() {
+    let date = new Date();
+    let month = date.getMonth() + 1;
+    let strDate = date.getDate();
+    if (month >= 1 && month <= 9) {
+      month = "0" + month;
+    }
+    if (strDate >= 0 && strDate <= 9) {
+      strDate = "0" + strDate;
+    }
+    let dateStr = date.getFullYear()+'.'+month+'.'+strDate
+    return dateStr;
+  },
   showToast: function (text, o, count) {
     var _this = o; count = parseInt(count) ? parseInt(count) : 3000;
     _this.setData({

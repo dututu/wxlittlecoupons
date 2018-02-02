@@ -128,11 +128,12 @@
           </view>
         </view>
         <view class="newpublish_info_con">
-          <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;" decode='true'>&ensp;</text><input placeholder="最大领取量，用户最多可领取的数量限制，不填为不限制" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{max}}" bindblur="inputMax" />
+        <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;" decode='true'>&ensp;</text><input placeholder="卡券售价(元)，免费券不填" type="digit" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{price}}" bindblur="inputPrice" />
+          <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;" decode='true'>&ensp;</text><input placeholder="最大领取量，不填为不限制" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" type='number' value="{{max}}" bindblur="inputMax" />
           <input type='text' style='display:none' name="max" value="{{max}}"></input>
           <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;" decode='true'>&ensp;</text><input placeholder="使用说明，示例：消费满100元使用" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{des}}" bindblur="inputDes" />
           <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;" decode='true'>&ensp;</text><input placeholder="关键字,逗号隔开，方便消费者用关键字搜索到优惠券" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{key}}" bindblur="inputKey" />
-            <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;" decode='true'>&ensp;</text><input placeholder="卡券售价(元)，免费券不填" type="digit" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{price}}" bindblur="inputPrice" />
+            
           <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="门店电话，方便消费者电话联系" type="number" name="phone" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{tel}}" bindblur="inputTel" />
           <view class="newpublish_info_con_box">
             <view class="newpublish_info_con_box_left">

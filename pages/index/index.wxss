@@ -190,3 +190,82 @@
   line-height: 42rpx;
   border-radius: 20rpx;
 }
+
+/* 分享按钮样式 */
+.share {
+  /* background-color: #64D962; */
+  width:75rpx;
+  height: 75rpx;
+  /* border-radius: 50%; */
+  position: fixed;
+  right: 20rpx;
+  bottom: 60rpx;
+  z-index: 9999
+}
+.share_btn{
+  width: 75rpx;
+  height: 75rpx;
+}
+
+/* 抽屉 */
+.mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: #000;
+  opacity: 0.2;
+  overflow: hidden;
+}
+.drawer_content {
+  width: 70%;
+  margin: auto;
+  /* margin-right: auto;   */
+  overflow: hidden;  
+  position: fixed;  
+  bottom: 0;
+  top:0;
+  left: 0;
+  right: 0;
+  z-index: 1001;  
+  background: #fff;
+  padding: 20rpx 0;
+  height: 180rpx;
+  text-align: center;
+  border-radius: 1%;
+  font-size: 25rpx;
+}
+.block {
+  width: 50%;
+  height: 140;
+  text-align: center;
+  justify-content: center;
+}
+.block image {
+  width: 100rpx;
+  height: 100rpx;
+
+}
+.drawer_btn {
+  display: flex;
+}
+.drawer_tittle {
+  width: 100%;
+}
+.share_b {
+  font-size: 20rpx;
+  background-color:unset;
+  /* position: unset; */
+  line-height: unset;
+}
+.share_b::after {
+  border:unset;
+}
+.share_font {
+  font-size: 25rpx;
+}
+.toast {
+  z-index: 9000
+}

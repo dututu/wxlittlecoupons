@@ -4,6 +4,8 @@ var app = getApp()
 let common = require('../../assets/js/common.js');
 Page({
   data: {
+    showShareBtn:false,
+    showMask:false,
     options: {},
     imgUrls: [],
     indicatorDots: true,
@@ -90,17 +92,22 @@ Page({
   },
   onShow() {
     console.log('onShow先执行')
+    
     let _this = this
     let unique_id = wx.getStorageSync('unique_id') || false;
     this.setData({
-      unique_id: unique_id
+      unique_id: unique_id,
+      showShareBtn:true
     })
-    if (unique_id) {
-      wx.showShareMenu({});
-    } else {
-      wx.hideShareMenu({
-      })
+    if (wx.canIUse('openBluetoothAdapter')) {
+      if (unique_id) {
+        wx.showShareMenu({});
+      } else {
+        wx.hideShareMenu({
+        })
+      }
     }
+    
     wx.getSetting({
       success: (res) => {
         if (res.authSetting['scope.userInfo'] === true && res.authSetting['scope.userLocation'] === true) {
@@ -313,6 +320,7 @@ Page({
   },
   // 页面分享功能
   onShareAppMessage: function () {
+    this.hideShare()
     return {
       title: '附近优惠券',
       path: '/pages/index/index?member_id=' + wx.getStorageSync('unique_id')+'&type=1'
@@ -549,10 +557,158 @@ Page({
       info: []
     })
   },
+  showShare:function(e) {
+    this.setData({
+      showMask:true
+    })
+  },
+  hideShare:function() {
+    this.setData({
+      showMask: false
+    })
+  },
   // 点击搜索的时候跳转到搜索页面
   jumpSearch: function () {
     wx.navigateTo({
       url: '/pages/search/search'
     })
-  }
+  },
+  //保存海报
+  drawCode: function () {
+    let ctx = wx.createCanvasContext('firstCanvas')
+    let that = this
+    let code = wx.getStorageSync('cbqrcode')
+    console.log('画图了吗')
+    wx.getImageInfo({
+      src: code,
+      success: function (res) {
+        ctx.drawImage(res.path, 830, 1150, 170, 170)
+        ctx.draw(true, function (e) {
+          wx.canvasToTempFilePath({
+            canvasId: 'firstCanvas',
+            success: function (res) {
+              that.savePoster(res.tempFilePath)
+              that.setData({
+                posterUrl: res.tempFilePath
+              })
+            }
+          })
+        })
+      }
+    })
+
+  },
+  convertHead: function () {
+    let that = this
+    let ctx = wx.createCanvasContext('headCanvas')
+    let head = wx.getStorageSync('avatar')
+    if (head) {
+      wx.getImageInfo({
+        src: head,
+        success: function (res) {
+          console.log(res)
+          ctx.beginPath()
+          ctx.arc(50, 50, 50, 0, 2 * Math.PI)
+          ctx.clip()
+          ctx.drawImage(res.path, 0, 0, 100, 100)
+          ctx.draw(true, function (e) {
+            wx.canvasToTempFilePath({
+              canvasId: 'headCanvas',
+              success: function (res) {
+                let ctx = wx.createCanvasContext('firstCanvas')
+                ctx.drawImage(res.tempFilePath, 80, 650, 100, 100)
+                ctx.draw(true)
+                console.log('画二维码')
+                that.drawCode()
+              }
+            })
+          }
+          )
+        }
+      })
+    } else {
+      that.drawCode()
+    }
+  },
+  makePoster: function () {
+    //画图
+    this.hideShare()
+    app.showToast('正在生成海报，请稍后...', this, 3000)
+    let ctx = wx.createCanvasContext('firstCanvas')
+    let name = wx.getStorageSync('nickname')
+    let date = app.getCurrentDate()
+    ctx.drawImage('../../imgs/poster1.jpg', 0, 0, 1079, 1364)
+    ctx.draw(true)
+    if (name) {
+      ctx.setFontSize(32)
+      ctx.fillText(name, 218, 700)
+      ctx.draw(true)
+      ctx.setFontSize(30)
+      ctx.fillText(date + ' 正在【附近优惠券】平台邀请您免费发放优惠券', 186, 745)
+      ctx.draw(true)
+      //头像
+      console.log('画头像')
+      this.convertHead()
+    } else {
+      this.drawCode()
+    }
+    
+    //二维码
+  },
+  getPoster:function(url) {
+    wx.getImageInfo({
+      src: url,
+      success: function (res) {
+        wx.saveImageToPhotosAlbum({
+          filePath: res.path,
+          success(res) {
+            wx.showModal({
+              title: '海报已保存到系统相册',
+              content: '快去分享给朋友，叫伙伴们来围观吧',
+              confirmText:'我知道了',
+              showCancel: false,
+              success: function (res) {
+              }
+            })
+          },
+          fail(res) {
+            app.showToast('海报生成失败，请重试', that, 3000)
+            console.log(res)
+          }
+        })
+      }
+    })
+  },
+  //保存海报
+  savePoster: function (url) {
+    let that = this
+    this.hideShare()
+    wx.getSetting({
+      success: (res) => {
+        console.log(res)
+        if (res.authSetting['scope.writePhotosAlbum']) {
+          console.log('授权成功')
+          that.getPoster(url)
+        } else {
+          console.log('授权失败')
+          
+          wx.authorize({
+            scope: 'scope.writePhotosAlbum',
+            success() {
+              console.log('再次授权成功')
+              
+              that.getPoster(url)
+            },
+            fail() {
+              wx.navigateTo({
+                url: '/pages/authorize/authorize',
+              })
+            }
+          })
+        }
+      }
+    })
+    
+
+  },
 })
