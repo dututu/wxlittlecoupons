@@ -275,12 +275,12 @@
   float: left;
   color: #8d8d8d;
   font-size: 30rpx;
-  width:300rpx;
+  width:305rpx;
   margin-left: 20rpx;
 }
 .money_con_info_per_bottom_per_num {
   color: #6acd6a;
   font-size: 30rpx;
-  
+  float: right;
 }
 

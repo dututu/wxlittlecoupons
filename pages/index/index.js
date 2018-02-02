@@ -2,6 +2,8 @@
 //获取应用实例
 var app = getApp()
 let common = require('../../assets/js/common.js');
+var QRCode = require('../../assets/js/weapp_qrcode.js')
+
 Page({
   data: {
     showShareBtn:false,
@@ -108,92 +110,9 @@ Page({
       }
     }
     
-    wx.getSetting({
-      success: (res) => {
-        if (res.authSetting['scope.userInfo'] === true && res.authSetting['scope.userLocation'] === true) {
-          console.log(_this.data.options)
-          if (_this.data.options.user_id) {
-            _this.setData({
-              user_id: _this.data.options.user_id,
-              type: 1
-            })
-            if (wx.getStorageSync('unique_id')) {
-              _this.setData({
-                unique_id: wx.getStorageSync('unique_id')
-              })
-              wx.setStorageSync('unique_id', _this.data.unique_id)
-              _this.bindPerson();
-            } else {
-              app.getUserInfo(function (e, res) { }, function (e, res) {
-                e = e || {}
-                e.code = e.code || res.data.code
-                common.post('/member/handle', {
-                  code: e.code,
-                  encryptedData: res.encryptedData,
-                  iv: res.iv
-                }).then(unique_id => {
-                  _this.setData({
-                    unique_id: unique_id.data.data.data
-                  })
-                  wx.setStorageSync('unique_id', _this.data.unique_id)
-                  wx.setStorageSync('session_key', unique_id.data.data.session_key)
-                  _this.bindPerson();
-                })
-              })
-            }
-          } else if (_this.data.options.q) {
-            console.log('我是扫码传播过来的')
-            var src = decodeURIComponent(_this.data.options.q)
-            console.log(src)
-            var data = src.get_query('id')
-            var type = src.get_query('status')
-            _this.setData({
-              user_id: data,
-              type: type
-            })
-            if (wx.getStorageSync('unique_id')) {
-              _this.setData({
-                unique_id: wx.getStorageSync('unique_id')
-              })
-              _this.bindPerson()
-            } else {
-              console.log('重新获取id')
-              app.getUserInfo(function (e, res) { }, function (e, res) {
-                e = e || {}
-                e.code = e.code || res.data.code
-                common.post('/member/handle', {
-                  code: e.code,
-                  encryptedData: res.encryptedData,
-                  iv: res.iv
-                }).then(unique_id => {
-                  console.log(unique_id.data.data.data)
-                  _this.setData({
-                    unique_id: unique_id.data.data.data
-                  })
-                  wx.setStorageSync('unique_id', _this.data.unique_id)
-                  wx.setStorageSync('session_key', unique_id.data.data.session_key)
-                  _this.bindPerson()
-                })
-              })
-            }
-          } else {
-            _this.setData({
-              type:1
-            })
-            if (wx.getStorageSync('unique_id')) {
-              _this.setData({
-                unique_id: wx.getStorageSync('unique_id')
-              })
-            } else {
-              _this.getOpenid();
-            }
-          }
-          _this.getLocation(function () {
-            _this.getData(1)
-          });
-        }
-      }
-    })
+    _this.getLocation(function () {
+      _this.getData(1)
+    });
   },
   // else{
   //   _this.setData({
@@ -471,6 +390,7 @@ Page({
   },
   // 点击导航的每一项切换导航的图片
   changeImg: function (e) {
+    console.log(e);
     var that = this;
     for (let i = 0; i < this.data.navList.length; i++) {
       this.data.navList[i].imgSrc = '../../imgs/nav' + (i + 1) + '.png';
@@ -575,27 +495,51 @@ Page({
   },
   //保存海报
   drawCode: function () {
+    console.log(11111111111);
     let ctx = wx.createCanvasContext('firstCanvas')
     let that = this
     let code = wx.getStorageSync('cbqrcode')
-    console.log('画图了吗')
-    wx.getImageInfo({
-      src: code,
-      success: function (res) {
-        ctx.drawImage(res.path, 830, 1150, 170, 170)
-        ctx.draw(true, function (e) {
-          wx.canvasToTempFilePath({
-            canvasId: 'firstCanvas',
-            success: function (res) {
-              that.savePoster(res.tempFilePath)
-              that.setData({
-                posterUrl: res.tempFilePath
-              })
-            }
-          })
+    let head = wx.getStorageSync('avatar')
+    let qrcode = new QRCode('qrcode', {
+      text: "https://zm.wehome.com.cn/api/app/code/spread?status=1&id=" + wx.getStorageSync('unique_id'),
+      width: 170,
+      height: 170,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H,
+    });
+    qrcode.exportImage(function (path) {
+      ctx.drawImage(path, 830, 1150, 170, 170)
+      ctx.draw(true, function (e) {
+        wx.canvasToTempFilePath({
+          canvasId: 'firstCanvas',
+          success: function (res) {
+            that.savePoster(res.tempFilePath)
+            that.setData({
+              posterUrl: res.tempFilePath
+            })
+          }
         })
-      }
+      })
     })
+    // console.log('画图了吗')
+    // wx.getImageInfo({
+    //   src: head,
+    //   success: function (res) {
+    //     ctx.drawImage(res.path, 830, 1150, 170, 170)
+    //     ctx.draw(true, function (e) {
+    //       wx.canvasToTempFilePath({
+    //         canvasId: 'firstCanvas',
+    //         success: function (res) {
+    //           that.savePoster(res.tempFilePath)
+    //           that.setData({
+    //             posterUrl: res.tempFilePath
+    //           })
+    //         }
+    //       })
+    //     })
+    //   }
+    // })
 
   },
   convertHead: function () {
@@ -633,19 +577,20 @@ Page({
   makePoster: function () {
     //画图
     this.hideShare()
-    app.showToast('正在生成海报，请稍后...', this, 3000)
+    app.showToast('正在生成海报，请稍候...', this, 3000)
     let ctx = wx.createCanvasContext('firstCanvas')
     let name = wx.getStorageSync('nickname')
     let date = app.getCurrentDate()
     ctx.drawImage('../../imgs/poster1.jpg', 0, 0, 1079, 1364)
     ctx.draw(true)
+    ctx.setFontSize(30)
+    ctx.fillText(date + ' 正在【附近优惠券】平台邀请您免费发放优惠券', 186, 745)
+    ctx.draw(true)
     if (name) {
       ctx.setFontSize(32)
       ctx.fillText(name, 218, 700)
       ctx.draw(true)
-      ctx.setFontSize(30)
-      ctx.fillText(date + ' 正在【附近优惠券】平台邀请您免费发放优惠券', 186, 745)
-      ctx.draw(true)
+      
       //头像
       console.log('画头像')
       this.convertHead()

@@ -2,6 +2,7 @@
 <canvas style="width: 1079px; height:1364px;" canvas-id="firstCanvas" hidden='true'></canvas> 
 
  <canvas style="width: 100px; height:100px;" canvas-id="headCanvas" hidden='true'></canvas> 
+ <canvas style="width: 170px; height:170px;" hidden='true' canvas-id='qrcode'></canvas>
 <scroll-view scroll-y="true" bindscrolltolower="scrolltolower" lower-threshold="0" upper-threshold="0px" bindscrolltolower="bindscrolltolower"   style="width:{{scrollStyle.width}}px;height:{{scrollStyle.height}}px">
 <view class="container">
   <view class="wxapp-toast-content-box toast" wx:if="{{isShowToast}}">
@@ -32,7 +33,9 @@
     </view>
 
     <view class="index_info">
-      <view class="index_info_box" wx:for="{{infoList}}" wx:for-item="item"  data-item="{{item}}" bindtap="jumpDetail" >
+    
+        <view class="index_info_box" wx:for="{{infoList}}" wx:for-item="item"  data-item="{{item}}" bindtap="jumpDetail" >
+       
         <image src="../../imgs/bgc.png"></image>
         <view class="index_info_box_left" >
           <view class="box_left">
@@ -54,7 +57,9 @@
             <text wx:if="{{item.price==0}}">免费领取</text>
           </view>
         </view>
+      
       </view>
+      
     </view>
 </view>
 <view class="share" bindtap="showShare" wx:if = '{{showShareBtn}}'>

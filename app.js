@@ -69,6 +69,7 @@ App({
           id: id,
           type: type
         }).then(r => {
+          console.log(r);
           wx.setStorageSync('unique_id', r.data.data.data)
           wx.setStorageSync('session_key', r.data.data.session_key)
           wx.getSetting({
@@ -129,6 +130,7 @@ App({
     }
   },
   updateUsers:function(res,that) {
+    console.log(22222)
     if (res.authSetting['scope.userInfo'] == true) {
       wx.getUserInfo({
         success: function (res) {
