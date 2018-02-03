@@ -617,7 +617,7 @@ Page({
                     imgShow: false
                 })
                 wx.uploadFile({
-                  url: "https://zm.wehome.com.cn",
+                  url: common.updateUrl,
                     filePath: _this.data.image_photo,
                     name: 'img',
                     header: {

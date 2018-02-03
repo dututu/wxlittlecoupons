@@ -48,6 +48,7 @@ App({
     }
   },
   login: function (options) {
+    console.log('调用登录')
     let id,type
     let that = this
     if(options.query.q!=undefined) {//扫码进来的
@@ -80,11 +81,13 @@ App({
                   scope: 'scope.userInfo',
                   success:function() {
                     let res = { 'authSetting': {'scope.userInfo':true}}
+                    console.log('调用save')
                     that.updateUsers(res,that)
                   }
                 })
               } else {
                 let res = { 'authSetting': { 'scope.userInfo': true } }
+                console.log('调用save')                
                 that.updateUsers(res, that)
               }
             }

@@ -21,6 +21,8 @@ String.prototype.get_query= function(key) {
 };
 class Common {
   checkAuthStatus = false
+  userQrCode = 'https://zm.wehome.com.cn/api/app/code/spread?status=1&id=';
+  updateUrl = 'https://zm.wehome.com.cn';
 
   constructor() {
     this.apiBaseUrl = 'https://zm.wehome.com.cn/api';

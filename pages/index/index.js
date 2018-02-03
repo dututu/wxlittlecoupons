@@ -145,58 +145,9 @@ Page({
           unique_id: wx.getStorageSync('unique_id')
         })
         wx.setStorageSync('unique_id', self.data.unique_id)
-        self.bindPerson();
+        //self.bindPerson();
       } else {
-        app.getUserInfo(function (e, res) { }, function (e, res) {
-          e = e || {}
-          e.code = e.code || res.data.code
-          common.post('/member/handle', {
-            code: e.code,
-            encryptedData: res.encryptedData,
-            iv: res.iv
-          }).then(unique_id => {
-            self.setData({
-              unique_id: unique_id.data.data.data
-            })
-            wx.setStorageSync('unique_id', self.data.unique_id)
-            wx.setStorageSync('session_key', unique_id.data.data.session_key)
-            self.bindPerson();
-          })
-        })
-      }
-    }else if(options.q){
-      console.log(options.q)
-      var src = decodeURIComponent(options.q)
-      var data = src.get_query('id')
-      var type = src.get_query('status')
-      this.setData({
-        user_id: data,
-        type:type
-      })
-      if (wx.getStorageSync('unique_id')) {
-        console.log('有unique_id')
-        this.setData({
-          unique_id: wx.getStorageSync('unique_id')
-        })
-        self.bindPerson()
-      } else {
-        console.log('没有id，重新获取')
-        app.getUserInfo(function (e, res) { }, function (e, res) {
-          e = e || {}
-          e.code = e.code || res.data.code
-          common.post('/member/handle', {
-            code: e.code,
-            encryptedData: res.encryptedData,
-            iv: res.iv
-          }).then(unique_id => {
-            self.setData({
-              unique_id: unique_id.data.data.data
-            })
-            wx.setStorageSync('unique_id', self.data.unique_id)
-            wx.setStorageSync('session_key', unique_id.data.data.session_key)
-            self.bindPerson()
-          })
-        })
+        
       }
     }else {
       self.setData({
@@ -210,6 +161,11 @@ Page({
         self.getOpenid();
       }
     }
+     if (wx.getStorageSync('unique_id')) {
+        self.setData({
+          unique_id: wx.getStorageSync('unique_id')
+        })
+      }
     let res = wx.getSystemInfoSync()
     self.setData({
       scrollStyle: {
@@ -501,7 +457,7 @@ Page({
     let code = wx.getStorageSync('cbqrcode')
     let head = wx.getStorageSync('avatar')
     let qrcode = new QRCode('qrcode', {
-      text: "https://zm.wehome.com.cn/api/app/code/spread?status=1&id=" + wx.getStorageSync('unique_id'),
+      text: common.userQrCode + wx.getStorageSync('unique_id'),
       width: 170,
       height: 170,
       colorDark: "#000000",

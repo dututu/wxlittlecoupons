@@ -16,6 +16,15 @@ Page({
     this.setData({
       unique_id: wx.getStorageSync('unique_id')
     })
+    if (wx.getStorageSync('nickname')) {
+      let userInfo = {
+        avatar: wx.getStorageSync('avatar'),
+        nickname: wx.getStorageSync('nickname')
+      }
+      this.setData({
+        user: userInfo
+      })
+    }
     wx.getSetting({
       success: (res) => {
         console.log(res);
