@@ -239,7 +239,8 @@
   height: 90rpx;
   line-height: 90rpx;
   border-bottom: 1rpx solid #e5e5e5;
-  padding: 0 30rpx;
+  padding: 0 20rpx;
+  display: flex;
 }
 .money_con_info_per_bottom_per_image {
   width: 55rpx;
@@ -267,7 +268,7 @@
 .money_con_info_per_bottom_per_des {
   color: #8d8d8d;
   font-size: 30rpx;
-  margin-left: 20rpx;
+  /* margin-left: 20rpx; */
   width:70rpx;
   float: left;
 }
@@ -275,12 +276,13 @@
   float: left;
   color: #8d8d8d;
   font-size: 30rpx;
-  width:305rpx;
-  margin-left: 20rpx;
+  width:316rpx;
+  /* margin-left: 20rpx; */
 }
 .money_con_info_per_bottom_per_num {
   color: #6acd6a;
   font-size: 30rpx;
-  float: right;
+  /* float: right; */
+  /* width: 120rpx; */
 }
 

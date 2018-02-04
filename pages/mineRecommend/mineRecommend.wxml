@@ -8,7 +8,6 @@
   </view>
   
   <view class="recommend_tit" >
-    <view bindtap='savePoster'>生成海报</view>
     <view class="recommend_tit_img" bindtap="previewImage">
         <image src="{{code}}"></image>
     </view>
