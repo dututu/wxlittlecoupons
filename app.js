@@ -195,6 +195,14 @@ App({
       });
     }, count);
   },
+  saveFormId: function (formid, uniqueid) {
+    common.post('/getFormid', {
+      form_id: formid,
+      unique_id: uniqueid
+    }).then(res => {
+      console.log(res)
+    })
+  },
   globalData:{
     userInfo:null
   },

@@ -13,10 +13,14 @@
       </view>
       <view class="detail_info_bot">
         <view class="detail_info_bot_box_top">
+        <form bindsubmit="getFormId" report-submit='true'>
+        <button class='share_b'  form-type="submit">
           <view class="detail_info_button" bindtap="pay">
             <text wx:if="{{detailInfo.price!=0}}">支付{{detailInfo.price}}元领取</text>
             <text wx:if="{{detailInfo.price==0}}">免费领取</text>
           </view>
+        </button>
+        </form>
           <!-- <view class="detail_info_bot_box_top_text">已领:{{detailInfo.alyLingNum
 }}  已用:{{detailInfo.alyUseNum}}</view> -->
 <view class="detail_info_bot_box_top_text">{{detailInfo.alyLingNum}}人领取</view>

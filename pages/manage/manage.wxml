@@ -29,6 +29,9 @@
               <view class="publish_info_button">
                 查看数据
               </view>
+              <!-- <view class="publish_info_button">
+                生成二维码
+              </view> -->
             </view>
           </view>
           <view class="button">

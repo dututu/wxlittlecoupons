@@ -194,17 +194,24 @@
 /* 分享按钮样式 */
 .share {
   /* background-color: #64D962; */
-  width:75rpx;
-  height: 75rpx;
-  /* border-radius: 50%; */
+  text-align: center;
+  line-height: 80rpx;
+  width:210rpx;
+  height: 80rpx;
+  border-radius:40rpx; 
   position: fixed;
-  right: 20rpx;
+  right: 0;
+  left: 0;
+  margin:0 auto;
   bottom: 60rpx;
-  z-index: 9999
+  z-index: 9999;
+  font-size:28rpx;
+  box-shadow: 6rpx 6rpx 3rpx #888888; 
 }
 .share_btn{
   width: 75rpx;
   height: 75rpx;
+  z-index: 9999
 }
 
 /* 抽屉 */
@@ -263,9 +270,22 @@
 .share_b::after {
   border:unset;
 }
+.share::after {
+  border:unset;
+}
 .share_font {
   font-size: 25rpx;
 }
 .toast {
   z-index: 9000
+}
+.coupon {
+  padding-left: unset;
+  padding-right: unset;
+  text-align: unset;
+}
+.type {
+  padding-left: unset;
+  padding-right: unset;
+  display: unset;
 }

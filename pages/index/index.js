@@ -434,6 +434,10 @@ Page({
     })
   },
   showShare:function(e) {
+    console.log(e)
+    let formid = e.detail.formId
+    let uniqueid = wx.getStorageSync('unique_id')
+    app.saveFormId(formid, uniqueid)
     this.setData({
       showMask:true
     })
@@ -442,6 +446,11 @@ Page({
     this.setData({
       showMask: false
     })
+  },
+  getFormId:function(e) {
+    let formid = e.detail.formId
+    let uniqueid = wx.getStorageSync('unique_id')
+    app.saveFormId(formid, uniqueid)
   },
   // 点击搜索的时候跳转到搜索页面
   jumpSearch: function () {
@@ -530,8 +539,12 @@ Page({
       that.drawCode()
     }
   },
-  makePoster: function () {
+  makePoster: function (e) {
+    console.log(e)
     //画图
+    let formid = e.detail.formId
+    let uniqueid = wx.getStorageSync('unique_id')
+    app.saveFormId(formid, uniqueid)
     this.hideShare()
     app.showToast('正在生成海报，请稍候...', this, 3000)
     let ctx = wx.createCanvasContext('firstCanvas')

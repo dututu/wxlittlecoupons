@@ -19,7 +19,10 @@
             获取授权信息失败，请点击授权
         </view>
     </view>
+    
     <view class="mine_code">
+    <form bindsubmit="getFormId" report-submit='true'>
+        <button class='share_b'  form-type="submit">
       <view class="mine_code_left" bindtap="jumpMoney">
           <view class="left">
             <view class="left_top">
@@ -33,6 +36,10 @@
             ￥{{totalMoney}}
           </view>
       </view>
+    </button>
+    </form>
+    <form bindsubmit="getFormId" report-submit='true'>
+        <button class='share_b'  form-type="submit">
       <view class="mine_code_right" bindtap="jumpSale">
         <view class="left">
             <view class="left_top">
@@ -46,7 +53,10 @@
             {{person}}人
           </view>
       </view>
+      </button>
+    </form>
     </view> 
+    
     <view class="mine_info">
         <view style="clear: both;"></view>
         <navigator url="../../pages/mineCoupon/mineCoupon" hover-class="none" class="min_info_box">

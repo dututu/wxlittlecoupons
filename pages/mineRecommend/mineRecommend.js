@@ -59,25 +59,7 @@ Page({
       app.showToast(reason[0] || res.data.message, this, 2000)
     })
   },
-  //保存海报
-  savePoster: function() {
-    let that = this
-    wx.getImageInfo({
-      src: '../../imgs/poster1.jpg',
-      success: function (res) {
-        wx.saveImageToPhotosAlbum({
-          filePath: res.path,
-          success(res) {
-            app.showToast('海报生成成功，请进入系统相册查看', that, 2000)
-          },
-          fail(res) {
-            console.log(res)
-          }
-        })
-      }
-    })
-    
-  },
+  
   // 获取推荐列表
   getList(){
     common.get('/recommend',{

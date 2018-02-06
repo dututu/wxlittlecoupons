@@ -138,3 +138,11 @@
   height: 48rpx;
 
 }
+.share_b::after {
+  border:unset;
+}
+.share_b {
+  display: unset;
+  margin: unset;
+  padding: unset;
+}

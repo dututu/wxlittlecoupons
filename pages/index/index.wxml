@@ -26,14 +26,19 @@
       </swiper>
     </view>
     <view class="index_nav">
+    <form bindsubmit="getFormId" report-submit='true'>
+      <button class='share_b type'  form-type="submit">
       <view class="index_nav_per" wx:for="{{navList}}" wx:for-item="item" bindtap="changeImg" data-index="{{index}}">
         <image src="{{item.imgSrc}}"></image>
         <text class="{{item.color}}">{{item.text}}</text>
       </view>
+      </button>
+      </form>
     </view>
 
     <view class="index_info">
-    
+      <form bindsubmit="getFormId" report-submit='true'>
+      <button class='share_b coupon'  form-type="submit">
         <view class="index_info_box" wx:for="{{infoList}}" wx:for-item="item"  data-item="{{item}}" bindtap="jumpDetail" >
        
         <image src="../../imgs/bgc.png"></image>
@@ -59,25 +64,38 @@
         </view>
       
       </view>
-      
+      </button>
+      </form>
     </view>
 </view>
-<view class="share" bindtap="showShare" wx:if = '{{showShareBtn}}'>
-  <image class="share_btn" src='../../imgs/share.png'></image>
-</view>
+<form bindsubmit="showShare" wx:if = '{{showShareBtn}}' report-submit='true'>
+  <button form-type="submit" class='share'>
+  分享给好友
+    <!-- <view class="share" wx:if = '{{showShareBtn}}'>
+      <image class="share_btn" src='../../imgs/share.png'></image>
+    </view> -->
+  </button>
+</form>
+
 <view class='mask' wx:if='{{showMask}}' bindtap='hideShare'></view>
 <view class="drawer_content" wx:if='{{showMask}}'>
   <view class='drawer_tittle'>分  享</view> 
   <view class='drawer_btn'>
-    <view class='block' bindtap='makePoster'>
-      <image src='../../imgs/share2.jpg'></image>
-      <view class='view_left share_font'>生成分享海报</view>
+    <view class='block' bindtap=''>
+    <form bindsubmit="makePoster" report-submit='true'>
+      <button class='share_b' form-type="submit">
+        <image src='../../imgs/share2.jpg'></image>
+        <view class='view_left share_font'>生成分享海报</view>
+      </button>
+    </form>
     </view>
     <view class='block'>
-      <button class='share_b' open-type='share'>
+    <form bindsubmit="getFormId" report-submit='true'>
+      <button class='share_b' open-type='share' form-type="submit">
         <image src='../../imgs/share1.jpg'></image>
         <view class='share_font'>转发给好友</view>
       </button>
+    </form>
     </view>  
   </view>
 </view>

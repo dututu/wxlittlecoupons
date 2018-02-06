@@ -485,5 +485,10 @@ Page({
       })
     }
   },
+  getFormId: function (e) {
+    let formid = e.detail.formId
+    let uniqueid = wx.getStorageSync('unique_id')
+    app.saveFormId(formid, uniqueid)
+  },
   //二维码程序
 })
