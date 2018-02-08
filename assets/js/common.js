@@ -23,7 +23,7 @@ class Common {
   checkAuthStatus = false
   userQrCode = 'https://zm.wehome.com.cn/api/app/code/spread?status=1&id=';
   updateUrl = 'https://zm.wehome.com.cn';
-
+  couponCode = 'https://zm.wehome.com.cn/api/app/code/coupon?type=1&member_id=';
   constructor() {
     this.apiBaseUrl = 'https://zm.wehome.com.cn/api';
     //this.apiBaseUrl = 'https://coupons3.network.weixingzpt.com/api'

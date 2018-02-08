@@ -1,8 +1,11 @@
 // pages/detail/detail.js
 var app = getApp()
+var QRCode = require('../../assets/js/weapp_qrcode.js')
 let common = require('../../assets/js/common');
 Page({
   data: {
+    showShareBtn: false,
+    showMask: false,
     commentShow: false,
     codeShow: false,
     detailInfo: {},
@@ -18,9 +21,11 @@ Page({
   },
   onShow(){
     let that = this
+    that.getAdd()
     if (wx.getStorageSync('type')){
       that.setData({
-        type: wx.getStorageSync('type')
+        type: wx.getStorageSync('type'),
+        showShareBtn: true
       })
     }
     wx.getSetting({
@@ -222,7 +227,30 @@ Page({
     // 页面初始化 options为页面跳转所带来的参数
     // 获取优惠券详情
     // this.getDetail();
-  },            
+  },
+  getAdd: function () {
+    console.log('海报图片');
+    let that = this
+    common.post('/poster', {
+      type: 3,
+    }).then(res => {
+      if (res.data.data[0].status == 2) {
+        that.setData({
+          posterBtn: true,
+          poster: res.data.data[0].imgurl,
+          showPost: true
+        })
+      } else {
+        that.setData({
+          poster: res.data.data[0].imgurl,
+          showPost: true
+        })
+      }
+    }).catch(res => {
+      console.log('请求失败')
+      console.log(res)
+    })
+  },         
   // 获取优惠券详情
   getDetail() {
     common.get('/coupon/info', {
@@ -245,6 +273,7 @@ Page({
   },
   onShareAppMessage: function () {
     let _this = this
+    this.hideShare()
     return {
       title: '附近优惠券',
       path: '/pages/detail/detail?quan_id=' + this.data.id + '&&member_id=' + this.data.unique_id+'&&type='+this.data.type,
@@ -491,4 +520,213 @@ Page({
     app.saveFormId(formid, uniqueid)
   },
   //二维码程序
+  showShare: function (e) {
+    console.log(e)
+    let formid = e.detail.formId
+    let uniqueid = wx.getStorageSync('unique_id')
+    app.saveFormId(formid, uniqueid)
+    this.setData({
+      showMask: true
+    })
+  },
+  hideShare: function () {
+    this.setData({
+      showMask: false
+    })
+  },
+  drawCode2: function () {
+    let ctx = wx.createCanvasContext('firstCanvas')
+    let that = this
+    let code = wx.getStorageSync('cbqrcode')
+    let head = wx.getStorageSync('avatar')
+    console.log('画图了吗')
+    // wx.getImageInfo({
+    //   src: code,
+    //   success: function (res) {
+    //     ctx.drawImage(res.path, 830, 1150, 170, 170)
+    //     ctx.draw(true, function (e) {
+    //       wx.canvasToTempFilePath({
+    //         canvasId: 'firstCanvas',
+    //         success: function (res) {
+    //           that.savePoster2(res.tempFilePath)
+    //           that.setData({
+    //             posterUrl: res.tempFilePath
+    //           })
+    //         }
+    //       })
+    //     })
+    //   }
+    // })
+    let qrcode = new QRCode('qrcode', {
+      text: common.couponCode + wx.getStorageSync('unique_id') + '&quan_id=' + that.data.id,
+      width: 170,
+      height: 170,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H,
+    });
+    setTimeout(function () { }, 1000);
+    qrcode.exportImage(function (path) {
+      ctx.drawImage(path, 840, 1150, 170, 170)
+      ctx.draw(true, function (e) {
+        wx.canvasToTempFilePath({
+          canvasId: 'firstCanvas',
+          success: function (res) {
+            that.savePoster2(res.tempFilePath)
+            that.setData({
+              posterUrl: res.tempFilePath
+            })
+          }
+        })
+      })
+    })
+  },
+  convertHead2: function () {
+    let that = this
+    let ctx = wx.createCanvasContext('headCanvas')
+    let head = wx.getStorageSync('avatar')
+    if (head) {
+      wx.getImageInfo({
+        src: head,
+        success: function (res) {
+          console.log(res)
+          ctx.beginPath()
+          ctx.arc(50, 50, 50, 0, 2 * Math.PI)
+          ctx.clip()
+          ctx.drawImage(res.path, 0, 0, 100, 100)
+          ctx.draw(true, function (e) {
+            wx.canvasToTempFilePath({
+              canvasId: 'headCanvas',
+              success: function (res) {
+                let ctx = wx.createCanvasContext('firstCanvas')
+                ctx.drawImage(res.tempFilePath, 80, 1020, 100, 100)
+                ctx.draw(true)
+                console.log('画二维码')
+                that.drawCode2()
+              }
+            })
+          }
+          )
+        }
+      })
+    } else {
+      that.drawCode2()
+    }
+  },
+  makePoster2: function (e) {
+    console.log(e)
+    //画图
+    let formid = e.detail.formId
+    let uniqueid = wx.getStorageSync('unique_id')
+    let that = this
+    app.saveFormId(formid, uniqueid)
+    this.hideShare()
+    app.showToast('正在生成海报，请稍候...', this, 3000)
+    let ctx = wx.createCanvasContext('firstCanvas')
+    let name = wx.getStorageSync('nickname')
+    let date = app.getCurrentDate()
+    let couponName = that.data.detailInfo.name;
+    let fontSize
+    if(couponName<=15)
+      fontSize=53
+    else 
+      fontSize=40
+    wx.getImageInfo({
+      src: that.data.poster,
+      success: function (res) {
+        console.log(res.path)
+        ctx.drawImage(res.path, 0, 0, 1079, 1364)
+        ctx.draw(true)
+        console.log('画背景')
+        ctx.setFontSize(fontSize)
+        ctx.setTextAlign('center')
+        ctx.fillText(couponName, 540, 560)
+        ctx.draw(true)
+        ctx.setTextAlign('left')
+        ctx.setFontSize(27)
+        ctx.fillText('活动时间：', 245, 660)
+        ctx.draw(true)
+        ctx.setFontSize(29)
+        ctx.fillText(that.data.detailInfo.start+'-'+ that.data.detailInfo.end+','+that.data.detailInfo.week+','+ that.data.detailInfo.time+'可用', 245, 700)
+        ctx.draw(true)
+        ctx.setFontSize(27)
+        ctx.fillText('位置：', 245, 750)
+        ctx.draw(true)
+        ctx.setFontSize(29)
+        ctx.fillText(that.data.detailInfo.address, 245, 790)
+        ctx.draw(true)
+        ctx.setFontSize(30)
+        ctx.fillText(date + ' 正在【附近优惠券】平台邀请您分享优惠券', 186, 1115)
+        ctx.draw(true)
+        if (name) {
+          ctx.setFontSize(32)
+          ctx.fillText(name, 218, 1070)
+          ctx.draw(true)
+
+          //头像
+          console.log('画头像')
+          that.convertHead2()
+        } else {
+          that.drawCode2()
+        }
+      }
+    })
+
+
+    //二维码
+  },
+  getPoster: function (url) {
+    wx.getImageInfo({
+      src: url,
+      success: function (res) {
+        wx.saveImageToPhotosAlbum({
+          filePath: res.path,
+          success(res) {
+            wx.showModal({
+              title: '海报已保存到系统相册',
+              content: '快去分享给朋友，叫伙伴们来围观吧',
+              confirmText: '我知道了',
+              showCancel: false,
+              success: function (res) {
+              }
+            })
+          },
+          fail(res) {
+            app.showToast('海报生成失败，请重试', that, 3000)
+            console.log(res)
+          }
+        })
+      }
+    })
+  },
+  //保存海报
+  savePoster2: function (url) {
+    let that = this
+    this.hideShare()
+    wx.getSetting({
+      success: (res) => {
+        console.log(res)
+        if (res.authSetting['scope.writePhotosAlbum']) {
+          console.log('授权成功')
+          that.getPoster(url)
+        } else {
+          console.log('授权失败')
+
+          wx.authorize({
+            scope: 'scope.writePhotosAlbum',
+            success() {
+              console.log('再次授权成功')
+
+              that.getPoster(url)
+            },
+            fail() {
+              wx.navigateTo({
+                url: '/pages/authorize/authorize',
+              })
+            }
+          })
+        }
+      }
+    })
+  },
 })

@@ -1,6 +1,33 @@
 
 <!--pages/detail/detail.wxml-->
+<canvas style="width: 1079px; height:1364px;" canvas-id="firstCanvas" hidden='true'></canvas> 
+
+ <canvas style="width: 100px; height:100px;" canvas-id="headCanvas" hidden='true'></canvas> 
+ <canvas style="width: 170px; height:170px;" hidden='true' canvas-id='qrcode'></canvas>
 <scroll-view scroll-y="true" bindscrolltolower="scrolltolower" lower-threshold="0" upper-threshold="0" bindscrolltolower="bindscrolltoupper" style="height:{{scrollStyle.height}}px">
+
+<view class='mask' wx:if='{{showMask}}' bindtap='hideShare'></view>
+<view class="drawer_content" wx:if='{{showMask}}'>
+  <view class='drawer_tittle'>分  享</view> 
+  <view class='drawer_btn'>
+    <view class='block' bindtap=''>
+    <form bindsubmit="makePoster2" report-submit='true'>
+      <button class='share_b' form-type="submit">
+        <image src='../../imgs/share2.jpg'></image>
+        <view class='view_left share_font'>生成分享海报</view>
+      </button>
+    </form>
+    </view>
+    <view class='block'>
+    <form bindsubmit="getFormId" report-submit='true'>
+      <button class='share_b' open-type='share' form-type="submit">
+        <image src='../../imgs/share1.jpg'></image>
+        <view class='share_font'>转发给好友</view>
+      </button>
+    </form>
+    </view>  
+  </view>
+</view>
 <view class="wxapp-toast-content-box" wx:if="{{isShowToast}}">
     <view class="wxapp-toast-content">
       <view class="wxapp-toast-content-text"> {{toastText}} </view>
@@ -124,4 +151,9 @@
       </view>
     </view>
   </view>
+  <form bindsubmit="showShare" wx:if = '{{showShareBtn}}' report-submit='true'>
+  <button form-type="submit" class='share'>
+  分享给好友
+  </button>
+</form>
 </scroll-view>
