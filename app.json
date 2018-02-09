@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/poster/poster",
     "pages/index/index",
     "pages/publish/publish",
     "pages/money/money",

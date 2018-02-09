@@ -131,29 +131,29 @@ Page({
   //     _this.getData(1)
   //   });
   // }
-  getAdd:function() {
-    console.log('海报图片');
-    let that = this
-    common.post('/poster', {
-      type: 2,
-    }).then(res => {
-      if (res.data.data[0].status==2) {
-        that.setData({
-          posterBtn: true, 
-          poster: res.data.data[0].imgurl,
-          showPost: true
-        })
-      } else {
-        that.setData({
-          poster: res.data.data[0].imgurl,
-          showPost: true
-        })
-      }
-    }).catch(res=>{
-      console.log('请求失败')
-      console.log(res)
-    })
-  },
+  // getAdd:function() {
+  //   console.log('海报图片');
+  //   let that = this
+  //   common.post('/poster', {
+  //     type: 2,
+  //   }).then(res => {
+  //     if (res.data.data[0].status==2) {
+  //       that.setData({
+  //         posterBtn: true, 
+  //         poster: res.data.data[0].imgurl,
+  //         showPost: true
+  //       })
+  //     } else {
+  //       that.setData({
+  //         poster: res.data.data[0].imgurl,
+  //         showPost: true
+  //       })
+  //     }
+  //   }).catch(res=>{
+  //     console.log('请求失败')
+  //     console.log(res)
+  //   })
+  // },
   //事件处理函数
   onLoad: function (options) { 
     var self = this
@@ -161,7 +161,7 @@ Page({
       options: options
     })
     
-    self.getAdd()
+    // self.getAdd()
     if (options.user_id) {
       self.setData({
         user_id: options.user_id,
@@ -225,7 +225,7 @@ Page({
     this.hideShare()
     return {
       title: '附近优惠券',
-      path: '/pages/index/index?member_id=' + wx.getStorageSync('unique_id')+'&type=1'
+      path: '/pages/poster/poster?member_id=' + wx.getStorageSync('unique_id')+'&type=1'
     }
   },
   bindPerson() {

@@ -9,6 +9,11 @@ App({
   onLaunch: function (options) {
     wx.authorize({
       scope: 'scope.userInfo',
+      success(){
+        wx.authorize({
+          scope: 'scope.userLocation',
+        })
+      }
     })
   },
   onShow: function (options) {

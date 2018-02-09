@@ -91,6 +91,16 @@ Page({
             url: '/pages/chooseCoupon/chooseCoupon?id=' + id
         })
     },
+    jumpDetail: function (e) {
+      console.log(e);
+      let id = e.currentTarget.dataset.item.id
+      if (e.currentTarget.dataset.item.status==1) {
+        wx.navigateTo({
+          url: '/pages/detail/detail?id=' + id
+        })
+      }
+      
+    },
     // 点击删除优惠券
     delete: function (e) {
         let _this=this

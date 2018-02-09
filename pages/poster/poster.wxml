@@ -1,0 +1,31 @@
+<!--pages/poster/poster.wxml-->
+<canvas style="width: 1079px; height:1364px;" canvas-id="firstCanvas" hidden='true'></canvas> 
+
+ <canvas style="width: 100px; height:100px;" canvas-id="headCanvas" hidden='true'></canvas> 
+ <canvas style="width: 170px; height:170px;" hidden='true' canvas-id='qrcode'></canvas>
+ <!-- <view class='mask2' wx:if='{{showPost}}'></view>  -->
+<view class="wxapp-toast-content-box toast" wx:if="{{isShowToast}}">
+    <view class="wxapp-toast-content">
+      <view class="wxapp-toast-content-text"> {{toastText}} </view>
+    </view>
+</view>
+<view class='add_poster' wx:if='{{showPost}}' style='width:{{x}}px;height:{{y}}px'>
+  <image src='{{poster}}' style='width:{{x}}px;height:{{y}}px'>
+  </image>
+  <view class='close'>
+    <form bindsubmit="closePoster" report-submit='true'>
+        <button class='share_b coupon'  form-type="submit">
+        <image src='../../imgs/close1.png'></image>
+        </button>
+        
+        
+    </form>
+  </view>
+  
+    <form bindsubmit="getFirstPoster" report-submit='true' wx:if='{{posterBtn}}' >
+        <button class='share'  form-type="submit">
+        生成海报
+        </button>
+    </form>
+  
+</view>

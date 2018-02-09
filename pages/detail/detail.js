@@ -4,7 +4,7 @@ var QRCode = require('../../assets/js/weapp_qrcode.js')
 let common = require('../../assets/js/common');
 Page({
   data: {
-    showShareBtn: false,
+    showShareBtn: true,
     showMask: false,
     commentShow: false,
     codeShow: false,
@@ -565,21 +565,24 @@ Page({
       colorLight: "#ffffff",
       correctLevel: QRCode.CorrectLevel.H,
     });
-    setTimeout(function () { }, 1000);
-    qrcode.exportImage(function (path) {
-      ctx.drawImage(path, 840, 1150, 170, 170)
-      ctx.draw(true, function (e) {
-        wx.canvasToTempFilePath({
-          canvasId: 'firstCanvas',
-          success: function (res) {
-            that.savePoster2(res.tempFilePath)
-            that.setData({
-              posterUrl: res.tempFilePath
-            })
-          }
+    setTimeout(function () { 
+      qrcode.exportImage(function (path) {
+        ctx.drawImage(path, 840, 1150, 170, 170)
+        ctx.draw(true, function (e) {
+          wx.canvasToTempFilePath({
+            canvasId: 'firstCanvas',
+            success: function (res) {
+              that.savePoster2(res.tempFilePath)
+              that.setData({
+                posterUrl: res.tempFilePath
+              })
+            }
+          })
         })
       })
-    })
+
+    }, 1000);
+    
   },
   convertHead2: function () {
     let that = this
@@ -630,7 +633,7 @@ Page({
     if(couponName<=15)
       fontSize=53
     else 
-      fontSize=40
+      fontSize=35
     wx.getImageInfo({
       src: that.data.poster,
       success: function (res) {

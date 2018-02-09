@@ -1,0 +1,82 @@
+/* pages/poster/poster.wxss */
+
+.mask2 {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  background: #000;
+  opacity: 0.2;
+  overflow: hidden;
+}
+.add_poster {
+  z-index: 100;
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top:0;
+  bottom: 0; 
+  width: 800rpx;
+  height: 1100rpx;
+}
+.add_poster image {
+  /* display: block; */
+  width: 800rpx;
+  height: 1100rpx;
+}
+.close {
+  position: fixed;
+  top: 50rpx;
+  right: 50rpx;
+  /* border: 1rpx solid; */
+  height: 55rpx;
+  width: 55rpx;
+  line-height: 30rpx;
+  text-align: center;
+  /* border-radius: 15rpx; */
+  /* background-color: #000; */
+}
+.close image {
+  width: 55rpx;
+  height: 55rpx;
+}
+.poster {
+  z-index: 1000001
+}
+
+.share_b {
+  font-size: 20rpx;
+  background-color:unset;
+  /* position: unset; */
+  line-height: unset;
+}
+.share_b::after {
+  border:unset;
+}
+.coupon {
+  padding-left: unset;
+  padding-right: unset;
+  text-align: unset;
+}
+.share {
+  /* background-color: #64D962; */
+  text-align: center;
+  line-height: 80rpx;
+  width:210rpx;
+  height: 80rpx;
+  border-radius:40rpx; 
+  position: fixed;
+  right: 0;
+  left: 0;
+  margin:0 auto;
+  bottom: 60rpx;
+  z-index: 9999;
+  font-size:28rpx;
+  box-shadow: 6rpx 6rpx 3rpx #888888; 
+}
+.share::after {
+  border:unset;
+}

@@ -10,8 +10,8 @@
         <view class="publish_info_box {{item.isTouchMove ? 'touch-move-active' : ''}}" wx:if="{{noPub==false}}" wx:for="{{publishList}}"   bindtouchstart="touchstart" bindtouchmove="touchmove" data-index="{{index}}">
           <image src="../../imgs/bgc.png"></image>
           <image class="need_verify" wx:if="{{item.status == 3}}"  style='width:100rpx;height:100rpx;position:absolute;left:458rpx;' src="../../imgs/need_verify.png"></image>
-          <view class="content" data-item="{{item}}"  bindtap="jumpData" >
-            <view class="publish_info_box_left">
+          <view class="content" >
+            <view class="publish_info_box_left" data-item="{{item}}"  bindtap="jumpDetail">
               <view class="box_left">
                 <image src="{{item.img}}"></image>
               </view>
@@ -21,7 +21,7 @@
                 <view class="box_right_bot" wx:if="{{item.status != 3}}">发布时间:{{item.updatetime}}</view>
               </view>
             </view>
-            <view class="publish_info_box_right">
+            <view class="publish_info_box_right" data-item="{{item}}" bindtap="jumpData">
 
               <!--<view class="publish_info_button" style="{{item.status==1?'background-color:#ec4b41;':item.status==0?'background-color:#09bb07;':'background-color:#a1a1a1;'}}" bindtap="switch" data-index="{{index}}">
               {{item.status==1?'下架':item.status==0?'上架':item.status==2?'已过期':item.status==3?'审核中':'未通过'}}
