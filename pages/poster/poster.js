@@ -160,7 +160,7 @@ Page({
         console.log('画背景')
 
         ctx.setFontSize(30)
-        ctx.fillText(date + ' 正在【附近优惠券】平台转发优惠券', 186, 1115)
+        ctx.fillText(date + ' 正在【附近优惠券】平台分享优惠券', 186, 1115)
         ctx.draw(true)
         if (name) {
           ctx.setFontSize(32)
