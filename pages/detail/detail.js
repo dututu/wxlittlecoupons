@@ -567,7 +567,7 @@ Page({
     });
     setTimeout(function () { 
       qrcode.exportImage(function (path) {
-        ctx.drawImage(path, 840, 1150, 170, 170)
+        ctx.drawImage(path, 850, 1150, 170, 170)
         ctx.draw(true, function (e) {
           wx.canvasToTempFilePath({
             canvasId: 'firstCanvas',

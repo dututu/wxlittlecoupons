@@ -56,6 +56,7 @@ Page({
     let uniqueid = wx.getStorageSync('unique_id')
     let that = this
     app.saveFormId(formid, uniqueid)
+    clearInterval()
     wx.switchTab({
       url: '/pages/index/index'
     })
@@ -89,7 +90,7 @@ Page({
     wx.getImageInfo({
       src: code,
       success: function (res) {
-        ctx.drawImage(res.path, 830, 1150, 170, 170)
+        ctx.drawImage(res.path, 850, 1150, 170, 170)
         ctx.draw(true, function (e) {
           wx.canvasToTempFilePath({
             canvasId: 'firstCanvas',
