@@ -258,7 +258,7 @@
 }
 .money_con_info_per_bottom_per_name {
   color: #000;
-  font-size: 30rpx;
+  font-size: 28rpx;
   width: 100rpx;
   overflow: hidden;
   white-space: nowrap;
@@ -267,7 +267,7 @@
 }
 .money_con_info_per_bottom_per_des {
   color: #8d8d8d;
-  font-size: 30rpx;
+  font-size: 28rpx;
   /* margin-left: 20rpx; */
   width:70rpx;
   float: left;
@@ -275,14 +275,15 @@
 .money_con_info_per_bottom_per_time {
   float: left;
   color: #8d8d8d;
-  font-size: 30rpx;
+  font-size: 28rpx;
   width:316rpx;
   /* margin-left: 20rpx; */
 }
 .money_con_info_per_bottom_per_num {
   color: #6acd6a;
-  font-size: 30rpx;
+  font-size: 28rpx;
+  text-align: center;
   /* float: right; */
-  /* width: 120rpx; */
+   width: 120rpx; 
 }
 
