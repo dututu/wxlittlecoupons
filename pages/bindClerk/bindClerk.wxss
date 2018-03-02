@@ -39,3 +39,9 @@
     text-align: center;
     line-height: 90rpx;
 }
+.store_list {
+  margin-top: 100rpx;
+  width: 700rpx;
+  text-align: center;
+  font-size: 30rpx;
+}

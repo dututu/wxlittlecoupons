@@ -418,13 +418,14 @@ Page({
   jumpDetail: function (e) {
     let _this = this
     let id = e.currentTarget.dataset.item.id;
+    let storeId = e.currentTarget.dataset.item.storeId;
     this.clearData()
     common.post('/coupon/browse', {
       unique_id: wx.getStorageSync('unique_id'),
       coupon_id: id
     })
     wx.navigateTo({
-      url: '/pages/detail/detail?id=' + id
+      url: '/pages/detail/detail?id=' + id + '&storeId=' + storeId
     })
   },
   clearData() {

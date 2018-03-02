@@ -116,6 +116,7 @@ Page({
     })
   },
   onLoad: function (options) {
+    console.log(options)
     // 页面加载的时候获取到unique_id
     if(options.q!=undefined) {
       let src = decodeURIComponent(options.q)
@@ -210,6 +211,7 @@ Page({
      } else {
       that.setData({
         id: options.id,
+        storeId:options.storeId,
         unique_id: wx.getStorageSync('unique_id'),
       })
       // 获取优惠券详情
@@ -257,6 +259,7 @@ Page({
       lat: this.data.latitude,
       lng: this.data.longitude,
       id: this.data.id,
+      storeId: this.data.storeId,
       unique_id: this.data.unique_id
     }).then(res => {
       this.setData({

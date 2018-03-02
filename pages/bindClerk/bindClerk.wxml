@@ -13,5 +13,15 @@
             <view class="bindClerk_info_box_text">是否绑定核销员</view>
         </view>
     </view>
+    <view class='store_list' wx:if='{{isChain}}'>
+      <view>
+        请选择门店:
+      </view>
+      <view>
+        <picker>
+        
+        </picker>
+      </view>
+    </view>
     <view class="bindClerk_button" bindtap="getBind">确定</view>
 </view>
