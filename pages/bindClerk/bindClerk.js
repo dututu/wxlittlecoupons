@@ -4,7 +4,10 @@ let common = require('../../assets/js/common');
 Page({
   data: {
     isShowToast:false,
-    isChain:true
+    isChain:true,
+    storeList:'',
+    storeName:'选择门店',
+    storeId:''
   },
   onLoad: function (e) {
     console.log(e)
@@ -13,37 +16,54 @@ Page({
     let _this=this
     if (param) {
       var src = decodeURIComponent(param)
+      console.log(src)
       var data = src.get_query('id')
       this.setData({
         id:data,
         unique_id: wx.getStorageSync('unique_id')
       })
-      
+      common.get('/storelist', {
+        id: data,
+      }).then(res => {
+        console.log(res)
+        _this.setData({
+          storeList:res.data.storelist,
+          storeId:0
+        })
+      }).catch(res => {
+        app.showToast(res.data.content || res.data.message, _this, 2000)
+      })
     }
-    console.log(11111111111);
   },
   onShow:function(e) {
     console.log(e)
     let data;
-    common.get('storelist', {
-      id: data,
-    }).then(res => {
-      console.log(res)
-    }).catch(res => {
-      app.showToast(res.data.content || res.data.message, _this, 2000)
-    })
+   
     
+  },
+  bindStores:function(e) {
+    console.log(e);
+    let store = this.data.storeList[e.detail.value]
+    this.setData({
+      storeName:store.store_name,
+      storeId:store.id
+    })
   },
   // 页面加载的时候调取绑定核销员接口
   getBind: function () {
     let _this=this
+    if(this.data.storeId===0) {
+      app.showToast('请选择门店', _this, 2000)
+      return;
+    }
     common.get('/clerk/bind', {
       id: this.data.id,
-      cid: this.data.unique_id
+      cid: this.data.unique_id,
+      storeId:this.data.storeId
     }).then(res => {
-      wx.reLaunch({
-        url: '/pages/mine/mine'
-      })
+      // wx.reLaunch({
+      //   url: '/pages/mine/mine'
+      // })
     }).catch(res=>{
       app.showToast(res.data.content||res.data.message, _this, 2000)
     })

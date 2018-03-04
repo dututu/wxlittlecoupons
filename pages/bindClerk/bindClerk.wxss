@@ -40,8 +40,21 @@
     line-height: 90rpx;
 }
 .store_list {
-  margin-top: 100rpx;
-  width: 700rpx;
+  /* margin-top: 100rpx; */
   text-align: center;
-  font-size: 30rpx;
+  font-size: 35rpx;
+
+}
+.store_list_de {
+  padding: 100rpx;
+  display: flex;
+}
+.store_left {
+ width: 250rpx;
+}
+.store_right {
+  width: 200rpx;
+}
+.store_name {
+  color: grey
 }

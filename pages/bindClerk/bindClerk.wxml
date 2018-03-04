@@ -14,14 +14,17 @@
         </view>
     </view>
     <view class='store_list' wx:if='{{isChain}}'>
-      <view>
-        请选择门店:
-      </view>
-      <view>
-        <picker>
-        
-        </picker>
+    <view class='store_list_de'>
+        <view class='store_left'>
+          请选择门店:
+        </view>
+        <view class='store_right'>
+          <picker mode="selector" value="0" bindchange="bindStores" range="{{storeList}}" range-key='store_name'>
+            <span>{{storeName}}</span>
+          </picker>
+        </view>
       </view>
     </view>
+    
     <view class="bindClerk_button" bindtap="getBind">确定</view>
 </view>
