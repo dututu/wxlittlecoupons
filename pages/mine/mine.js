@@ -63,7 +63,7 @@ Page({
       unique_id: wx.getStorageSync('unique_id')
     })
     // 获取用户信息
-    //this.getUserInfo();
+    this.getUserInfo();
     // 获取我的总金额
     this.getMoney();
     // 获取传播总人数
@@ -89,6 +89,7 @@ Page({
     common.post('/member/info',{
       unique_id: this.data.unique_id
     }).then(res=>{
+      console.log(info);
       this.setData({
         user:res.data.data
       })
