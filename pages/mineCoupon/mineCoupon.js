@@ -255,9 +255,10 @@ Page({
   // 跳转到详情页的函数
   jumpDetail: function (e) {
     let id = e.currentTarget.dataset.item.coupon_id;
-    let order_id=e.currentTarget.dataset.item.id
+    let order_id = e.currentTarget.dataset.item.id
+    let store_id = e.currentTarget.dataset.item.storeId ? e.currentTarget.dataset.item.storeId : 0
     wx.navigateTo({
-      url: '/pages/detail1/detail1?id=' + id+'&order_id='+order_id
+      url: '/pages/detail1/detail1?id=' + id + '&order_id=' + order_id + '&store_id=' + store_id
     })
   },
   // 点击删除按钮删除此条优惠券

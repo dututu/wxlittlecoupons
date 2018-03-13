@@ -16,7 +16,8 @@ Page({
   onLoad: function (options) {
     this.setData({
       id: options.id,
-      order_id:options.order_id
+      order_id:options.order_id,
+      store_id: options.store_id,
     })
     // 页面初始化 options为页面跳转所带来的参数
     let res = wx.getSystemInfoSync()
@@ -36,6 +37,7 @@ Page({
       lat: this.data.latitude,
       lng: this.data.longitude,
       id: this.data.id,
+      storeId : this.data.store_id,
       unique_id: this.data.unique_id
     }).then(res => {
       this.setData({

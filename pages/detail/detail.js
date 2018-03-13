@@ -123,7 +123,8 @@ Page({
       options = {
         quan_id: src.get_query('quan_id'),
         member_id: src.get_query('member_id'),
-        type: src.get_query('type')
+        type: src.get_query('type'),
+        store_id: src.get_query('storeId')
       }
       console.log(options)
     }
@@ -139,7 +140,8 @@ Page({
       that.setData({
         id: options.quan_id,
         user_id: options.member_id,
-        type:options.type
+        type:options.type,
+        storeId: options.store_id
       })
       console.log(options.member_id);
       console.log(this.data.user_id)
@@ -279,7 +281,7 @@ Page({
     this.hideShare()
     return {
       title: '附近优惠券',
-      path: '/pages/detail/detail?quan_id=' + this.data.id + '&&member_id=' + this.data.unique_id+'&&type='+this.data.type,
+      path: '/pages/detail/detail?quan_id=' + this.data.id + '&&member_id=' + this.data.unique_id+'&&type='+this.data.type+'&&storeId='+this.data.storeId,
     }
   },
   // 推荐人
@@ -444,7 +446,8 @@ Page({
       _this.data.lingqu=false
       common.post('/order/createOrder', {
         unique_id: _this.data.unique_id,
-        coupon_id: _this.data.id
+        coupon_id: _this.data.id,
+        store_id: _this.data.storeId
       }).then(res => {
         setTimeout(function(){
           _this.setData({

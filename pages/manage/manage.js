@@ -94,9 +94,10 @@ Page({
     jumpDetail: function (e) {
       console.log(e);
       let id = e.currentTarget.dataset.item.id
+      let storeId = e.currentTarget.dataset.item.storeId
       if (e.currentTarget.dataset.item.status==1) {
         wx.navigateTo({
-          url: '/pages/detail/detail?id=' + id
+          url: '/pages/detail/detail?id=' + id + '&storeId=' + storeId
         })
       }
       

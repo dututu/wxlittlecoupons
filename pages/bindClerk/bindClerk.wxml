@@ -16,12 +16,16 @@
     <view class='store_list' wx:if='{{isChain}}'>
     <view class='store_list_de'>
         <view class='store_left'>
-          请选择门店:
+          门店
         </view>
         <view class='store_right'>
           <picker mode="selector" value="0" bindchange="bindStores" range="{{storeList}}" range-key='store_name'>
             <span>{{storeName}}</span>
           </picker>
+          
+        </view>
+        <view class='icon'>
+        <image class='sanjiao' src='../../imgs/sanjiao2.jpg'></image>
         </view>
       </view>
     </view>

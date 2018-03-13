@@ -15,7 +15,7 @@ Page({
     
   },
   drawCode:function() {
-    let ctx = wx.createCanvasContext('headCanvas')
+    let ctx = wx.createCanvasContext('firstCanvas')
     wx.getImageInfo({
       src: 'http://file.wehome.com.cn/coupons/1517301673wjqz.png',
       success: function (res) {
@@ -66,10 +66,10 @@ Page({
     ctx.drawImage('../../imgs/poster1.jpg', 0, 0, 1079, 1364)
     ctx.draw(true)
     ctx.setFontSize(32)
-    ctx.fillText('OM', 218, 660)
+    ctx.fillText('OM', 218, 740)
     ctx.draw(true)
     ctx.setFontSize(30)
-    ctx.fillText('2018.01.29 正在【附近优惠券】平台邀请您免费发放优惠券', 186, 705)
+    ctx.fillText('2018.01.29 正在【附近优惠券】平台邀请您免费发放优惠券', 186, 785)
     ctx.draw(true)
     this.convertHead()
     this.drawCode()

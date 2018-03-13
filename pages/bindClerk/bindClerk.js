@@ -4,14 +4,36 @@ let common = require('../../assets/js/common');
 Page({
   data: {
     isShowToast:false,
-    isChain:true,
+    isChain:false,
     storeList:'',
     storeName:'选择门店',
     storeId:''
   },
   onLoad: function (e) {
     console.log(e)
-    
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.userLocation']) {
+          wx.authorize({
+            scope: 'scope.userLocation',
+            success() {
+              wx.getLocation({
+                type: 'gcj02',
+                success: function (res) {
+                  _this.setData({
+                    latitude: res.latitude,
+                    longitude: res.longitude
+                  })
+                  common.setStorage('latitude', res.latitude)
+                  common.setStorage('longitude', res.longitude)
+                },
+
+              })
+            }
+          })
+        }
+      }
+    })
     let param = e.q
     let _this=this
     if (param) {
@@ -25,13 +47,13 @@ Page({
       common.get('/storelist', {
         id: data,
       }).then(res => {
-        console.log(res)
         _this.setData({
+          isChain: true,
           storeList:res.data.storelist,
           storeId:0
         })
       }).catch(res => {
-        app.showToast(res.data.content || res.data.message, _this, 2000)
+        //app.showToast(res.data.content || res.data.message, _this, 2000)
       })
     }
   },
@@ -61,9 +83,9 @@ Page({
       cid: this.data.unique_id,
       storeId:this.data.storeId
     }).then(res => {
-      // wx.reLaunch({
-      //   url: '/pages/mine/mine'
-      // })
+      wx.reLaunch({
+        url: '/pages/mine/mine'
+      })
     }).catch(res=>{
       app.showToast(res.data.content||res.data.message, _this, 2000)
     })

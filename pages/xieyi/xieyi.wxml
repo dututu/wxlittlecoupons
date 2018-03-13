@@ -1,4 +1,4 @@
 <!--pages/xieyi/xieyi.wxml-->
- <canvas style="width: 1079px; height:1364px;" canvas-id="firstCanvas"></canvas> 
+ <canvas style="width: 1079px; height:1364px;" canvas-id="firstCanvas" hidden='true'></canvas> 
 
- <canvas style="width: 100px; height:100px;" canvas-id="headCanvas"></canvas> 
+ <canvas style="width: 100px; height:100px;" canvas-id="headCanvas" hidden='true'></canvas> 
