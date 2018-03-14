@@ -216,6 +216,18 @@ Page({
     });
     // 页面加载的时候获取到轮播图的列表
     this.getBanner();
+    common.post('/poster', {
+      type: 4,
+    }).then(res => {
+      if (res.data.data[0].status == 2) {
+        this.setData({
+          poster: res.data.data[0].imgurl,
+        })
+      }
+    }).catch(res => {
+      console.log('请求失败')
+      console.log(res)
+    })
   },
   onHide() {
     wx.setStorageSync('type', this.data.type)
@@ -587,6 +599,7 @@ Page({
   },
   makePoster: function (e) {
     console.log(e)
+    let that = this
     //画图
     let formid = e.detail.formId
     let uniqueid = wx.getStorageSync('unique_id')
@@ -596,22 +609,27 @@ Page({
     let ctx = wx.createCanvasContext('firstCanvas')
     let name = wx.getStorageSync('nickname')
     let date = app.getCurrentDate()
-    ctx.drawImage('../../imgs/poster1.jpg', 0, 0, 1079, 1364)
-    ctx.draw(true)
-    ctx.setFontSize(30)
-    ctx.fillText(date + ' 正在【附近优惠券】平台邀请您免费发放优惠券', 186, 745)
-    ctx.draw(true)
-    if (name) {
-      ctx.setFontSize(32)
-      ctx.fillText(name, 218, 700)
+    wx.getImageInfo({
+      src: that.data.poster,
+      success: function (res) {
+      ctx.drawImage(res.path, 0, 0, 1079, 1364)
       ctx.draw(true)
-      
-      //头像
-      console.log('画头像')
-      this.convertHead()
-    } else {
-      this.drawCode()
-    }
+      ctx.setFontSize(30)
+      ctx.fillText(date + ' 正在【附近优惠券】平台邀请您免费发放优惠券', 186, 745)
+      ctx.draw(true)
+      if (name) {
+        ctx.setFontSize(32)
+        ctx.fillText(name, 218, 700)
+        ctx.draw(true)
+        
+        //头像
+        console.log('画头像')
+        that.convertHead()
+      } else {
+        that.drawCode()
+      }
+      }
+    })
     
     //二维码
   },

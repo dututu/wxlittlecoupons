@@ -564,7 +564,7 @@ Page({
     //   }
     // })
     let qrcode = new QRCode('qrcode', {
-      text: common.couponCode + wx.getStorageSync('unique_id') + '&quan_id=' + that.data.id,
+      text: common.couponCode + wx.getStorageSync('unique_id') + '&quan_id=' + that.data.id+'&storeId'+that.data.storeId,
       width: 170,
       height: 170,
       colorDark: "#000000",
