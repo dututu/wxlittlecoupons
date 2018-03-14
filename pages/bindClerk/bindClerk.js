@@ -80,7 +80,7 @@ Page({
     }
     common.get('/clerk/bind', {
       id: this.data.id,
-      cid: this.data.unique_id,
+      cid: wx.getStorageSync('unique_id'),
       storeId:this.data.storeId
     }).then(res => {
       wx.reLaunch({
