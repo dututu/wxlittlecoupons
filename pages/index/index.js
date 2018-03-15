@@ -583,7 +583,7 @@ Page({
               canvasId: 'headCanvas',
               success: function (res) {
                 let ctx = wx.createCanvasContext('firstCanvas')
-                ctx.drawImage(res.tempFilePath, 80, 650, 100, 100)
+                ctx.drawImage(res.tempFilePath, 80, 1020, 100, 100)
                 ctx.draw(true)
                 console.log('画二维码')
                 that.drawCode()
@@ -615,18 +615,18 @@ Page({
       ctx.drawImage(res.path, 0, 0, 1079, 1364)
       ctx.draw(true)
       ctx.setFontSize(30)
-      ctx.fillText(date + ' 正在【附近优惠券】平台邀请您免费发放优惠券', 186, 745)
+      ctx.fillText(date + ' 正在【附近优惠券】平台邀请您免费发放优惠券', 186, 1115)
       ctx.draw(true)
       if (name) {
         ctx.setFontSize(32)
-        ctx.fillText(name, 218, 700)
+        ctx.fillText(name, 218, 1070)
         ctx.draw(true)
         
         //头像
         console.log('画头像')
         that.convertHead()
       } else {
-        that.drawCode()
+        this.drawCode()
       }
       }
     })
