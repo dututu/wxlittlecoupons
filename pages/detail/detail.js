@@ -636,7 +636,7 @@ Page({
     let date = app.getCurrentDate()
     let couponName = that.data.detailInfo.name;
     let fontSize
-    if(couponName<=15)
+    if(couponName.length<=15)
       fontSize=53
     else 
       fontSize=35
@@ -649,20 +649,20 @@ Page({
         console.log('画背景')
         ctx.setFontSize(fontSize)
         ctx.setTextAlign('center')
-        ctx.fillText(couponName, 540, 560)
+        ctx.fillText(couponName, 540, 450)
         ctx.draw(true)
         ctx.setTextAlign('left')
         ctx.setFontSize(27)
-        ctx.fillText('活动时间：', 245, 660)
+        ctx.fillText('活动时间：', 245, 550)
         ctx.draw(true)
         ctx.setFontSize(29)
-        ctx.fillText(that.data.detailInfo.start+'-'+ that.data.detailInfo.end+','+that.data.detailInfo.week+','+ that.data.detailInfo.time+'可用', 245, 700)
+        ctx.fillText(that.data.detailInfo.start+'-'+ that.data.detailInfo.end+','+that.data.detailInfo.week+','+ that.data.detailInfo.time+'可用', 245, 590)
         ctx.draw(true)
         ctx.setFontSize(27)
-        ctx.fillText('位置：', 245, 750)
+        ctx.fillText('位置：', 245, 630)
         ctx.draw(true)
         ctx.setFontSize(29)
-        ctx.fillText(that.data.detailInfo.address, 245, 790)
+        ctx.fillText(that.data.detailInfo.address, 245, 670)
         ctx.draw(true)
         ctx.setFontSize(30)
         ctx.fillText(date + ' 正在【附近优惠券】平台邀请您分享优惠券', 186, 1115)
