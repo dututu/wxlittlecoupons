@@ -61,6 +61,10 @@
             <view class="detail_info_detail_left">时间:</view>
             <view class="detail_info_detail_right">{{detailInfo.start}}-{{detailInfo.end}},{{detailInfo.week}},{{detailInfo.time}}可用</view>
           </view>
+          <view class="detail_info_box" wx:if='{{detailInfo.isChain==2}}'>
+            <view class="detail_info_detail_left">门店:</view>
+            <view class="detail_info_detail_right">{{detailInfo.store_name}}</view>
+          </view>
           <view class="detail_info_box">
             <view class="detail_info_detail_left">位置:</view>
             <view class="detail_info_detail_right" style="height: auto; width: 85%;">{{detailInfo.address}} | {{detailInfo.distance}}
