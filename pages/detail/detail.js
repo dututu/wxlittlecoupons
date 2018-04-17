@@ -17,9 +17,11 @@ Page({
     options: {},
     isShowToast:false,
     lingqu:true,
-    pinglun:true
+    pinglun:true,
+    bgc: 0,
   },
   onShow(){
+    console.log(11);
     let that = this
     that.getAdd()
     if (wx.getStorageSync('type')){
@@ -116,6 +118,7 @@ Page({
     })
   },
   onLoad: function (options) {
+    console.log('bb')
     console.log(options)
     // 页面加载的时候获取到unique_id
     if(options.q!=undefined) {
@@ -135,13 +138,19 @@ Page({
       longitude: wx.getStorageSync('longitude'),
       type:wx.getStorageSync('type')
     })
+    let color
     console.log(that.data.type)
     if (options.quan_id) {
+      
+      color = options.quan_id
+      
+      console.log(color)
       that.setData({
         id: options.quan_id,
         user_id: options.member_id,
         type:options.type,
-        storeId: options.store_id
+        storeId: options.store_id,
+        bgc: color%3,
       })
       console.log(options.member_id);
       console.log(this.data.user_id)
@@ -211,10 +220,16 @@ Page({
         })
       }
      } else {
+      if (options.colorId != undefined) {
+        color = options.colorId
+      } else {
+        color = options.id
+      }
       that.setData({
         id: options.id,
         storeId:options.storeId,
         unique_id: wx.getStorageSync('unique_id'),
+        bgc: color%3
       })
       // 获取优惠券详情
       that.getDetail();

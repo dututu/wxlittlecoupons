@@ -1,12 +1,12 @@
 
 <!--pages/publish/publish.wxml-->
-<view class="container">
+ <view class="container">
 <view class="wxapp-toast-content-box" wx:if="{{isShowToast}}">
     <view class="wxapp-toast-content">
       <view class="wxapp-toast-content-text"> {{toastText}} </view>
     </view>
   </view>
-  <scroll-view scroll-y="true" bindscrolltolower="scrolltolower" lower-threshold="0" upper-threshold="0" bindscrolltolower="bindscrolltoupper" style="width:{{scrollStyle.width}}px;height:{{scrollStyle.height}}px">
+  <scroll-view scroll-y="true" bindscrolltolower="scrolltolower" lower-threshold="0" upper-threshold="0" bindscrolltolower="bindscrolltoupper" style="width:750rpx;height:1300rpx">
 
     <!--这是已发布优惠券的内容-->
     <view class="publish_info" wx:if="{{currentTab==0}}">
@@ -47,161 +47,203 @@
     </view>
 
     <!--这是发布新优惠券的内容-->
-    <view class="newpublish_info" wx:if="{{currentTab==1}}">
-      <form bindsubmit="submit" report-submit='true'>
-        <view class="newpublish_info_tit">
-          <view class="newpublish_info_tit_left">
-            <view class="newpublish_info_tit_left_top">
-              <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="优惠券名称" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{name}}" name="inputName" bindblur="inputName" />
-            </view>
-            <view class="newpublish_info_tit_left_bot">
-              <view class="newpublish_info_tit_left_bot_left">
-                <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input style="width: 90%;" placeholder="面值或折扣" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{countPrice}}" name="inputCount" bindblur="inputCount" />
-              </view>
-              <view class="newpublish_info_tit_left_bot_right" bindtap="bindSale" style="color: #000;">{{saleText}}
-                <image src="../../imgs/sanjiao.png"></image>
-              </view>
-            </view>
-          </view>
-          <view class="newpublish_info_tit_right">
-            <view class="newpublish_info_tit_right_top" bindtap="bindType">
-              <view class="newpublish_info_tit_right_top_left">
-                <text style="color: red;">*</text><text wx:if="{{typeShow}}" style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;">选择行业</text>
-                <text style="color: #000;">{{typeText}}</text>
-                <input type='text' style='display:none'name="type" value="{{typeText}}"></input>
-              </view>
-              <view class="newpublish_info_tit_right_top_right">
-                <image src="../../imgs/sanjiao.png"></image>
-              </view>
-            </view>
-            <view class="newpublish_info_tit_right_bot">
-              <view class="newpublish_info_tit_right_bot_left">
-                <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input style="width: 90%;" placeholder="发放数量" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{num}}" name="inputNum" bindblur="inputNum" />
-              </view>
-              <view class="newpublish_info_tit_right_bot_right">张</view>
-            </view>
-          </view>
+    <form bindsubmit="submit" report-submit='true'>
+    <view class='basic'>
+    <!-- <view class='tittle' bindtap='fold' id='basic'> -->
+    <view class='tittle'  id='basic'>
+      <view class='tit'>基本信息</view>
+      <!-- <view class='tit_image'>
+        <image src='../../imgs/sanjiao2.png'  style='transform:{{basicDegree}};'> </image>
+      </view>
+      <view class='tit_right'>
+      {{basicWords}}</view> -->
+    </view>
+    <view wx:if='{{basicShow}}'>
+      <view class='item_list1'>
+        <view>优惠券类型</view>
+        <view class='item_radio'>
+          <radio-group class="radio-group" bindchange="radioChange">
+            <label class="radio" wx:for="{{couponType}}">
+              <radio value="{{item.name}}" checked="{{item.checked}}" color='#EC2350'/>{{item.value}}
+            </label>
+          </radio-group>
         </view>
-        <view class="newpublish_info_choose">
-          <view class="newpublish_info_choose_left">
-            <view class="newpublish_info_choose_left_top">
-              <picker mode="date" start="{{time}}"   end="2040-12-01" bindchange="bindDateChange">
-                <view class="picker" style="position: relative; font-size: 30rpx; color: #c7c7cd;">
-                  <text style="color: red;">*</text><text wx:if="{{startTime==true}}" style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;">开始时间</text>
-                  <text wx:if="{{startTime==false}}" style="color: #000;">{{startDate}}</text>
-                  <input type='text' style='display:none'name="startTime" value="{{startDate}}"></input>
-                  <image src="../../imgs/sanjiao.png" style="width: 17rpx; height: 11rpx; position: absolute;right: 0; top: 50%; transform: transform: translateY(-50%);"></image>
-                </view>
-              </picker>
-            </view>
-            <view class="newpublish_info_choose_left_bot" bindtap="bindWeek">
-              <view class="newpublish_info_choose_left_bot_left">
-                <text style="color: red;">*</text><text wx:if="{{weekShow}}" style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;">周几可用</text>
-                <text style="color: #000;">{{weekText}}</text>
-                <input type='text' style='display:none'name="week" value="{{weekText}}"></input>
-              </view>
-              <view class="newpublish_info_choose_left_bot_right">
-                <image src="../../imgs/sanjiao.png"></image>
-              </view>
-            </view>
-          </view>
-          <view class="newpublish_info_choose_right">
-            <view class="newpublish_info_choose_right_top">
-              <picker mode="date" value="{{date}}" start="{{startDate}}" end="2040-12-01" bindchange="bindEndDate">
-                <view class="picker" style="position: relative; font-size: 30rpx; color: #c7c7cd;">
-                  <text style="color: red;">*</text><text wx:if="{{endTime}}" style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;">结束时间</text><text style="color: #000;">{{endDate}}</text>
-                  <input type='text' style='display:none'name="endTime" value="{{endDate}}"></input>
-                  <image src="../../imgs/sanjiao.png" style="width: 17rpx; height: 11rpx; position: absolute;right: 0; top: 50%; transform: transform: translateY(-50%);"></image>
-                </view>
-              </picker>
-            </view>
-            <view class="newpublish_info_choose_right_bot" bindtap="bindChoose">
-              <view class="newpublish_info_choose_right_top_left">
-                <text style="color: red;">*</text><text wx:if="{{chooseShow}}" style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;">可用时间段</text>
-                <text style="color: #000;">{{chooseText}}</text>
-                 <input type='text' style='display:none'name="time" value="{{chooseText}}"></input>
-              </view>
-              <view class="newpublish_info_choose_right_bot_right">
-                <image src="../../imgs/sanjiao.png"></image>
-              </view>
-            </view>
-          </view>
+      </view> 
+      <view class='item_list1'>
+        <view class='item_list_name'>优惠券名称</view>
+        <view class='item_input'>
+          <input type='text' confirm-type='next' maxlength="15" placeholder="必填" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{name}}" name="inputName" bindblur="inputName"/>
         </view>
-        <view class="newpublish_info_con">
-        <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;" decode='true'>&ensp;</text><input placeholder="卡券售价(元)，免费券不填" type="digit" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{price}}" bindblur="inputPrice" />
-          <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;" decode='true'>&ensp;</text><input placeholder="最大领取量，不填为不限制" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" type='number' value="{{max}}" bindblur="inputMax" />
-          <input type='text' style='display:none' name="max" value="{{max}}"></input>
-          <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;" decode='true'>&ensp;</text><input placeholder="使用说明，示例：消费满100元使用" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{des}}" bindblur="inputDes" />
-          <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;" decode='true'>&ensp;</text><input placeholder="关键字,逗号隔开，方便消费者用关键字搜索到优惠券" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{key}}" bindblur="inputKey" />
-            
-          <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="门店电话，方便消费者电话联系" type="number" name="phone" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{tel}}" bindblur="inputTel" />
-          <view class="newpublish_info_con_box">
-            <view class="newpublish_info_con_box_left">
-              <text style="color: red; float: left; line-height: 90rpx; font-size: 26rpx;">*</text><input placeholder="门店地址，方便地图导航消费者" style="width: 90%;" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{add}}" disabled='true' bindblur="inputAdd" name="add"/>
-            </view>
-            <view class="newpublish_info_con_box_right" bindtap="getLon">
-              <image src="../../imgs/pos.png"></image>
-              <text>获取位置</text>
-            </view>
-          </view>
-          <view class="newpublish_info_con_photo">
-          <view class="newpublish_info_con_photo_bot"><text style="color: red; float: left; font-size: 26rpx;">*</text>优惠券头图，请选择能代表门店或者优惠券信息的图片，图片大小最好不超过200K</view>
-            <view class="newpublish_info_con_photo_top" bindtap="chooseImg">
-              <image src="../../imgs/photo.png" wx:if="{{imgShow}}"></image>
-              <image src="{{image_photo}}"></image>
+      </view>
+      <view class='item_list1' wx:if='{{prefer_type_Index==0}}'>
+        <view class='item_list_name'>优惠券面值</view>
+        <view class='item_input'>
+          <input type='digit' confirm-type='next' maxlength="6" placeholder="优惠券的优惠额度(必填)" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{countPrice}}" name="inputCount" bindblur="inputCount"/>
+        </view>
+        <view class='item_list_right'>{{couponUnit}}</view>
+      </view>
+      <view class='item_list1' wx:if='{{prefer_type_Index==1}}'>
+        <view class='item_list_name'>优惠券折扣</view>
+        <view class='item_input'>
+          <input type='number' confirm-type='next' maxlength="2" placeholder="例如:7.5折请填写75(必填)" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{countPrice}}" name="inputCount" bindblur="inputCount"/>
+        </view>
+        <view class='item_list_right'>{{couponUnit}}</view>
+      </view>
+      <view class='item_list1'>
+        <view class='item_list_name'>优惠券售价</view>
+        <view class='item_input'>
+          <input type='digit' confirm-type='next' maxlength="10" placeholder="优惠券的实际售价，免费领取不填"  placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{price}}" bindblur="inputPrice"/>
+        </view>
+        <view class='item_list_right'>元</view>
+      </view>
+      <view class='item_list1'>
+        <view class='item_list_name'>发放数量</view>
+        <view class='item_input'>
+          <input type='number' confirm-type='next' maxlength="10" placeholder="发放的优惠券数量（必填）" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{num}}" name="inputNum" bindblur="inputNum"/>
+        </view>
+        <view class='item_list_right'>张</view>
+      </view>
+      <view class='item_list1'>
+        <view class='item_list_name'>最大领取量</view>
+        <view class='item_input'>
+          <input type='number' confirm-type='next' maxlength="2" placeholder="优惠券的领取最大数量(必填)" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{max}}" bindblur="inputMax"/>
+        </view>
+        <view class='item_list_right'>张</view>
+      </view>
+      <view class='item_list1'>
+        <view class='item_list_name'>关键字</view>
+        <view class='item_input item_list_long'>
+          <input type='text' confirm-type='next' maxlength="10" placeholder="多个关键字用逗号隔开，方便用户搜索" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{key}}" bindblur="inputKey"/>
+        </view>
+      </view>
+      <view class='item_list_image'>
+        <view class='item_list_name'>优惠券头图</view>
+        <view class='item_list_image_input'>
+          请选择能代表优惠券信息的图片，大小最好不超过200k（必填）
+        </view>
+        <view class='item_list_img' bindtap="chooseImg">
+          <image src='../../imgs/coupon.png' wx:if="{{imgShow}}"> </image>
+          <image src="{{image_photo}}"></image>
               <input type='text' style='display:none'name="image" value="{{image_photo}}"></input>
-            </view>
+        </view>
+      </view>
+      <view class='item_list1 border_cancle'>
+        <view class='item_list_name'>使用说明</view>
+        <view class='item_input'>
+          <input type='text' confirm-type='next' maxlength="10" placeholder="示例：消费满100元可用" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{des}}" bindblur="inputDes"/>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='basic'>
+    <!-- <view class='tittle' bindtap='fold' id='time'> -->
+    <view class='tittle' id='time'>
+      <view class='tit'>适用时间</view>
+      <!-- <view class='tit_image'>
+        <image src='../../imgs/sanjiao2.png' style='transform:{{timeDegree}};'> </image>
+      </view>
+      <view class='tit_right'>{{timeWords}}</view> -->
+    </view>
+    <view wx:if='{{timeShow}}'>
+    <picker mode="date" value="{{date}}" start="2015-09-01" end="2018-09-01" bindchange="bindDateChange" id='startDate'>
+        <view class='item_list1'>
+          <view class='item_list_name'>开始时间</view>
+          <view class='item_input'>
+              <input type='text' confirm-type='next' maxlength="10" placeholder="可以使用优惠券的开始时间（必填）" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" disabled='true' name="startTime" value="{{startDate}}"/>
             
           </view>
-          <view style="clear: both;"></view>
-         
-          <view class="newpublish_info_con_button">
-            <button class="newpublish_info_con_button_text" plain="true" hover-class="none" style="background-color:#ccc;" wx:if="{{button==false}}">提交审核</button>
-            <button class="newpublish_info_con_button_text" plain="true" form-type="submit" hover-class="none" wx:if="{{button==true}}">提交审核</button>
+          <view class='item_list_right'>
+            <image src='../../imgs/sanjiao3.png'></image>
           </view>
         </view>
-      </form>
-
-      <!--这是选择行业类别的弹出盒子-->
-      <view class="type_box" wx:if="{{type}}">
-        <view class="type_box_per" wx:for="{{typeList}}" wx:for-item="item" bindtap="changeType" data-index="{{index}}">
-          <view class="type_box_per_left">{{item.name}}</view>
-          <view class="type_box_per_right">
-            <image src="../../imgs/duigou.png" wx:if="{{item.isOpen}}"></image>
+      </picker>
+      <picker mode="date" value="{{date}}" start="2015-09-01" end="2030-09-01" bindchange="bindEndDate" id='endDate'>
+        <view class='item_list1'>
+          <view class='item_list_name'>结束时间</view>
+          <view class='item_input'>
+            
+              <input type='text' confirm-type='next' maxlength="10" placeholder="可以使用优惠券的结束时间（必填）" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" disabled='true' name="endTime" value="{{endDate}}"/>
+           
+          </view>
+          <view class='item_list_right'>
+            <image src='../../imgs/sanjiao3.png'></image>
           </view>
         </view>
-      </view>
+      </picker>
+      <picker bindchange="bindPickerChange" id='week' value="{{index}}" range="{{weekList}}" range-key='name'>
+        <view class='item_list1'>
+          <view class='item_list_name'>周几可用</view>
+          <view class='item_input'>
+              <input type='text' confirm-type='next' maxlength="10" placeholder="优惠券的优惠额度(必填)" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{weekText}}" name="week" disabled='true'/>
+          </view>
+          <view class='item_list_right'>
+            <image src='../../imgs/sanjiao3.png'></image>
+          </view>
+        </view>
+      </picker>
+      <picker bindchange="bindPickerChange" id='time' value="{{index}}" range="{{chooseList}}" range-key='name'>
+        <view class='item_list1  border_cancle'>
+          <view class='item_list_name'>可用时间段</view>
+          <view class='item_input'>
+              <input type='text' confirm-type='next' maxlength="10" placeholder="优惠券的优惠额度(必填)" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" name="time" value="{{chooseText}}" disabled='true'/>
+          </view>
+          <view class='item_list_right'>
+            <image src='../../imgs/sanjiao3.png'></image>
+          </view>
+        </view>
+      </picker>
     </view>
-
-    <!--优惠元还是折弹出框盒子-->
-    <view class="sale_box" wx:if="{{sale}}">
-      <view class="sale_box_per" wx:for="{{saleList}}" wx:for-item="item" bindtap="changeSale" data-index="{{index}}">
-        <view class="type_box_per_left">{{item.name}}</view>
-        <view class="type_box_per_right">
-          <image src="../../imgs/duigou.png" wx:if="{{item.isOpen}}"></image>
+  </view>
+  <view class='basic'>
+    <!-- <view class='tittle' bindtap='fold' id='ext'> -->
+    <view class='tittle' id='ext'>
+      <view class='tit'>其他信息</view>
+      <!-- <view class='tit_image'>
+        <image src='../../imgs/sanjiao2.png' style='transform:{{extDegree}};'> </image>
+      </view>
+      <view class='tit_right'>{{extWords}}</view> -->
+    </view>
+    <view wx:if='{{extShow}}'>
+      <view class='item_list1'>
+        <view class='item_list_name'>门店位置</view>
+        <view class='item_input adjust'>
+          <input type='text' confirm-type='next' maxlength="10" placeholder="选取门店位置后可编辑(必填)" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{add}}" disabled='{{ableStoreAdd}}' bindblur="inputAdd" name="add"/>
+        </view>
+        <view class='item_list_right' bindtap="getLon">
+          <image src='../../imgs/position.png'></image>获取位置
+        </view>
+      </view>
+      <!-- <view class='item_list1'>
+        <view class='item_list_name'>门店地址</view>
+        <view class='item_input'>
+          <input type='text' confirm-type='next' maxlength="20" placeholder="选取门店位置后可编辑" disabled='{{ableStoreAdd}}' value="{{storeAdd}}" name="storeAdd" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;"/>
+        </view>
+      </view> -->
+      <view class='item_list1'>
+        <view class='item_list_name'>行业类型</view>
+        <view class='item_input'>
+          <picker bindchange="bindPickerChange" id='type' value="{{index}}" range="{{typeList}}" range-key='name'>
+          <input type='text' confirm-type='next' maxlength="10" placeholder="方便搜索及生成分享海报(必填)" name="type" value="{{typeText}}" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" disabled='true'/>
+          </picker>
+        </view>
+        <view class='item_list_right'>
+          <image src='../../imgs/sanjiao3.png'></image>
+        </view>
+      </view>
+      <view class='item_list1 border_cancle'>
+        <view class='item_list_name'>联系电话</view>
+        <view class='item_input'>
+          <input type='number' confirm-type='done' maxlength="11" placeholder="方便消费者电话联系(必填)" name="phone" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{tel}}" bindblur="inputTel"/>
         </view>
       </view>
     </view>
-
-    <!--选择周几可用的弹出框盒子-->
-    <view class="week_box" wx:if="{{week}}">
-      <view class="sale_box_per" wx:for="{{weekList}}" wx:for-item="item" bindtap="changeWeek" data-index="{{index}}">
-        <view class="type_box_per_left">{{item.name}}</view>
-        <view class="type_box_per_right">
-          <image src="../../imgs/duigou.png" wx:if="{{item.isOpen}}"></image>
-        </view>
-      </view>
+    <view class='explain'bindtap='intro' >制券说明</view>
+    <view class='btn'>
+      <button   hover-class="none" style="background-color:#ccc;" wx:if="{{button==false}}">提交审核</button>
+      <button  form-type="submit" hover-class="none" wx:if="{{button==true}}">提交审核</button>
     </view>
-
-    <!--选择可用时间段弹出框盒子-->
-    <view class="choose_box" wx:if="{{shijian}}">
-      <view class="choose_box_per" wx:for="{{chooseList}}" wx:for-item="item" bindtap="changeChoose" data-index="{{index}}">
-        <view class="type_box_per_left">{{item.name}}</view>
-        <view class="type_box_per_right">
-          <image src="../../imgs/duigou.png" wx:if="{{item.isOpen}}"></image>
-        </view>
-      </view>
-    </view>
+  </view>
+  </form>   
   </scroll-view>
   <!--弹出协议-->
 
@@ -222,7 +264,8 @@
           <view class="modal-line-box amount-button">
             
             
-            <button type="primary" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" size="mini" id="1" class="button-color_agree">我已了解</button>
+            <button type="primary" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" size="mini" id="1" class="button-color_agree" wx:if='{{getphone==false}}'>我已了解</button>
+             <button type="primary" bindtap="clointro" size="mini" id="1" class="button-color_agree" wx:if='{{getphone==true}}'>我已了解</button>
           </view>
 
       </view>
@@ -256,4 +299,4 @@
         </view>
       </view>
 
-</view>
+</view> 

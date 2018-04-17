@@ -7,6 +7,7 @@ Page({
     isShowToast:false
   },
   onLoad: function (e) {
+    console.log(e)
     let _this = this;
     let param=e.q
     if(param){

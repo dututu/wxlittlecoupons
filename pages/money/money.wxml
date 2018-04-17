@@ -8,8 +8,8 @@
   </view>
   <view class="money_tit">
     <view class="money_tit_des">总金额(元)</view>
-    <view class="money_tit_num">
-        <text style="color: red;" wx:if="{{totalMoney>0}}">￥</text>{{totalMoney}}
+    <view class="money_tit_num" style="color: #000000;">
+        <text style="color: #000000;" wx:if="{{totalMoney>0}}">￥</text>{{totalMoney}}
     </view>
   </view>
   <view class="money_con">

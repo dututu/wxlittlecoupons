@@ -8,12 +8,23 @@
   </view>
   <view class="container {{codeShow==true?'hidden':''}}">
     <view class="detail_info">
-      <view class="detail_info_tit">
+      <!-- <view class="detail_info_tit">
+        <text>{{detailInfo.name}}</text>
+      </view> -->
+      <view class="detail_info_tit_p" wx:if="{{bgc==0}}">
+        <text>{{detailInfo.name}}</text>
+      </view>
+      <view class="detail_info_tit_o" wx:if="{{bgc==1}}">
+        <text>{{detailInfo.name}}</text>
+      </view>
+      <view class="detail_info_tit_g" wx:if="{{bgc==2}}">
         <text>{{detailInfo.name}}</text>
       </view>
       <view class="detail_info_bot">
         <view class="detail_info_bot_box_top">
-          <view class="detail_info_button" bindtap="popCode" wx:if="{{detailInfo.infostatus==1}}">立即使用</view>
+          <view class="detail_info_button" bindtap="popCode" wx:if="{{detailInfo.infostatus==1}}" wx:if='{{bgc==0}}' style='background-color:#7246A1'>立即使用</view>
+          <view class="detail_info_button" bindtap="popCode" wx:if="{{detailInfo.infostatus==1}}" wx:if='{{bgc==1}}' style='background-color:#F1602D'>立即使用</view>
+          <view class="detail_info_button" bindtap="popCode" wx:if="{{detailInfo.infostatus==1}}" wx:if='{{bgc==2}}' style='background-color:#00B885'>立即使用</view>
           <view class="detail_info_button" style="background-color: #a1a1a1;" wx:if="{{detailInfo.infostatus==2}}">已使用</view>
           <view class="detail_info_button" style="background-color: #a1a1a1;" wx:if="{{detailInfo.infostatus==3}}">已过期</view>
           <!-- <view class="detail_info_bot_box_text">已领:{{detailInfo.alyLingNum }} 已用:{{detailInfo.alyUseNum}}</view> -->
@@ -27,6 +38,10 @@
           <view class="detail_info_box">
             <view class="detail_info_detail_left">时间:</view>
             <view class="detail_info_detail_right">{{detailInfo.start}}-{{detailInfo.end}} {{detailInfo.week}} {{detailInfo.time}}可用</view>
+          </view>
+          <view class="detail_info_box" wx:if='{{detailInfo.isChain==2}}'>
+            <view class="detail_info_detail_left">门店:</view>
+            <view class="detail_info_detail_right">{{detailInfo.store_name}}</view>
           </view>
           <view class="detail_info_box" style="height: 50rpx;">
             <view class="detail_info_detail_left">位置:</view>

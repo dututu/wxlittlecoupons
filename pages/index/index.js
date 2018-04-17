@@ -22,48 +22,83 @@ Page({
     isShowToast: false,
     index: 0,
     navList: [{
-      imgSrc: '../../imgs/nav1.png',
+      imgSrc: '../../imgs/nav11.png',
       text: '推荐',
       color: 'color',
-      _imgSrc: '../../imgs/nav11.png'
+      index: 0,
+      _imgSrc: '../../imgs/nav1.png'
     }, {
       imgSrc: '../../imgs/nav2.png',
       text: '美食',
       color: 'color',
+      index: 2,
       _imgSrc: '../../imgs/nav22.png'
     }, {
       imgSrc: '../../imgs/nav3.png',
       text: '娱乐',
       color: 'color',
+      index: 3,
       _imgSrc: '../../imgs/nav33.png'
     }, {
       imgSrc: '../../imgs/nav4.png',
-      text: '酒店',
+      text: '电影',
       color: 'color',
-      _imgSrc: '../../imgs/nav44.png'
+      index: 1,
+      _imgSrc: '../../imgs/nav33.png'
     }, {
       imgSrc: '../../imgs/nav5.png',
-      text: '服饰',
+      text: '酒店',
       color: 'color',
-      _imgSrc: '../../imgs/nav55.png'
+      index: 4,
+      _imgSrc: '../../imgs/nav44.png'
     }, {
       imgSrc: '../../imgs/nav6.png',
-      text: '教育',
+      text: '购物',
       color: 'color',
-      _imgSrc: '../../imgs/nav66.png'
+      index: 10,
+      _imgSrc: '../../imgs/nav55.png'
     }, {
       imgSrc: '../../imgs/nav7.png',
       text: '丽人',
       color: 'color',
-      _imgSrc: '../../imgs/nav77.png'
+      index: 7,
+      _imgSrc: '../../imgs/nav66.png'
     }, {
       imgSrc: '../../imgs/nav8.png',
-      text: '其他',
+      text: '亲子',
       color: 'color',
+      index: 11,
+      _imgSrc: '../../imgs/nav77.png'
+    }, {
+      imgSrc: '../../imgs/nav9.png',
+      text: '教育',
+      color: 'color',
+      index: 6,
       _imgSrc: '../../imgs/nav88.png'
+    }, {
+      imgSrc: '../../imgs/nav10.png',
+      text: '更多',
+      color: 'color',
+      index: 8,
+      _imgSrc: '../../imgs/nav1010.png'
     }],
     infoList: [],
     pageList: [{
+      page: 1,
+      total: null
+    }, {
+      page: 1,
+      total: null
+    }, {
+      page: 1,
+      total: null
+    }, {
+      page: 1,
+      total: null
+    }, {
+      page: 1,
+      total: null
+    }, {
       page: 1,
       total: null
     }, {
@@ -216,29 +251,28 @@ Page({
     });
     // 页面加载的时候获取到轮播图的列表
     this.getBanner();
-    common.post('/poster', {
-      type: 4,
-    }).then(res => {
-      if (res.data.data[0].status == 2) {
-        this.setData({
-          poster: res.data.data[0].imgurl,
-        })
-      }
-    }).catch(res => {
-      console.log('请求失败')
-      console.log(res)
-    })
   },
   onHide() {
     wx.setStorageSync('type', this.data.type)
   },
   // 页面分享功能
-  onShareAppMessage: function () {
-    this.hideShare()
-    return {
-      title: '附近优惠券',
-      path: '/pages/poster/poster?member_id=' + wx.getStorageSync('unique_id')+'&type=1'
+  onShareAppMessage: function (e) {
+    console.log(e)
+    if(e.target==undefined) {
+      return {
+        title: '附近优惠券',
+        path: '/pages/poster/poster?member_id=' + wx.getStorageSync('unique_id') + '&type=1',
+        imageUrl: '../../imgs/couponPic.jpg'
+      }
+    } else  {
+      return {
+        title: e.target.dataset.name,
+        path: '/pages/detail/detail?quan_id=' + e.target.dataset.id + '&&member_id=' + wx.getStorageSync('unique_id') + '&&type=1&&storeId=' + e.target.dataset.storeId,
+        imageUrl: '../../imgs/couponPic.jpg'
+      }
+      
     }
+    
   },
   bindPerson() {
     // common.get('/member/referrer', {
@@ -333,8 +367,10 @@ Page({
   },
   // 页面加载的时候获取到附近优惠券
   getData: function (type, cb) {
+    let that = this
+    
     if (type == 1 && (!this.data.info[this.data.index] || this.data.info[this.data.index].length == 0)) {
-      this.reqInfo(this.data.index == 0 ? this.data.index : this.data.index + 1, this.data.pageList[this.data.index].page, res => {
+      this.reqInfo(this.data.index, this.data.pageList[this.data.index].page, res => {
         cb && cb(res)
         this.data.pageList[this.data.index] = {
           page: res.data.data.length > 0 ? res.data.meta.pagination.current_page + 1 : res.data.meta.pagination.current_page,
@@ -407,11 +443,15 @@ Page({
       this.data.navList[e.currentTarget.dataset.index].color = 'color5'
     } else if (e.currentTarget.dataset.index == 6) {
       this.data.navList[e.currentTarget.dataset.index].color = 'color6'
-    } else {
+    } else if (e.currentTarget.dataset.index == 7) {
       this.data.navList[e.currentTarget.dataset.index].color = 'color7'
+    } else if (e.currentTarget.dataset.index == 8) {
+      this.data.navList[e.currentTarget.dataset.index].color = 'color8'
+    } else {
+      this.data.navList[e.currentTarget.dataset.index].color = 'color9'
     }
     this.setData({
-      index: e.currentTarget.dataset.index,
+      index: e.currentTarget.dataset.tindex,
       navList: this.data.navList,
     })
     if (this.data.currentTab === e.currentTarget.dataset.index) {
@@ -428,6 +468,7 @@ Page({
   },
   // 点击每一张优惠券获取到详细信息
   jumpDetail: function (e) {
+    console.log(e)
     let _this = this
     let id = e.currentTarget.dataset.item.id;
     let storeId = e.currentTarget.dataset.item.storeId;
@@ -437,7 +478,7 @@ Page({
       coupon_id: id
     })
     wx.navigateTo({
-      url: '/pages/detail/detail?id=' + id + '&storeId=' + storeId
+      url: '/pages/detail/detail?id=' + id + '&storeId=' + storeId + '&colorId=' + e.currentTarget.dataset.index
     })
   },
   clearData() {
@@ -469,17 +510,23 @@ Page({
       }, {
         page: 1,
         total: null
+      }, {
+        page: 1,
+        total: null
+      }, {
+        page: 1,
+        total: null
+      }, {
+        page: 1,
+        total: null
+      }, {
+        page: 1,
+        total: null
+      }, {
+        page: 1,
+        total: null
       }],
       info: []
-    })
-  },
-  showShare:function(e) {
-    console.log(e)
-    let formid = e.detail.formId
-    let uniqueid = wx.getStorageSync('unique_id')
-    app.saveFormId(formid, uniqueid)
-    this.setData({
-      showMask:true
     })
   },
   hideShare:function() {
@@ -498,364 +545,4 @@ Page({
       url: '/pages/search/search'
     })
   },
-  //保存海报
-  drawCode: function () {
-    console.log(11111111111);
-    let ctx = wx.createCanvasContext('firstCanvas')
-    let that = this
-    let code = wx.getStorageSync('cbqrcode')
-    let head = wx.getStorageSync('avatar')
-    console.log('画图了吗')
-    wx.getImageInfo({
-      src: code,
-      success: function (res) {
-        ctx.drawImage(res.path, 830, 1150, 170, 170)
-        ctx.draw(true, function (e) {
-          wx.canvasToTempFilePath({
-            canvasId: 'firstCanvas',
-            success: function (res) {
-              that.savePoster(res.tempFilePath)
-              that.setData({
-                posterUrl: res.tempFilePath
-              })
-            }
-          })
-        })
-      }
-    })
-    // let qrcode = new QRCode('qrcode', {
-    //   text: common.userQrCode + wx.getStorageSync('unique_id'),
-    //   width: 170,
-    //   height: 170,
-    //   colorDark: "#000000",
-    //   colorLight: "#ffffff",
-    //   correctLevel: QRCode.CorrectLevel.H,
-    // });
-    // qrcode.exportImage(function (path) {
-    //   ctx.drawImage(path, 830, 1150, 170, 170)
-    //   ctx.draw(true, function (e) {
-    //     wx.canvasToTempFilePath({
-    //       canvasId: 'firstCanvas',
-    //       success: function (res) {
-    //         that.savePoster(res.tempFilePath)
-    //         that.setData({
-    //           posterUrl: res.tempFilePath
-    //         })
-    //       }
-    //     })
-    //   })
-    // })
-    // console.log('画图了吗')
-    // wx.getImageInfo({
-    //   src: head,
-    //   success: function (res) {
-    //     ctx.drawImage(res.path, 830, 1150, 170, 170)
-    //     ctx.draw(true, function (e) {
-    //       wx.canvasToTempFilePath({
-    //         canvasId: 'firstCanvas',
-    //         success: function (res) {
-    //           that.savePoster(res.tempFilePath)
-    //           that.setData({
-    //             posterUrl: res.tempFilePath
-    //           })
-    //         }
-    //       })
-    //     })
-    //   }
-    // })
-
-  },
-  convertHead: function () {
-    let that = this
-    let ctx = wx.createCanvasContext('headCanvas')
-    let head = wx.getStorageSync('avatar')
-    if (head) {
-      wx.getImageInfo({
-        src: head,
-        success: function (res) {
-          console.log(res)
-          ctx.beginPath()
-          ctx.arc(50, 50, 50, 0, 2 * Math.PI)
-          ctx.clip()
-          ctx.drawImage(res.path, 0, 0, 100, 100)
-          ctx.draw(true, function (e) {
-            wx.canvasToTempFilePath({
-              canvasId: 'headCanvas',
-              success: function (res) {
-                let ctx = wx.createCanvasContext('firstCanvas')
-                ctx.drawImage(res.tempFilePath, 80, 1020, 100, 100)
-                ctx.draw(true)
-                console.log('画二维码')
-                that.drawCode()
-              }
-            })
-          }
-          )
-        }
-      })
-    } else {
-      that.drawCode()
-    }
-  },
-  makePoster: function (e) {
-    console.log(e)
-    let that = this
-    //画图
-    let formid = e.detail.formId
-    let uniqueid = wx.getStorageSync('unique_id')
-    app.saveFormId(formid, uniqueid)
-    this.hideShare()
-    app.showToast('正在生成海报，请稍候...', this, 3000)
-    let ctx = wx.createCanvasContext('firstCanvas')
-    let name = wx.getStorageSync('nickname')
-    let date = app.getCurrentDate()
-    wx.getImageInfo({
-      src: that.data.poster,
-      success: function (res) {
-      ctx.drawImage(res.path, 0, 0, 1079, 1364)
-      ctx.draw(true)
-      ctx.setFontSize(30)
-      ctx.fillText(date + ' 正在【附近优惠券】平台邀请您免费发放优惠券', 186, 1115)
-      ctx.draw(true)
-      if (name) {
-        ctx.setFontSize(32)
-        ctx.fillText(name, 218, 1070)
-        ctx.draw(true)
-        
-        //头像
-        console.log('画头像')
-        that.convertHead()
-      } else {
-        this.drawCode()
-      }
-      }
-    })
-    
-    //二维码
-  },
-  getPoster:function(url) {
-    wx.getImageInfo({
-      src: url,
-      success: function (res) {
-        wx.saveImageToPhotosAlbum({
-          filePath: res.path,
-          success(res) {
-            wx.showModal({
-              title: '海报已保存到系统相册',
-              content: '快去分享给朋友，叫伙伴们来围观吧',
-              confirmText:'我知道了',
-              showCancel: false,
-              success: function (res) {
-              }
-            })
-          },
-          fail(res) {
-            app.showToast('海报生成失败，请重试', that, 3000)
-            console.log(res)
-          }
-        })
-      }
-    })
-  },
-  //保存海报
-  savePoster: function (url) {
-    let that = this
-    this.hideShare()
-    wx.getSetting({
-      success: (res) => {
-        console.log(res)
-        if (res.authSetting['scope.writePhotosAlbum']) {
-          console.log('授权成功')
-          that.getPoster(url)
-        } else {
-          console.log('授权失败')
-          
-          wx.authorize({
-            scope: 'scope.writePhotosAlbum',
-            success() {
-              console.log('再次授权成功')
-              
-              that.getPoster(url)
-            },
-            fail() {
-              wx.navigateTo({
-                url: '/pages/authorize/authorize',
-              })
-            }
-          })
-        }
-      }
-    })
-    
-
-  },
-  //获得首页海报
-  getFirstPoster:function(e) {
-    
-    this.setData({
-      showPost:false
-    })
-    this.makePoster2(e);
-  },
-  //通用画图
-  drawCode2: function () {
-    console.log(11111111111);
-    let ctx = wx.createCanvasContext('firstCanvas')
-    let that = this
-    let code = wx.getStorageSync('cbqrcode')
-    let head = wx.getStorageSync('avatar')
-    console.log('画图了吗')
-    wx.getImageInfo({
-      src: code,
-      success: function (res) {
-        ctx.drawImage(res.path, 830, 1150, 170, 170)
-        ctx.draw(true, function (e) {
-          wx.canvasToTempFilePath({
-            canvasId: 'firstCanvas',
-            success: function (res) {
-              that.savePoster2(res.tempFilePath)
-              that.setData({
-                posterUrl: res.tempFilePath
-              })
-            }
-          })
-        })
-      }
-    })
-  },
-  convertHead2: function () {
-    let that = this
-    let ctx = wx.createCanvasContext('headCanvas')
-    let head = wx.getStorageSync('avatar')
-    if (head) {
-      wx.getImageInfo({
-        src: head,
-        success: function (res) {
-          console.log(res)
-          ctx.beginPath()
-          ctx.arc(50, 50, 50, 0, 2 * Math.PI)
-          ctx.clip()
-          ctx.drawImage(res.path, 0, 0, 100, 100)
-          ctx.draw(true, function (e) {
-            wx.canvasToTempFilePath({
-              canvasId: 'headCanvas',
-              success: function (res) {
-                let ctx = wx.createCanvasContext('firstCanvas')
-                ctx.drawImage(res.tempFilePath, 80, 1020, 100, 100)
-                ctx.draw(true)
-                console.log('画二维码')
-                that.drawCode2()
-              }
-            })
-          }
-          )
-        }
-      })
-    } else {
-      that.drawCode2()
-    }
-  },
-  makePoster2: function (e) {
-    console.log(e)
-    //画图
-    let formid = e.detail.formId
-    let uniqueid = wx.getStorageSync('unique_id')
-    let that = this
-    app.saveFormId(formid, uniqueid)
-    this.hideShare()
-    app.showToast('正在生成海报，请稍候...', this, 3000)
-    let ctx = wx.createCanvasContext('firstCanvas')
-    let name = wx.getStorageSync('nickname')
-    let date = app.getCurrentDate()
-    wx.getImageInfo({
-      src: that.data.poster,
-      success: function (res) {
-        console.log(res.path)
-        ctx.drawImage(res.path, 0, 0, 1079, 1364)
-        ctx.draw(true)
-        console.log('画背景')
-
-        ctx.setFontSize(30)
-        ctx.fillText(date + ' 正在【附近优惠券】平台转发优惠券', 186, 1115)
-        ctx.draw(true)
-        if (name) {
-          ctx.setFontSize(32)
-          ctx.fillText(name, 218, 1070)
-          ctx.draw(true)
-
-          //头像
-          console.log('画头像')
-          that.convertHead2()
-        } else {
-          that.drawCode2()
-        }
-      }
-    })
-    
-
-    //二维码
-  },
-  getPoster2: function (url) {
-    wx.getImageInfo({
-      src: url,
-      success: function (res) {
-        wx.saveImageToPhotosAlbum({
-          filePath: res.path,
-          success(res) {
-            wx.showModal({
-              title: '海报已保存到系统相册',
-              content: '快去分享给朋友，叫伙伴们来围观吧',
-              confirmText: '我知道了',
-              showCancel: false,
-              success: function (res) {
-              }
-            })
-          },
-          fail(res) {
-            app.showToast('海报生成失败，请重试', that, 3000)
-            console.log(res)
-          }
-        })
-      }
-    })
-  },
-  //保存海报
-  savePoster2: function (url) {
-    let that = this
-    this.hideShare()
-    wx.getSetting({
-      success: (res) => {
-        console.log(res)
-        if (res.authSetting['scope.writePhotosAlbum']) {
-          console.log('授权成功')
-          that.getPoster(url)
-        } else {
-          console.log('授权失败')
-
-          wx.authorize({
-            scope: 'scope.writePhotosAlbum',
-            success() {
-              console.log('再次授权成功')
-
-              that.getPoster(url)
-            },
-            fail() {
-              wx.navigateTo({
-                url: '/pages/authorize/authorize',
-              })
-            }
-          })
-        }
-      }
-    })
-  },
-  closePoster:function(e) {
-    let formid = e.detail.formId
-    let uniqueid = wx.getStorageSync('unique_id')
-    let that = this
-    app.saveFormId(formid, uniqueid)
-    that.setData({
-      showPost:false
-    })
-  }
 })

@@ -11,7 +11,7 @@
 .total_content {
   height: 160rpx;
   width: 33%;
-  background-color: #09BB07;
+  background-color: #EC2350;
   margin:0 1rpx;
   font-size: 28rpx;
   color: white;

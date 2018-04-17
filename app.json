@@ -28,14 +28,14 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ebebeb",
+    "navigationBarBackgroundColor": "#FFFFFF",
     "navigationBarTitleText": "附近优惠券",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "color": "#000",
-    "selectedColor": "#09bb07",
-    "backgroundColor": "#fff",
+    "color": "#ABABAB",
+    "selectedColor": "#EF3053",
+    "backgroundColor": "#FFFFFF",
     "list": [
       {
         "pagePath": "pages/index/index",

@@ -138,7 +138,7 @@
 .money_tit {
   width: 100%;
   height: 180rpx;
-  background-color: #20c11e;
+  background-color: #EC2350;
   color: #fff;
   padding-top: 62rpx;
 }
@@ -157,13 +157,13 @@
   height: 98rpx;
   text-align: center;
   line-height: 98rpx;
-  background-color: #09bb07;
+  background-color: #FFFFFF;
   font-size: 30rpx;
   color: #fff;
 }
 .active {
   border: none !important;
-  background-color: #fff !important;
+  background-color:  #EC2350 !important;
   color: #000 !important;
 }
 .money_con_tit_left {
@@ -217,7 +217,7 @@
   left: 45rpx;
 }
 .money_con_info_per_top_left_num {
-  color: #09bb07;
+  color: #000000;
 }
 .money_con_info_per_top_right {
   position: absolute;
@@ -226,7 +226,7 @@
   height: 50rpx;
   text-align: center;
   line-height: 50rpx;
-  background-color: #09bb07;
+  background-color: #E7003C;
   color: #fff;
   margin-top: 30rpx;
   border-radius: 25rpx;
@@ -280,7 +280,7 @@
   /* margin-left: 20rpx; */
 }
 .money_con_info_per_bottom_per_num {
-  color: #6acd6a;
+  color: #000000;
   font-size: 28rpx;
   text-align: center;
   /* float: right; */

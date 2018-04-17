@@ -4,26 +4,7 @@
  <canvas style="width: 100px; height:100px;" canvas-id="headCanvas" hidden='true'></canvas> 
  <canvas style="width: 170px; height:170px;" hidden='true' canvas-id='qrcode'></canvas>
  <view class='mask2' wx:if='{{showPost}}'></view> 
-<!-- <view class='add_poster' wx:if='{{showPost}}'>
-  <image src='{{poster}}'>
-  </image>
-  <view class='close'>
-    <form bindsubmit="closePoster" report-submit='true'>
-        <button class='share_b coupon'  form-type="submit">
-        <image src='../../imgs/close1.png'></image>
-        </button>
-        
-        
-    </form>
-  </view>
-  
-    <form bindsubmit="getFirstPoster" report-submit='true' wx:if='{{posterBtn}}' >
-        <button class='share'  form-type="submit">
-        生成海报
-        </button>
-    </form>
-  
-</view> -->
+
 <scroll-view scroll-y="true" bindscrolltolower="scrolltolower" lower-threshold="0" upper-threshold="0px" bindscrolltolower="bindscrolltolower"   style="width:{{scrollStyle.width}}px;height:{{scrollStyle.height}}px">
 <view class="container">
   <view class="wxapp-toast-content-box toast" wx:if="{{isShowToast}}">
@@ -31,11 +12,9 @@
       <view class="wxapp-toast-content-text"> {{toastText}} </view>
     </view>
   </view>
-    <view class="index_tit">
-      <view class="index_tit_info" bindtap="jumpSearch">
-        <image class="index_tit_icon" src="../../imgs/search.png"></image>
-        <text class="index_tit_text">搜索优惠券</text>
-      </view>
+     <view class='index_tit' bindtap="jumpSearch">
+      <image class="index_tit_img" src='../../imgs/search.png'></image>
+      搜索优惠券
     </view>
     <view class="index_banner">
       <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" class="banner_box">
@@ -49,75 +28,69 @@
     <view class="index_nav">
     <form bindsubmit="getFormId" report-submit='true'>
       <button class='share_b type'  form-type="submit">
-      <view class="index_nav_per" wx:for="{{navList}}" wx:for-item="item" bindtap="changeImg" data-index="{{index}}">
+      <view class="index_nav_per" wx:for="{{navList}}" wx:for-item="item" bindtap="changeImg" data-index="{{index}}" data-tIndex="{{item.index}}">
         <image src="{{item.imgSrc}}"></image>
         <text class="{{item.color}}">{{item.text}}</text>
       </view>
       </button>
       </form>
     </view>
+    <view class='index_detail'>
+      <!-- <view class='index_poster'>
+        <view class='index_poster_tittle'>附近</view>
+        <view class='index_poster_type'>快报</view>
+        <view class='index_poster_content'>看度搜恩哪来的精神分裂撒娇</view>
+        <view class='index_poster_btn'>我要发券</view>
+      </view> -->
+      <view class="index_info">
+    
+      <!-- <form bindsubmit="getFormId" report-submit='true'>
+      <button class='share_b coupon'  form-type="submit"> -->
 
-    <view class="index_info">
-      <form bindsubmit="getFormId" report-submit='true'>
-      <button class='share_b coupon'  form-type="submit">
-        <view class="index_info_box" wx:for="{{infoList}}" wx:for-item="item"  data-item="{{item}}" bindtap="jumpDetail" >
-       
-        <image src="../../imgs/bgc.png"></image>
-        <view class="index_info_box_left" >
-          <view class="box_left">
-            <image src="{{item.img}}"></image>
+
+        <view class='index_info_coupon' wx:for="{{infoList}}" wx:for-item="item"  data-item="{{item}}" bindtap="jumpDetail" data-index="{{index}}">
+          <form bindsubmit="getFormId" report-submit='true'>
+          <button class='share_b coupon'  form-type="submit">  
+          <view class='index_info_coupon_head'>
+            <image class='index_info_coupon_img' src='{{item.img}}'>{{index}}</image>
           </view>
-          <view class="box_right">
-            <view class="box_right_text">{{item.name}}</view>
-            <view class="box_right_bot">
-              <image class="eyes" src="../../imgs/eyes.png"></image>
-              <text>{{item.browse}}</text>
-              <image class="add" src="../../imgs/add.png"></image>
-              <text>{{item.distance}}</text>
-            </view>
+          <view class='index_info_coupon_price'>{{item.prefer_value}}
+            <span wx:if="{{item.prefer_type==1}}">元代金券</span>
+            <span wx:if="{{item.prefer_type==2}}">折折扣券</span>
           </view>
+          <!-- <view class='index_info_coupon_type' wx:if="{{item.prefer_type==1}}">元代金券</view>         <view class='index_info_coupon_type' wx:if="{{item.prefer_type==2}}">折折扣券</view> -->
+          <view class='index_info_coupon_btn' wx:if="{{item.price==0 }}">
+            <image src='../../imgs/free.png'></image>
+          </view>
+          <view class='index_info_coupon_btn' wx:if="{{item.price!=0}}">
+            <image src='../../imgs/buy.png'></image>
+          </view>
+          
+          <view class='index_info_coupon_name'>{{item.name}}</view>
+          <view class='index_info_coupon_pimg'>
+            <image src='../../imgs/nearby.png'></image>
+          </view>
+          <view class='index_info_coupon_distans'>{{item.distance}}</view>
+          <view class='index_info_coupon_vimg'>
+            <image src='../../imgs/view.png'></image>
+          </view>
+          <view class='index_info_coupon_vcount'>{{item.browse}}</view>
+          <view catchtap='aaa'>
+            <button class='share_b type' open-type="share" data-type='coupon' data-id='{{item.id}}' data-storeId='{{item.storeId}}' data-name='{{item.name}}'>
+              <view class='index_info_coupon_share'>
+                <image src='../../imgs/share.png'></image>
+              </view>
+            </button>
+          </view>
+          <image class='index_info_couponimg' wx:if="{{index%3==0}}" src='../../imgs/purple.png'></image>
+          <image class='index_info_couponimg' wx:if="{{index%3==1}}" src='../../imgs/orange.png'></image>
+          <image class='index_info_couponimg' wx:if="{{index%3==2}}" src='../../imgs/green.png'></image>
+              </button>
+          </form>  
         </view>
-        <view class="index_info_box_right">
-          <view class="index_info_button">
-            <text wx:if="{{item.price!=0}}">{{item.price}}元领</text>
-            <text wx:if="{{item.price==0}}">免费领取</text>
-          </view>
-        </view>
-      
-      </view>
-      </button>
-      </form>
+      <!-- </button>
+      </form> -->
     </view>
-</view>
-<form bindsubmit="showShare" wx:if = '{{showShareBtn}}' report-submit='true'>
-  <button form-type="submit" class='share'>
-  分享给好友
-    <!-- <view class="share" wx:if = '{{showShareBtn}}'>
-      <image class="share_btn" src='../../imgs/share.png'></image>
-    </view> -->
-  </button>
-</form>
-
-<view class='mask' wx:if='{{showMask}}' bindtap='hideShare'></view>
-<view class="drawer_content" wx:if='{{showMask}}'>
-  <view class='drawer_tittle'>分  享</view> 
-  <view class='drawer_btn'>
-    <view class='block' bindtap=''>
-    <form bindsubmit="makePoster" report-submit='true'>
-      <button class='share_b' form-type="submit">
-        <image src='../../imgs/share2.jpg'></image>
-        <view class='view_left share_font'>生成分享海报</view>
-      </button>
-    </form>
     </view>
-    <view class='block'>
-    <form bindsubmit="getFormId" report-submit='true'>
-      <button class='share_b' open-type='share' form-type="submit">
-        <image src='../../imgs/share1.jpg'></image>
-        <view class='share_font'>转发给好友</view>
-      </button>
-    </form>
-    </view>  
-  </view>
 </view>
   </scroll-view>

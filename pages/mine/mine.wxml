@@ -5,126 +5,108 @@
       <view class="wxapp-toast-content-text"> {{toastText}} </view>
     </view>
   </view>
-    <view class="mine_tit">
-        <view class="mine_tit_img" wx:if="{{isNeedAuth===false}}">
-            <image src="{{user.avatar}}"></image>
-        </view>
-        <view class="mine_tit_img" bindtap='toAuth' wx:if="{{isNeedAuth===true}}">
-            <image src="{{user.avatar}}"></image>
-        </view>
-        <view class="mine-tit_text" wx:if="{{isNeedAuth===false}}">
-            {{user.nickname}}
-        </view>
-        <view class="mine-tit_text" bindtap='toAuth' wx:if="{{isNeedAuth===true}}">
-            获取授权信息失败，请点击授权
-        </view>
+    <view class='top'>
+      <view class='head' wx:if="{{isNeedAuth===false}}">
+        <image class='head_img' src='{{user.avatar}}'></image>
+      </view>
+      <view class='head' bindtap='toAuth' wx:if="{{isNeedAuth===true}}">
+        <image class='head_img' src='{{user.avatar}}'></image>
+      </view>
+      <view class='name' wx:if="{{isNeedAuth===false}}">
+        {{user.nickname}}
+      </view>
+      <view class='name' bindtap='toAuth' wx:if="{{isNeedAuth===true}}">
+        获取授权信息失败，请点击授权
+      </view>
     </view>
-    
-    <view class="mine_code">
+    <view class='center'>
     <form bindsubmit="getFormId" report-submit='true'>
         <button class='share_b'  form-type="submit">
-      <view class="mine_code_left" bindtap="jumpMoney">
-          <view class="left">
-            <view class="left_top">
-              <image src="../../imgs/money.png"></image>
-            </view>
-            <view class="left_bottom">
-              钱包
-            </view>
-          </view>
-          <view class="right">
-            ￥{{totalMoney}}
-          </view>
+      <view class='center_purse' bindtap="jumpMoney">
+        <view class='center_purse_money'>￥{{totalMoney}}</view>
+        <view class='center_purse_img'>
+          <image src='../../imgs/purse.png'></image>
+        </view>
+        <view class='center_purse_name'>钱包</view>
       </view>
     </button>
     </form>
     <form bindsubmit="getFormId" report-submit='true'>
         <button class='share_b'  form-type="submit">
-      <view class="mine_code_right" bindtap="jumpSale">
-        <view class="left">
-            <view class="left_top">
-              <image src="../../imgs/code.png"></image>
-            </view>
-            <view class="left_bottom">
-              推荐
-            </view>
+        <view class='center_recommend' bindtap="jumpSale">
+          <view class='center_purse_money'>{{person}}人</view>
+          <view class='center_recommend_img'>
+            <image src='../../imgs/recommend.png'></image>
           </view>
-          <view class="right">
-            {{person}}人
-          </view>
-      </view>
+          <view class='center_purse_name'>推荐</view>
+        </view>
       </button>
     </form>
     </view> 
-    
-    <view class="mine_info">
-        <view style="clear: both;"></view>
-        <navigator url="../../pages/mineCoupon/mineCoupon" hover-class="none" class="min_info_box">
-            <view class="min_info_box_icon">
-                <image src="../../imgs/icon2.png"></image>
-            </view>
-            <view class="min_info_box_text">
-                我领的券
-            </view>
-            <view class="min_info_box_right">
-                <image src="../../imgs/right_jiantou.png"></image>
-            </view>
-        </navigator>
-        <view style="clear: both;"></view>
-        <navigator class="min_info_box"  url="../../pages/manage/manage" 
+    <view class='bottom'>
+    <navigator url="../../pages/mineCoupon/mineCoupon" hover-class="none" class="min_info_box">
+        <view class='bottom_list'>
+          <view class='bottom_list_my_coupon'>
+            <image src='../../imgs/my_coupon.png'></image>
+          </view>
+          <view class='bottom_list_my_tittle'>我领的券</view>
+          <view class='bottom_list_sanjiao'>
+            <image src='../../imgs/goto.png'></image>
+          </view>
+          <!-- <view class='bottom_list_my_count'>2222</view> -->
+        </view>
+      </navigator>
+      <navigator class="min_info_box"  url="../../pages/manage/manage" 
         hover-class="none" wx:if="{{user.status==1}}">
-            <view class="min_info_box_icon">
-                <image src="../../imgs/icon4.png"></image>
-            </view>
-            <view class="min_info_box_text">
-                我发的券
-            </view>
-            <view class="min_info_box_right">
-                <image src="../../imgs/right_jiantou.png"></image>
-            </view>
-        </navigator>
-        <view style="clear: both;"></view>
-        <navigator class="min_info_box" url="../../pages/addClerk/addClerk" 
+        <view class='bottom_list'>
+          <view class='bottom_list_my_coupon'>
+            <image src='../../imgs/post_coupon.png'></image>
+          </view>
+          <view class='bottom_list_my_tittle'>我发的券</view>
+          <view class='bottom_list_sanjiao'>
+            <image src='../../imgs/goto.png'></image>
+          </view>
+          <!-- <view class='bottom_list_my_count'>2222</view> -->
+        </view>
+      </navigator>
+      <navigator class="min_info_box" url="../../pages/addClerk/addClerk" 
         hover-class="none" wx:if="{{user.status==1}}">
-            <view class="min_info_box_icon">
-                <image src="../../imgs/icon5.png"></image>
-            </view>
-            <view class="min_info_box_text">
-                添加核销员
-            </view>
-            <view class="min_info_box_right">
-                <image src="../../imgs/right_jiantou.png"></image>
-            </view>
-        </navigator>
-         <view style="clear: both;"></view>
-        <navigator url="../../pages/clerkRecord/clerkRecord" hover-class="none" wx:if="{{user.status==1||user.writeman==1}}" class="min_info_box">
-            <view class="min_info_box_icon">
-                <image src="../../imgs/hexiao.png"></image>
-            </view>
-            <view class="min_info_box_text">
-                核销记录
-            </view>
-            <view class="min_info_box_right">
-                <image src="../../imgs/right_jiantou.png"></image>
-            </view>
-        </navigator>
-        <view style="clear: both;"></view>
-        <navigator class="min_info_box" url="../../pages/redPac/redPac" hover-class="none" style="display: none;">
-            <view class="min_info_box_icon">
-                <image src="../../imgs/icon6.png"></image>
-            </view>
-            <view class="min_info_box_text">
-                购券返红包
-            </view>
-            <view class="min_info_box_right">
-                <image src="../../imgs/right_jiantou.png"></image>
-            </view>
-        </navigator>  
-        <view style="clear: both;"></view>
+        <view class='bottom_list'>
+          <view class='bottom_list_my_coupon'>
+            <image src='../../imgs/addman.png'></image>
+          </view>
+          <view class='bottom_list_my_tittle'>添加核销员</view>
+          <view class='bottom_list_sanjiao'>
+            <image src='../../imgs/goto.png'></image>
+          </view>
+        </view>
+      </navigator>
+      <navigator url="../../pages/clerkRecord/clerkRecord" hover-class="none" wx:if="{{user.status==1||user.writeman==1}}" class="min_info_box">
+        <view class='bottom_list'>
+          <view class='bottom_list_my_coupon'>
+            <image src='../../imgs/clerkrecord.png'></image>
+          </view>
+          <view class='bottom_list_my_tittle'>核销记录</view>
+          <view class='bottom_list_sanjiao'>
+            <image src='../../imgs/goto.png'></image>
+          </view>
+        </view>
+      </navigator>
+       <button open-type="contact" class='share'>
+        <view class='bottom_list' style='border-bottom:unset;'>
+          <view class='bottom_list_my_coupon'>
+            <image src='../../imgs/kefu.png'></image>
+          </view>
+          <view class='bottom_list_my_tittle'>咨询客服</view>
+          <view class='bottom_list_sanjiao'>
+            <image src='../../imgs/goto.png'></image>
+          </view>
+        </view>
+      </button>
     </view>
-     <view class="deg">  
+     <!-- <view class="deg">  
           <button  open-type="contact" session-from="weapp" plain="true">
             <image src="/imgs/m_service_ico.png" mode="scaleToFill" class='img'></image>
           </button>  
-      </view>
+      </view> -->
 </view> 

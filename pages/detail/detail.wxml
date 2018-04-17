@@ -35,14 +35,28 @@
   </view>
   <view class="container {{commentShow==true?'hidden':''}}">
     <view class="detail_info">
-      <view class="detail_info_tit">
+      <view class="detail_info_tit_p" wx:if="{{bgc==0}}">
+        <text>{{detailInfo.name}}</text>
+      </view>
+      <view class="detail_info_tit_o" wx:if="{{bgc==1}}">
+        <text>{{detailInfo.name}}</text>
+      </view>
+      <view class="detail_info_tit_g" wx:if="{{bgc==2}}">
         <text>{{detailInfo.name}}</text>
       </view>
       <view class="detail_info_bot">
         <view class="detail_info_bot_box_top">
         <form bindsubmit="getFormId" report-submit='true'>
         <button class='share_b'  form-type="submit">
-          <view class="detail_info_button" bindtap="pay">
+          <view class="detail_info_button" bindtap="pay" wx:if='{{bgc==0}}' style='background-color:#7246A1'>
+            <text wx:if="{{detailInfo.price!=0}}">支付{{detailInfo.price}}元领取</text>
+            <text wx:if="{{detailInfo.price==0}}">免费领取</text>
+          </view>
+          <view class="detail_info_button" bindtap="pay" wx:if='{{bgc==1}}' style='background-color:#F1602D'>
+            <text wx:if="{{detailInfo.price!=0}}">支付{{detailInfo.price}}元领取</text>
+            <text wx:if="{{detailInfo.price==0}}">免费领取</text>
+          </view>
+          <view class="detail_info_button" bindtap="pay" wx:if='{{bgc==2}}' style='background-color:#00B885'>
             <text wx:if="{{detailInfo.price!=0}}">支付{{detailInfo.price}}元领取</text>
             <text wx:if="{{detailInfo.price==0}}">免费领取</text>
           </view>
@@ -136,7 +150,9 @@
             <view class="comment_box_info">
               <textarea placeholder="快来说点什么吧..." value="{{searchText}}" bindinput="inputInfo" />
             </view>
-            <button class="comment_box_submit" plain="true" form-type="submit" hover-class="none">提交</button>
+            <button class="comment_box_submit" plain="true" form-type="submit" hover-class="none" wx:if='{{bgc==0}}' style='background-color:#7246A1'>提交</button>
+            <button class="comment_box_submit" plain="true" form-type="submit" hover-class="none" wx:if='{{bgc==1}}' style='background-color:#F1602D'>提交</button>
+            <button class="comment_box_submit" plain="true" form-type="submit" hover-class="none" wx:if='{{bgc==2}}' style='background-color:#00B885'>提交</button>
           </form>
         </view>
       </view>

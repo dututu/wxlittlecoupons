@@ -1,44 +1,28 @@
 .container {
-  width: 100%;
-  /*height: 100%;*/
-  background-color: #ebebeb;
+  width:100%; 
+  margin:0 atuo;
 }
 /*首页搜索部分样式*/
 .index_tit {
+  text-align: center;
+  margin:0 65rpx 20rpx;
   height: 60rpx;
-  padding: 15rpx 30rpx;
-  background-color: #ebebeb;
+  border-radius: 100rpx;
+  background-color: #F8F8F8;
+  font-family: PingFang-SC-Regular;
+  font-size: 26rpx;
+  color: #9B9B9B;
+  line-height: 60rpx;
 }
-.index_tit_icon {
-  width: 26rpx;
-  height: 26rpx;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 260rpx;
-  z-index: 1000;
+.index_tit_img {
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align:middle;
 }
-.index_tit_text {
-  color: #4f4f4f;
-  font-size: 28rpx;
-  font-family: "苹方";
-  position: absolute;
-  top: 50%;
-  left: 53%;
-  transform: translate(-50%,-50%);
-  z-index: 100;
-}
-.index_tit_info {
-  width: 100%;
-  height: 100%;
-  background-color: #fff;
-  border-radius: 45rpx;
-  position: relative;
- }
  /*首页轮播图的样式*/
  .index_banner {
    width: 100%;
-   height: 258rpx;
+   height: 256rpx;
  }
  .banner_box {
    width: 100%;
@@ -51,146 +35,248 @@
  /*首页导航的样式*/
  .index_nav {
    width: 100%;
-   height: 375rpx;
+   height: 360rpx;
    background-color: #fff;
  }
 .index_nav_per {
-  width: 25%;
-  height: 50%;
+  width: 20%;
+  height: 180rpx;
   float: left;
   position: relative;
 }
 .index_nav_per image {
-  width: 105rpx;
-  height: 105rpx;
+  width: 88rpx;
+  height: 88rpx;
   position: absolute;
-  top: 30rpx;
+  top: 32rpx;
   left: 50%;
   transform: translateX(-50%);
 }
 .index_nav_per text {
-  font-size: 24rpx;
-  
+  font-size: 28rpx;
   font-family: "苹方";
   position: absolute;
-  bottom: 20rpx;
+  bottom: 10rpx;
   left: 50%;
   transform: translateX(-50%);
 }
 .index_nav_per text.color {
-  color: #434343;
+  color: #666666;
 }
 .index_nav_per text.color0 {
-  color: #ff4c55;
+  color: #ED4243;
 }
 .index_nav_per text.color1 {
-  color: #3dbf9f;
+  color: #FA8030;
 }
 .index_nav_per text.color2 {
-  color: #ff5057;
+  color: #FD5069;
 }
 .index_nav_per text.color3 {
-  color: #ffa52f;
+  color: #EA5422;
 }
 .index_nav_per text.color4 {
-  color: #2aaff0;
+  color: #7D514A;
 }
 .index_nav_per text.color5 {
-  color: #ffa52c;
+  color: #6B4DFB;
 }
 .index_nav_per text.color6 {
-  color: #ff5058;
+  color: #E91B67;
 }
 .index_nav_per text.color7 {
-  color: #2aaff0;
+  color: #21C2AC;
 }
+.index_nav_per text.color8 {
+  color: #2B8AF1;
+}
+.index_nav_per text.color9 {
+  color: #78CD39;
+}
+
 
 /*首页优惠券的样式*/
-.index_info {
-  padding: 20rpx;
-}
-.index_info_box {
-  height: 200rpx;
-  position: relative;
-  margin-bottom: 20rpx;
-  background-color: #ebebeb;
-}
-.index_info_box:last-child {
-  margin-bottom: 0;
-}
-.index_info_box>image {
-  width: 100%;
+.index_detail {
+  background-color: #F6F6F6;
+  width:100%;
   height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
+  padding:20rpx 30rpx; 
 }
-.index_info_box_left {
-  width: 557rpx;
-  padding: 28rpx 0;
-  z-index: 1000;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-.box_left {
-  width: 145rpx;
-  height: 145rpx;
-  margin-left: 35rpx;
-  margin-right: 32rpx;
-  float: left;
-}
-.box_left>image {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-.box_right {
-  overflow: hidden;
-  height: 100%;
-}
-.box_right_text {
-  margin-top: 12rpx;
+.index_poster {
+  width: 690rpx;
   height: 80rpx;
-  font-size: 30rpx;
-  color: #000;
-  font-family: "苹方";
-  overflow: hidden;
+  background: #FFFFFF;
+  box-shadow: 1rpx 2rpx 7rpx 4rpx rgba(0,0,0,0.07);
+  border-radius: 100rpx;
+  display: flex;
+  line-height: 80rpx;
 }
-.box_right_bot>text {
+.index_poster_tittle {
+  width: 48rpx;
+  height: 33rpx;
+  padding-left: 16rpx;
   font-size: 24rpx;
+  color: #000000;
+}
+.index_poster_type {
+  width: 48rpx;
+  height: 33rpx;
+  font-family: PingFangSC-Semibold;
+  padding-left: 5rpx;
+  font-size: 24rpx;
+  color: #EF3053;
+}
+.index_poster_content {
+  width: 400rpx;
+  height: 28rpx;
+  padding-left: 10rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 20rpx;
   color: #666666;
-  margin-left: 10rpx;
 }
-.box_right_bot>.eyes {
-  width: 27rpx;
-  height: 20rpx;
-}
-.box_right_bot>.add {
-  width: 20rpx;
-  height: 24rpx;
-  margin-left: 20rpx;
-}
-.index_info_box_right {
-  width: 153rpx;
-  height: 100%;
+.index_poster_btn {
   position: absolute;
-  top: 0;
-  left: 557rpx;
+  width: 120rpx;
+  height: 60rpx;
+  margin: 10rpx 0;
+  background: #EF3053;
+  box-shadow: 0 4rpx 5rpx 0 rgba(239,48,83,0.30);
+  border-radius: 26rpx;
+  font-family: PingFangSC-Semibold;
+  font-size: 24rpx;
+  color: #FFFFFF;
+  line-height: 60rpx;
+  text-align: center;
+  right: 40rpx;
+}
+/*优惠券信息  */
+.index_info {
+  height: 100%;
+  margin-top: 20rpx;
+}
+.index_info_coupon {
+  /* margin-bottom: 17rpx; */
+  /* box-shadow: 5rpx 5rpx 2rpx red; */
+  width: 690rpx;
+  height: 250rpx;
+}
+.index_info_couponimg {
+  width: 690rpx;
+  height: 266rpx;
+}
+.index_info_coupon_head {
+  width: 160rpx;
+  height: 160rpx;
+  position: absolute;
+  border-radius: 10rpx;
+  /* border:3rpx solid #FFFFFF; */
+  margin: 40rpx 40rpx;
+}
+.index_info_coupon_img {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 20rpx;
+  
+}
+.index_info_coupon_price {
+  width: 400rpx;
+  height: 85rpx;
+  position: absolute;
+  font-family: Impact;
+  font-size: 85rpx;
+  line-height: 85rpx;
+  color: #FFFFFF;
+  font-weight: bold;
+  margin: 110rpx 270rpx;
+  text-align: left;
+}
+.index_info_coupon_price span {
+  font-weight: unset;
+  font-size: 35rpx;
+}
+/* .index_info_coupon_type {
+  width: 92rpx;
+  height: 32rpx;
+  position: absolute;
+  font-family: PingFangSC-Regular;
+  font-size: 23rpx;
+  color: #FFFFFF;
+  margin: 40rpx 534rpx;
+} */
+.index_info_coupon_btn {
+  width: 80rpx;
+  height: 80rpx;
+  position: absolute;
+  text-align: center;
+  line-height: 40rpx;
+  font-family: PingFangSC-Semibold;
+  font-size: 24rpx;
+  margin: 110rpx 590rpx;
+}
+.index_info_coupon_btn image{ 
+  width: 80rpx;
+  height: 80rpx;
+}
+.index_info_coupon_name {
+  width: 360rpx;
+  height: 42rpx;
+  position: absolute;
+  font-family: PingFangSC-Regular;
+  font-size: 33rpx;
+  color: #FFFFFF;
+  margin: 40rpx 270rpx;
+}
+.index_info_coupon_pimg {
+  position: absolute;
+  width: 19rpx;
+  height: 23rpx;
+  margin: 215rpx 270rpx;
+}
+.index_info_coupon_pimg image{
+  width: 19rpx;
+  height: 23rpx;
+  margin-bottom: 20rpx; 
+}
+.index_info_coupon_distans {
+  width: 66rpx;
+  height: 30rpx;
+  position: absolute;
+  font-family: PingFangSC-Regular;
+  font-size: 22rpx;
+  color: #9B9B9B;
+  margin: 210rpx 300rpx;
+}
+.index_info_coupon_vimg {
+  position: absolute;
+  width: 22rpx;
+  height: 15rpx;
+  margin: 218rpx 410rpx;
+}
+.index_info_coupon_vimg image{
+  width: 22rpx;
+  height: 15rpx;
+  margin-bottom: 30rpx; 
+}
+.index_info_coupon_vcount {
+  width: 66rpx;
+  height: 30rpx;
+  position: absolute;
+  font-family: PingFangSC-Regular;
+  font-size: 22rpx;
+  color: #9B9B9B;
+  margin: 210rpx 440rpx;
+}
+.index_info_coupon_share {
+  width: 30rpx;
+  height: 29rpx;
+  position: absolute;
+  margin: 210rpx 620rpx;
   z-index: 1000;
 }
-.index_info_button {
-  width: 125rpx;
-  height: 40rpx;
-  background-color: #09bb07;
-  margin: 80rpx auto 0;
-  color: #fff;
-  font-size: 20rpx;
-  text-align: center;
-  line-height: 42rpx;
-  border-radius: 20rpx;
+.index_info_coupon_share image {
+  width: 30rpx;
+  height: 29rpx;  
 }
-
 /* 分享按钮样式 */
 .share {
   /* background-color: #64D962; */

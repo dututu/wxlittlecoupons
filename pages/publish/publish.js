@@ -4,11 +4,28 @@ let common = require('../../assets/js/common');
 let util = require('../../utils/util.js'); 
 Page({
     data: {
+        // ui初始参数
+      basicShow: true,
+      basicWords: '收起',
+      basicDegree: '',
+      timeShow: true,
+      timeWords: '收起',
+      timeDegree: 0,
+      extShow: true,
+      extWords: '收起',
+      extDegree: 0,
+      couponUnit: '元',
+      ableStoreAdd:true,
+      couponType: [
+        { name: 1, value: '代金券', checked: 'true' },
+        { name: 2, value: '折扣券' },
+      ],
         //手机号
         surplus_money:0,
         needrecharge:0,
         needrecharged:0,
         mobiled:true,
+        getphone:true,
         //充值
         checkSum:true,
         chongzhi:true,
@@ -27,31 +44,53 @@ Page({
         typeList: [{
             name: '美食',
             isOpen: false,
-            imgSrc: ''
+            imgSrc: '',
+            index: 2,
         }, {
             name: '娱乐',
             isOpen: false,
-            imgSrc: ''
+            imgSrc: '',
+            index: 3
         }, {
             name: '酒店',
             isOpen: false,
-            imgSrc: ''
+            imgSrc: '',
+            index: 4
         }, {
             name: '服饰',
             isOpen: false,
-            imgSrc: ''
+            imgSrc: '',
+            index: 5
         }, {
             name: '教育',
             isOpen: false,
-            imgSrc: ''
+            imgSrc: '',
+            index: 6
         }, {
             name: '丽人',
             isOpen: false,
-            imgSrc: ''
+            imgSrc: '',
+            index: 7
+        }, {
+          name: '电影',
+          isOpen: false,
+          imgSrc: '',
+          index: 9
+        }, {
+          name: '购物',
+          isOpen: false,
+          imgSrc: '',
+          index: 10
+        }, {
+          name: '亲子',
+          isOpen: false,
+          imgSrc: '',
+          index: 11
         }, {
             name: '其他',
             isOpen: false,
-            imgSrc: ''
+            imgSrc: '',
+            index: 8
         },],
         saleList: [{
             name: '元',
@@ -101,10 +140,12 @@ Page({
         type: false,
         typeShow: true,
         week: false,
-        weekTetx: '',
+        weekText: '周一至周日',
+        weekIndex: '0',
         weekShow: true,
         choose: false,
-        chooseText: '',
+        chooseText: '全天',
+        chooseIndex: '3',
         chooseShow: true,
         sale: false,
         saleText: '元',
@@ -124,9 +165,108 @@ Page({
         max:'',
         form_id:''
     },
+    bindPickerChange: function (e) {
+      let that = this
+      console.log(e);
+      if(e.currentTarget.id=='week') {
+        that.setData({
+          weekText: that.data.weekList[e.detail.value].name,
+          weekIndex: e.detail.value
+        })
+      } else if (e.currentTarget.id =='time') {
+        that.setData({
+          chooseText: that.data.chooseList[e.detail.value].name,
+          chooseIndex: e.detail.value
+        })
+      } else if (e.currentTarget.id == 'type') {
+        that.setData({
+          typeText: that.data.typeList[e.detail.value].name,
+          typeIndex: that.data.typeList[e.detail.value].index
+        })
+      }
+    },
+    radioChange: function (e) {
+      let that = this
+      if (e.detail.value == 2) {
+        that.setData({
+          couponUnit: '折',
+          prefer_type_Index:1
+        })
+      } else {
+        that.setData({
+          couponUnit: '元',
+          prefer_type_Index:0
+        })
+      }
+    },
+    fold: function (e) {
+      let that = this
+      if (e.currentTarget.id == 'basic') {
+        that.setData({
+          basicShow: !that.data.basicShow,
+        })
+        if (that.data.basicShow) {
+          that.setData({
+            basicWords: '收起',
+            basicDegree: ''
+          })
+        } else {
+          that.setData({
+            basicWords: '展开',
+            basicDegree: 'rotate(180deg)'
+          })
+        }
+      } else if (e.currentTarget.id == 'time') {
+        that.setData({
+          timeShow: !that.data.timeShow
+        })
+        if (that.data.timeShow) {
+          that.setData({
+            timeWords: '收起',
+            timeDegree: ''
+          })
+        } else {
+          that.setData({
+            timeWords: '展开',
+            timeDegree: 'rotate(180deg)'
+          })
+        }
+      } else if (e.currentTarget.id == 'ext') {
+        that.setData({
+          extShow: !that.data.extShow
+        })
+        if (that.data.extShow) {
+          that.setData({
+            extWords: '收起',
+            extDegree: ''
+          })
+        } else {
+          that.setData({
+            extWords: '展开',
+            extDegree: 'rotate(180deg)'
+          })
+        }
+      }
+    },
+    intro: function () {
+      this.setData({
+        showAmountModal: {
+          showModal: 'showModal',
+          showMask: 'showMask',
+        }
+      });
+    },
+    clointro: function () {
+      this.setData({
+        showAmountModal: {
+          showModal: 'hideModal',
+          showMask: 'hideMask',
+        }
+      });
+    },
     onLoad: function (options) {
       let that = this
-      console.log(options.id);
+      wx.hideShareMenu()
       if(options.id!=undefined) {
         let coupon_id = options.id;
         common.get('/coupon/infofromid', {
@@ -142,7 +282,7 @@ Page({
             saleText: res.data.data.prefertext,
             sale: false,
             prefer_type_Index: res.data.data.prefer_index-1,
-            countPrice: res.data.data.prefer_value,
+            countPrice: res.data.data.prefer_value*10,
             num: res.data.data.total,
             startTime:false,
             endTime:false,
@@ -183,8 +323,13 @@ Page({
           showAmountModal:{
             showModal:'showModal',
             showMask:'showMask',
-          }
+          },
+          getphone:true
         });
+      } else {
+        this.setData({
+          getphone: false
+        })
       }
       this.setData({
         unique_id: wx.getStorageSync('unique_id')
@@ -307,9 +452,6 @@ Page({
           },
           
         })
-    
-
-
     },
     onShareAppMessage: function () {
         return {
@@ -366,7 +508,9 @@ Page({
                         _this.setData({
                             latitude: res.latitude,
                             longitude: res.longitude,
-                            add: res.name
+                            add: res.name,
+                            storeAdd : res.name,
+                            ableStoreAdd:false
                         })
                     },
                 })
@@ -558,9 +702,12 @@ Page({
     },
     // 输入优惠金额
     inputCount: function (e) {
+    
         this.setData({
-            countPrice: e.detail.value
+          countPrice: e.detail.value
         })
+      
+      
     },
     // 输入优惠券张数
     inputNum: function (e) {
@@ -708,10 +855,16 @@ Page({
         if (this.data.name == undefined) {
           app.showToast('输入优惠券名称', this, 2000)
         } else if (this.data.name.length > 15) {
-          app.showToast('输入的优惠券名称少于15个字', this, 2000)
+          app.showToast('输入的优惠券名称应少于15个字', this, 2000)
         } else {
             let price = this.data.price || 0
             let max = this.data.max > 0 ? this.data.max : 99
+            let countPrice;
+            if (this.data.prefer_type_Index == 1) {
+              countPrice = (this.data.countPrice / 10).toFixed(1)
+            } else { 
+              countPrice = this.data.countPrice;
+            }
             if(_this.data.publish){
               _this.data.publish=false
               common.post('/coupon/publish', {
@@ -720,7 +873,7 @@ Page({
                 name: this.data.name,
                 type: this.data.typeIndex,
                 prefer_type: this.data.prefer_type_Index + 1,
-                prefer_value: this.data.countPrice,
+                prefer_value: countPrice,
                 count: this.data.num,
                 week: this.data.weekIndex,
                 time: parseFloat(this.data.chooseIndex) + 1,
@@ -845,11 +998,17 @@ Page({
                 key: "mobiled",
                 data: true
               })
+              wx.setData({
+                getphone:true
+              })
             }
           }).catch(res => {
             wx.setStorage({
               key: "mobiled",
               data: false
+            })
+            wx.setData({
+              getphone: false
             })
           })
         },
