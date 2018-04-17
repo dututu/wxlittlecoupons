@@ -998,8 +998,8 @@ Page({
                 key: "mobiled",
                 data: true
               })
-              wx.setData({
-                getphone:true
+              that.setData({
+                getphone:false
               })
             }
           }).catch(res => {
@@ -1007,8 +1007,8 @@ Page({
               key: "mobiled",
               data: false
             })
-            wx.setData({
-              getphone: false
+            that.setData({
+              getphone: true
             })
           })
         },
@@ -1035,11 +1035,17 @@ Page({
                     key: "mobiled",
                     data: true
                   })
+                  this.setData({
+                    getphone: false
+                  })
                 }
               }).catch(res => {
                 wx.setStorage({
                   key: "mobiled",
                   data: false
+                })
+                this.setData({
+                  getphone: true
                 })
               })
             }

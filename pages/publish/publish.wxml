@@ -264,8 +264,8 @@
           <view class="modal-line-box amount-button">
             
             
-            <button type="primary" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" size="mini" id="1" class="button-color_agree" wx:if='{{getphone==false}}'>我已了解</button>
-             <button type="primary" bindtap="clointro" size="mini" id="1" class="button-color_agree" wx:if='{{getphone==true}}'>我已了解</button>
+            <button type="primary" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" size="mini" id="1" class="button-color_agree" wx:if='{{getphone==true}}'>我已了解</button>
+             <button type="primary" bindtap="clointro" size="mini" id="1" class="button-color_agree" wx:if='{{getphone==false}}'>我已了解</button>
           </view>
 
       </view>
