@@ -122,6 +122,10 @@
 .btn {
   margin: 20rpx;
 }
+.btn_yes {
+  background-color: #EC2350;
+  color:#FFFFFF;
+}
 /*mask*/
 .drawer_screen {
  width: 100%;

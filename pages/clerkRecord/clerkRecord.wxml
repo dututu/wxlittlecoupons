@@ -46,7 +46,7 @@
     </view>
     <view class='search_button'>
       <view class='btn'> 
-        <button type="primary" bindtap="doSearch" > 搜索 </button>
+        <button type="" class='btn_yes' bindtap="doSearch" > 搜索 </button>
       </view>
       <view class='btn'>
         <button type="default" bindtap="cSearch"  hover-class="other-button-hover"> 取消 </button>

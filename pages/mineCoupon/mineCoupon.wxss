@@ -19,8 +19,8 @@
     font-size: 28rpx;
 }
 .active {
-    color: #09bb07;
-    border-bottom: 4rpx solid #09bb07;
+    color: #EC2350;
+    border-bottom: 4rpx solid #EC2350;
 }
 .coupon_tit_per:nth-child(1){
     left: 48rpx;
@@ -131,7 +131,7 @@
 .coupon_info_button {
   width: 125rpx;
   height: 40rpx;
-  background-color: #09bb07;
+  background-color: #EC2350;
   margin: 80rpx auto 0;
   color: #fff;
   font-size: 20rpx;

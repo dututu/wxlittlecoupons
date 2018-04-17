@@ -119,7 +119,7 @@
 .publish_info_button {
   width: 125rpx;
   height: 40rpx;
-  background-color: #09bb07;
+  background-color: #EC2350;
   margin: 80rpx auto 0;
   color: #fff;
   font-size: 20rpx;

@@ -96,7 +96,7 @@
   height: 60rpx;
   text-align: center;
   line-height: 60rpx;
-  background-color: #09bb07;
+  background-color: #EC2350;
   border-radius: 30rpx;
   color: #fff;
   font-size: 30rpx;
@@ -118,6 +118,7 @@
 }
 .recharge_box_info_top_con radio {   
   margin-top: 30rpx;
+  color: #EC2350
 }
 .input {
   width: 50%;
@@ -157,13 +158,13 @@
   height: 98rpx;
   text-align: center;
   line-height: 98rpx;
-  background-color: #FFFFFF;
+  background-color: #EC2350;
   font-size: 30rpx;
   color: #fff;
 }
 .active {
   border: none !important;
-  background-color:  #EC2350 !important;
+  background-color:  #FFFFFF !important;
   color: #000 !important;
 }
 .money_con_tit_left {

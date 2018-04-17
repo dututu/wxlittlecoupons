@@ -10,6 +10,9 @@ Page({
     posterBtn:false,
     showPost:false,
     poster:'',
+
+
+    
     autoJump:true,
   },
 
