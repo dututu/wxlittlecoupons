@@ -58,7 +58,7 @@
             <span>代金券</span>
           </view>
           <view class='index_info_coupon_price' wx:if="{{item.prefer_type==2}}">{{item.prefer_value}}折
-            <span>折扣券</span>
+            <span>优惠券</span>
           </view>
           <!-- <view class='index_info_coupon_type' wx:if="{{item.prefer_type==1}}">元代金券</view>         <view class='index_info_coupon_type' wx:if="{{item.prefer_type==2}}">折折扣券</view> -->
           <view class='index_info_coupon_btn' wx:if="{{item.price==0 }}">

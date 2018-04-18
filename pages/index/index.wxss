@@ -97,7 +97,7 @@
 
 /*首页优惠券的样式*/
 .index_detail {
-  background-color: #F6F6F6;
+  background-color: #EBEBEB;
   width:100%;
   height: 100%;
   padding:20rpx 30rpx; 
@@ -170,7 +170,7 @@
   position: absolute;
   border-radius: 10rpx;
   /* border:3rpx solid #FFFFFF; */
-  margin: 40rpx 35rpx;
+  margin: 55rpx 35rpx;
 }
 .index_info_coupon_img {
   width: 160rpx;
@@ -218,19 +218,22 @@
   height: 80rpx;
 }
 .index_info_coupon_name {
-  width: 460rpx;
+  width: 360rpx;
   height: 42rpx;
   position: absolute;
   font-family: PingFangSC-Regular;
   font-size: 30rpx;
   color: #FFFFFF;
-  margin: 40rpx 245rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
+  margin: 55rpx 245rpx;
 }
 .index_info_coupon_pimg {
   position: absolute;
   width: 19rpx;
   height: 23rpx;
-  margin: 215rpx 245rpx;
+  margin: 218rpx 245rpx;
 }
 .index_info_coupon_pimg image{
   width: 19rpx;
@@ -244,13 +247,13 @@
   font-family: PingFangSC-Regular;
   font-size: 22rpx;
   color: #9B9B9B;
-  margin: 210rpx 275rpx;
+  margin: 213rpx 275rpx;
 }
 .index_info_coupon_vimg {
   position: absolute;
   width: 22rpx;
   height: 15rpx;
-  margin: 218rpx 385rpx;
+  margin: 221rpx 385rpx;
 }
 .index_info_coupon_vimg image{
   width: 22rpx;
@@ -264,13 +267,13 @@
   font-family: PingFangSC-Regular;
   font-size: 22rpx;
   color: #9B9B9B;
-  margin: 210rpx 415rpx;
+  margin: 213rpx 415rpx;
 }
 .index_info_coupon_share {
   width: 30rpx;
   height: 29rpx;
   position: absolute;
-  margin: 210rpx 620rpx;
+  margin: 213rpx 620rpx;
   z-index: 1000;
 }
 .index_info_coupon_share image {
