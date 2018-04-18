@@ -54,9 +54,11 @@
           <view class='index_info_coupon_head'>
             <image class='index_info_coupon_img' src='{{item.img}}'>{{index}}</image>
           </view>
-          <view class='index_info_coupon_price'>{{item.prefer_value}}
-            <span wx:if="{{item.prefer_type==1}}">元代金券</span>
-            <span wx:if="{{item.prefer_type==2}}">折折扣券</span>
+          <view class='index_info_coupon_price' wx:if="{{item.prefer_type==1}}">{{item.prefer_value}}元
+            <span>代金券</span>
+          </view>
+          <view class='index_info_coupon_price' wx:if="{{item.prefer_type==2}}">{{item.prefer_value}}折
+            <span>折扣券</span>
           </view>
           <!-- <view class='index_info_coupon_type' wx:if="{{item.prefer_type==1}}">元代金券</view>         <view class='index_info_coupon_type' wx:if="{{item.prefer_type==2}}">折折扣券</view> -->
           <view class='index_info_coupon_btn' wx:if="{{item.price==0 }}">

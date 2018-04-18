@@ -170,7 +170,7 @@
   position: absolute;
   border-radius: 10rpx;
   /* border:3rpx solid #FFFFFF; */
-  margin: 40rpx 40rpx;
+  margin: 40rpx 35rpx;
 }
 .index_info_coupon_img {
   width: 160rpx;
@@ -183,16 +183,16 @@
   height: 85rpx;
   position: absolute;
   font-family: Impact;
-  font-size: 85rpx;
+  font-size: 70rpx;
   line-height: 85rpx;
   color: #FFFFFF;
   font-weight: bold;
-  margin: 110rpx 270rpx;
+  margin: 110rpx 245rpx;
   text-align: left;
 }
 .index_info_coupon_price span {
   font-weight: unset;
-  font-size: 35rpx;
+  font-size: 30rpx;
 }
 /* .index_info_coupon_type {
   width: 92rpx;
@@ -222,15 +222,15 @@
   height: 42rpx;
   position: absolute;
   font-family: PingFangSC-Regular;
-  font-size: 33rpx;
+  font-size: 30rpx;
   color: #FFFFFF;
-  margin: 40rpx 270rpx;
+  margin: 40rpx 245rpx;
 }
 .index_info_coupon_pimg {
   position: absolute;
   width: 19rpx;
   height: 23rpx;
-  margin: 215rpx 270rpx;
+  margin: 215rpx 245rpx;
 }
 .index_info_coupon_pimg image{
   width: 19rpx;
@@ -244,13 +244,13 @@
   font-family: PingFangSC-Regular;
   font-size: 22rpx;
   color: #9B9B9B;
-  margin: 210rpx 300rpx;
+  margin: 210rpx 275rpx;
 }
 .index_info_coupon_vimg {
   position: absolute;
   width: 22rpx;
   height: 15rpx;
-  margin: 218rpx 410rpx;
+  margin: 218rpx 385rpx;
 }
 .index_info_coupon_vimg image{
   width: 22rpx;
@@ -264,7 +264,7 @@
   font-family: PingFangSC-Regular;
   font-size: 22rpx;
   color: #9B9B9B;
-  margin: 210rpx 440rpx;
+  margin: 210rpx 415rpx;
 }
 .index_info_coupon_share {
   width: 30rpx;
