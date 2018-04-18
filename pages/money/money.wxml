@@ -112,7 +112,7 @@
             <image src="../../imgs/bclose.png"></image>
           </view>
           <view class="reward_box_des">
-            这是您用来制作优惠券的资金,在制作优惠券会扣除相应数额.
+            这是您用来核销优惠券的资金,在核销优惠券会扣除相应数额.
           </view>
         </view>
       </view>
@@ -130,7 +130,7 @@
               <view class="recharge_box_info_top_con">
                 <radio-group class="radio-group" bindchange="radioChange">
                   <label class="radio" wx:for="{{items}}" style="margin-top: 30rpx;">
-                    <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.value}}
+                    <radio value="{{item.value}}" color='#EC2350' checked="{{item.checked}}" />{{item.value}}
                   </label>
                   <input class="input" value="{{bieMoney}}"  bindinput="inputMoney"></input>
                 </radio-group>
@@ -139,7 +139,7 @@
             <view class="recharge_box_info_bottom">
               <view class="recharge_box_info_bottom_left">支付方式</view>
               <view class="recharge_box_info_bottom_right">
-                <radio value="{{item.name}}" checked="true" />微信支付
+                <radio value="{{item.name}}" color='#EC2350' checked="true" />微信支付
               </view>
             </view>
           </view>

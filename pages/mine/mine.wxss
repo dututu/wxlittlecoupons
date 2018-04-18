@@ -68,10 +68,11 @@
   position: absolute;
   width: 53rpx;
   height: 37rpx;
+  line-height: 37rpx;
   font-family: PingFangSC-Regular;
   font-size: 26rpx;
   color: #333333;
-  margin: -60rpx 171rpx;
+  margin: -40rpx 171rpx;
 }
 .center_recommend {
   width: 334rpx;

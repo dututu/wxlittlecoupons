@@ -146,6 +146,9 @@
   background-color: #EF3053;
   color: #FFFFFF;
 }
+.btn button::after {
+  border: unset;
+}
 .adjust {
   width: 370rpx;
 }
@@ -478,6 +481,7 @@
   line-height: 75rpx;
   width: 50%;
   font-size: 35rpx;
+  background-color: #EC2350;
 }
 
 .mask{
@@ -557,7 +561,7 @@
   height: 80rpx;
   text-align: center;
   line-height: 80rpx;
-  background-color: #09bb07;
+  background-color: #EC2350;
   border-radius: 30rpx;
   color: #fff;
   font-size: 30rpx;
