@@ -187,7 +187,7 @@
   line-height: 85rpx;
   color: #FFFFFF;
   font-weight: bold;
-  margin: 110rpx 245rpx;
+  margin: 115rpx 245rpx;
   text-align: left;
 }
 .index_info_coupon_price span {
@@ -211,14 +211,14 @@
   line-height: 40rpx;
   font-family: PingFangSC-Semibold;
   font-size: 24rpx;
-  margin: 110rpx 590rpx;
+  margin: 115rpx 590rpx;
 }
 .index_info_coupon_btn image{ 
   width: 80rpx;
   height: 80rpx;
 }
 .index_info_coupon_name {
-  width: 360rpx;
+  width: 460rpx;
   height: 42rpx;
   position: absolute;
   font-family: PingFangSC-Regular;

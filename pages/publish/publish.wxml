@@ -72,7 +72,7 @@
       <view class='item_list1'>
         <view class='item_list_name'>优惠券名称</view>
         <view class='item_input'>
-          <input type='text' confirm-type='next' maxlength="15" placeholder="必填" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{name}}" name="inputName" bindblur="inputName"/>
+          <input type='text' confirm-type='next' maxlength="12" placeholder="必填" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{name}}" name="inputName" bindblur="inputName"/>
         </view>
       </view>
       <view class='item_list1' wx:if='{{prefer_type_Index==0}}'>

@@ -348,7 +348,7 @@ Page({
         inputName: {
           required: true,
           // minlength: 2,
-          maxlength: 15,
+          maxlength: 12,
         },
         //行业
         type: {
