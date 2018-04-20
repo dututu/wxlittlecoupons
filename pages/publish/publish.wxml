@@ -207,7 +207,7 @@
       <view class='item_list1'>
         <view class='item_list_name'>门店位置</view>
         <view class='item_input adjust'>
-          <input type='text' confirm-type='next' maxlength="10" placeholder="选取门店位置后可编辑(必填)" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{add}}" disabled='{{ableStoreAdd}}' bindblur="inputAdd" name="add"/>
+          <input type='text' confirm-type='next' maxlength="20" placeholder="选取门店位置后可编辑(必填)" placeholder-style="font-family:'苹方';font-size: 28rpx;color: #c7c7cd;" value="{{add}}" disabled='{{ableStoreAdd}}' bindblur="inputAdd" name="add"/>
         </view>
         <view class='item_list_right' bindtap="getLon">
           <image src='../../imgs/position.png'></image>获取位置

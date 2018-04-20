@@ -392,7 +392,8 @@ Page({
       common.post('/coupon/commenting', {
         id: _this.data.id,
         unique_id: _this.data.unique_id,
-        comments: _this.data.searchText
+        comments: _this.data.searchText,
+        store_id: _this.data.storeId
       }).then(e => {
         setTimeout(function(){
           _this.setData({

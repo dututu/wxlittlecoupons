@@ -48,8 +48,9 @@
   border-right: 1px solid #BBBBBB;
 }
 .center_purse_money {
-  width: 160rpx;
+  width: 250rpx;
   height: 56rpx;
+  /* line-height: 56rpx; */
   font-family: DINAlternate-Bold;
   font-size: 48rpx;
   color: #333333;

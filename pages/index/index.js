@@ -77,7 +77,7 @@ Page({
       _imgSrc: '../../imgs/nav88.png'
     }, {
       imgSrc: '../../imgs/nav10.png',
-      text: '更多',
+      text: '其他',
       color: 'color',
       index: 8,
       _imgSrc: '../../imgs/nav1010.png'
