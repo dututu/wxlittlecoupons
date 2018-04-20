@@ -253,7 +253,7 @@
   position: absolute;
   width: 22rpx;
   height: 15rpx;
-  margin: 221rpx 390rpx;
+  margin: 221rpx 400rpx;
 }
 .index_info_coupon_vimg image{
   width: 22rpx;
@@ -267,7 +267,7 @@
   font-family: PingFangSC-Regular;
   font-size: 22rpx;
   color: #9B9B9B;
-  margin: 213rpx 420rpx;
+  margin: 213rpx 430rpx;
 }
 .index_info_coupon_share {
   width: 30rpx;
