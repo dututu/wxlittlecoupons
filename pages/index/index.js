@@ -20,6 +20,7 @@ Page({
     isScroll: true,
     refresh: true,
     isShowToast: false,
+    longitude:0,
     index: 0,
     navList: [{
       imgSrc: '../../imgs/nav11.png',
@@ -249,6 +250,7 @@ Page({
     this.getLocation(function () {
       this.getData(1)
     });
+    
     // 页面加载的时候获取到轮播图的列表
     this.getBanner();
   },
@@ -294,10 +296,28 @@ Page({
   },
   // 点击每一张banner图片的时候跳转到优惠券详情页
   jumpPage: function (e) {
+    console.log(e)
     let id = e.currentTarget.dataset.item.coupon_id;
-    wx.navigateTo({
-      url: '/pages/detail/detail?id=' + id
-    })
+    let type = e.currentTarget.dataset.item.click_type;
+    let addr = e.currentTarget.dataset.item.poster_addr;
+    if(type==1) {
+      //获取优惠券的storeId
+      common.get('/nearest', {
+        id: id,
+        longitude: this.data.longitude,
+        latitude: this.data.latitude,
+      }).then(res => {
+        wx.navigateTo({
+          url: '/pages/detail/detail?id=' + id+'&storeId=' + res.data.store_id
+        })
+      })
+      
+    } else if(type==2) {
+      wx.navigateTo({
+        url: '/pages/ad/ad?url=' + addr
+      })
+    }
+    
   },
   // 页面加载的时候获取到openid
   getOpenid: function (callback) {
@@ -345,11 +365,19 @@ Page({
   },
   // 页面加载的时候获取到轮播图列表
   getBanner: function () {
-    common.get('/banner', {}).then(res => {
-      this.setData({
-        interval: res.data.data[0].carousel_time,
-        imgUrls: res.data.data
-      })
+    let that = this
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        common.get('/banner', {}).then(res1 => {
+          that.setData({
+            interval: res1.data.data[0].carousel_time,
+            imgUrls: res1.data.data,
+            latitude : res.latitude,
+            longitude : res.longitude
+          })
+        })
+      }
     })
   },
   //请求页面信息
@@ -545,4 +573,17 @@ Page({
       url: '/pages/search/search'
     })
   },
+  toauth: function () {
+    let that = this
+    wx.openSetting({
+      success: (res) => {
+        if(res.authSetting['scope.userLocation']==true) {
+          that.getBanner()
+        }
+      },
+      fail: (res) => {
+        
+      }
+    })
+  }
 })

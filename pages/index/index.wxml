@@ -35,14 +35,22 @@
       </button>
       </form>
     </view>
-    <view class='index_detail'>
+    <view class='nocoupon'  wx:if='{{longitude==0}}'>
+        <view bindtap='toauth' class='auth'>
+          <view class='auth_tit'>获取定位失败，请打开定位权限</view>
+          <view class='auth_btn'>打开定位权限</view>
+        </view>
+    </view>
+    <view class='index_detail' wx:if='{{longitude>0}}'>
+
       <!-- <view class='index_poster'>
         <view class='index_poster_tittle'>附近</view>
         <view class='index_poster_type'>快报</view>
         <view class='index_poster_content'>看度搜恩哪来的精神分裂撒娇</view>
         <view class='index_poster_btn'>我要发券</view>
       </view> -->
-      <view class="index_info">
+      
+      <view class="index_info" wx:if='{{longitude>0}}'>
     
       <!-- <form bindsubmit="getFormId" report-submit='true'>
       <button class='share_b coupon'  form-type="submit"> -->

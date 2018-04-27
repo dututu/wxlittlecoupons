@@ -425,3 +425,32 @@
 .poster {
   z-index: 1000001
 }
+.auth {
+  height: 300rpx;
+  text-align: center;
+  padding: 85rpx 0;
+}
+.auth_tit {
+  color: #666666;
+  padding-top: 30rpx;
+  font-size: 30rpx;
+}
+.auth_btn {
+  color: #fff;
+  height: 70rpx;
+  background-color: #EC2350;
+  border-radius: 10rpx;
+  font-size: 30rpx;
+  line-height: 70rpx;
+  margin: 65rpx auto 0;
+  width: 280rpx;
+  text-align: center;
+}
+.nocoupon {
+  z-index: -1;
+  background-color: #EBEBEB;
+  height: 500rpx;
+  width: 750rpx;
+  text-align: center;
+  margin:  auto;
+}

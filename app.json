@@ -24,7 +24,8 @@
     "pages/fail/fail",
     "pages/success/success",
     "pages/xieyi/xieyi",
-    "pages/clerkRecord/clerkRecord"
+    "pages/clerkRecord/clerkRecord",
+    "pages/ad/ad"    
   ],
   "window": {
     "backgroundTextStyle": "light",
