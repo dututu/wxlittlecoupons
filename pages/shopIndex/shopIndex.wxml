@@ -1,0 +1,105 @@
+<!--pages/shopIndex/shopIndex.wxml-->
+<view class='mask' style='width:750rpx;height:{{height}};' wx:if='{{maskShow}}' bindtap='hideAlet'></view>
+
+<view class='containor' style='height:{{height}}'>
+  <view class='top'>
+    <view class='top_intro'>
+      <view class='top_left'>
+        <image src='../../imgs/photo.png'>
+        </image>
+      </view>
+      <view class='top_right'>
+        <view class='top_right_tit'>蓝尊美食汇自助烤肉</view>
+        <view class='top_right_tip'>此商家暂未认领店铺，推荐认领，获得核销优惠券永久奖励</view>
+      </view>
+    </view>
+    <view class='top_middle'></view>
+    <view class='top_detail'>
+      <view class='top_detail_a'>
+        <image class='img1' src='../../imgs/position.png'></image>
+      </view>
+      <view class='top_detail_b'>合浦县定海中路美人鱼广场御珠广场临街商铺（近大地影院）</view>
+      <view class='top_detail_c'>
+        <image src='../../imgs/position.png'></image>
+      </view>
+      <view class='top_detail_d'>
+        <image src='../../imgs/position.png'></image>
+      </view>
+    </view>
+  </view>
+  <view class='center'>
+    <view class='center_img_list'><image src='../../imgs/photo.png'></image></view>
+    <view class='center_img_list'><image src='../../imgs/photo.png'></image></view>
+    <view class='center_img_list'><image src='../../imgs/photo.png'></image></view>
+    <view class='center_img_list'><image src='../../imgs/photo.png'></image></view>
+    
+  </view>
+  <view class='share'>
+    <view style='display: flex;'>
+      <view class='share_img'>
+        <image src='../../imgs/position.png'></image>
+      </view>
+      <view class='share_tit'>有38人与您共分享</view>
+    </view>
+    <view style='display: flex;'>
+      <view class='share_head'>
+        <image src='../../imgs/photo.png'></image>
+      </view>
+    </view>
+  </view>
+  <view class='share comment'>
+    <view style='display: flex;'>
+      <view class='share_img'>
+        <image src='../../imgs/position.png'></image>
+      </view>
+      <view class='share_tit'>精彩评论(100)</view>
+    </view>
+    <view class='comment_list'>
+      <view style='display: flex;'>
+        <view class='comment_list_head'>
+          <image src='../../imgs/photo.png'></image>
+        </view>
+        <view class='comment_list_tit'>
+          <view>aaaaa</view>
+          <view style='color:#BBB'>2018-02-09 13:13:13自助烤肉8折代金券</view>
+        </view>
+      </view>
+      <view class='comment_content'>环境不错，下次还回来</view>
+    </view>
+    <view class='comment_list'>
+      <view style='display: flex;'>
+        <view class='comment_list_head'>
+          <image src='../../imgs/photo.png'></image>
+        </view>
+        <view class='comment_list_tit'>
+          <view>aaaaa</view>
+          <view style='color:#BBB'>2018-02-09 13:13:13自助烤肉8折代金券</view>
+        </view>
+      </view>
+      <view class='comment_content'>环境不错，下次还回来</view>
+    </view>
+  </view>
+  <view class='claim'>
+    <view class='btn' style='margin-right:100rpx;' bindtap='selfGet'>我是店主我要认领</view>
+    <view class='btn' bindtap='reGet'>推荐店主认领</view>
+  </view>
+  <view class='alert' wx:if='{{alert}}'>
+    <view class='alert_tit'>推荐商家认领</view>
+    <view style='display:flex;'>
+      <view class='alert_btn'>
+        <view>
+          <image src='../../imgs/photo.png'></image>
+        </view>
+        <view>面对面认领</view>
+        <view>(使用微信扫一扫)</view>
+      </view>
+      <view class='alert_btn'>
+        <view>
+          <image src='../../imgs/photo.png'></image>
+        </view>
+        <view>我的微信好友</view>
+        <view>转发给TA</view>
+      </view>
+    </view>
+  </view>
+</view>

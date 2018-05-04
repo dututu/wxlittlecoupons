@@ -1,0 +1,117 @@
+/* pages/shop/shop.wxss */
+.containor {
+  background-color: #EFEFEF;
+  padding-bottom:10rpx; 
+  width: 100%
+}
+
+
+.list {
+  height: 475rpx;
+  background-color: #FFF;
+  margin-bottom: 14rpx;
+  border: 1rpx solid white; 
+}
+.list_tit {
+  display: flex;
+  height: 100rpx;
+  margin: 20rpx 25rpx;
+  padding: 10rpx 0;
+}
+.list_tit_left {
+  width: 120rpx;
+  height: 90rpx;
+}
+.list_tit_left image {
+  width: 120rpx;
+  height: 90rpx;
+}
+.list_tit_right {
+  margin: 0 30rpx;
+  font-size: 30rpx;
+}
+.list_tit_right_name {
+  height: 50rpx;
+  line-height: 50rpx
+}
+.list_tit_right_add {
+  height: 50rpx;
+  width: 500rpx;
+  line-height: 50rpx;
+  color: #BBBBBB;
+  font-size: 25rpx;
+}
+.list_tit_right_add image {
+  width: 30rpx;
+  height: 30rpx;
+}
+.list_label {
+  display: flex;
+  height: 35rpx;
+  margin: 10rpx 30rpx;
+  line-height: 35rpx;
+  font-size: 28rpx;
+  color: #BBBBBB;
+}
+.label_list {
+  height: 35rpx;
+  padding:0 20rpx;
+  border: 1rpx solid #4BA0C4;
+  border-radius: 35rpx;
+  margin-right: 30rpx;
+  
+}
+.list_images {
+  display: flex;
+  width: 750rpx;
+  margin: 15rpx 7rpx;
+  text-align: center;
+  
+}
+.list_images_list {
+  width: 180rpx;
+  height: 180rpx;
+  margin: 0 3rpx;
+}
+.list_images_list image{
+  width: 180rpx;
+  height: 180rpx;
+  
+}
+.list_btn {
+  display: flex;
+  height: 70rpx;
+  line-height: 80rpx;
+  border-top: 5rpx solid #EFEFEF;
+}
+.btn_list {
+  width: 250rpx;
+  border-right: 5rpx solid #EFEFEF;
+  text-align: center;  
+}
+.btn_list_image{
+  /* position: absolute; */
+  width: 80rpx;
+  height: 40rpx;
+  margin: 15rpx auto;
+  line-height: 40rpx;
+  font: 30rpx;
+  color: #BBBBBB
+}
+.btn_list image{
+  width: 40rpx;
+  height: 40rpx;
+}
+.border_unset {
+  border: unset;
+}
+.map_btn {
+  position: fixed;
+  top:700rpx;
+  left: 10rpx;
+  z-index: 100;
+  width: 80rpx;
+  height: 80rpx;
+  background-color: black;
+  border-radius: 50%;
+}

@@ -25,7 +25,10 @@
     "pages/success/success",
     "pages/xieyi/xieyi",
     "pages/clerkRecord/clerkRecord",
-    "pages/ad/ad"    
+    "pages/ad/ad",
+    "pages/shop/shop",
+    "pages/shopIndex/shopIndex",
+    "pages/map/map"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -47,6 +50,12 @@
       {
         "pagePath": "pages/publish/publish",
         "text": "发券",
+        "iconPath": "./imgs/img6.png",
+        "selectedIconPath": "./imgs/img5.png"
+      },
+      {
+        "pagePath": "pages/shop/shop",
+        "text": "商家",
         "iconPath": "./imgs/img6.png",
         "selectedIconPath": "./imgs/img5.png"
       },

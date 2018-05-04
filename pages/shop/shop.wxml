@@ -1,0 +1,184 @@
+<!--pages/shop/shop.wxml-->
+<view class='containor'>
+  <view class='info'>
+     <view class='list'>
+      <view class='list_tit'>
+        <view class='list_tit_left'>
+          <image src='../../imgs/photo.png'></image>
+        </view>
+        <view class='list_tit_right'>
+          <view class='list_tit_right_name'>蓝尊美食汇自助烤肉肉肉肉</view>
+          <view class='list_tit_right_add'>
+            <image src='../../imgs/position.png'></image>
+            <span>海路良基雅苑一楼……</span><span>100m</span>
+          </view>
+        </view>
+      </view>
+      <view class='list_label'>
+        <view class='label_list'>好吃</view>
+        <view class='label_list'>烤肉</view>
+        <view class='label_list'>我好喜欢</view>
+      </view>
+      <view class='list_images'>
+        <view class='list_images_list'>
+          <image src='../../imgs/photo.png'></image>
+        </view>
+        <view class='list_images_list'>
+          <image src='../../imgs/photo.png'></image>
+        </view>
+        <view class='list_images_list'>
+          <image src='../../imgs/photo.png'></image>
+        </view>
+        <view class='list_images_list'>
+          <image src='../../imgs/photo.png'></image>
+        </view>
+      </view>
+      <view class='list_btn'>
+        <view class='btn_list'>
+            <image src='../../imgs/unlike.png'></image>1
+        </view>
+        <view class='btn_list'>
+          <image src='../../imgs/info.png'></image>22
+          
+        </view>
+        <view class='btn_list border_unset'>
+          <image src='../../imgs/view.png'></image>333
+        </view>
+      </view>
+    </view>
+    <view class='list'>
+      <view class='list_tit'>
+        <view class='list_tit_left'>
+          <image src='../../imgs/photo.png'></image>
+        </view>
+        <view class='list_tit_right'>
+          <view class='list_tit_right_name'>蓝尊美食汇自助烤肉肉肉肉</view>
+          <view class='list_tit_right_add'>
+            <image src='../../imgs/position.png'></image>
+            <span>海路良基雅苑一楼……</span><span>100m</span>
+          </view>
+        </view>
+      </view>
+      <view class='list_label'>
+        <view class='label_list'>好吃</view>
+        <view class='label_list'>烤肉</view>
+        <view class='label_list'>我好喜欢</view>
+      </view>
+      <view class='list_images'>
+        <view class='list_images_list'>
+          <image src='../../imgs/photo.png'></image>
+        </view>
+        <view class='list_images_list'>
+          <image src='../../imgs/photo.png'></image>
+        </view>
+        <view class='list_images_list'>
+          <image src='../../imgs/photo.png'></image>
+        </view>
+        <view class='list_images_list'>
+          <image src='../../imgs/photo.png'></image>
+        </view>
+      </view>
+      <view class='list_btn'>
+        <view class='btn_list'>
+            <image src='../../imgs/unlike.png'></image>1
+        </view>
+        <view class='btn_list'>
+          <image src='../../imgs/info.png'></image>22
+        </view>
+        <view class='btn_list border_unset'>
+          <image src='../../imgs/view.png'></image>333
+        </view>
+      </view>
+    </view>
+    <view class='list'>
+      <view class='list_tit'>
+        <view class='list_tit_left'>
+          <image src='../../imgs/photo.png'></image>
+        </view>
+        <view class='list_tit_right'>
+          <view class='list_tit_right_name'>蓝尊美食汇自助烤肉肉肉肉</view>
+          <view class='list_tit_right_add'>
+            <image src='../../imgs/position.png'></image>
+            <span>海路良基雅苑一楼……</span><span>100m</span>
+          </view>
+        </view>
+      </view>
+      <view class='list_label'>
+        <view class='label_list'>好吃</view>
+        <view class='label_list'>烤肉</view>
+        <view class='label_list'>我好喜欢</view>
+      </view>
+      <view class='list_images'>
+        <view class='list_images_list'>
+          <image src='../../imgs/photo.png'></image>
+        </view>
+        <view class='list_images_list'>
+          <image src='../../imgs/photo.png'></image>
+        </view>
+        <view class='list_images_list'>
+          <image src='../../imgs/photo.png'></image>
+        </view>
+        <view class='list_images_list'>
+          <image src='../../imgs/photo.png'></image>
+        </view>
+      </view>
+      <view class='list_btn'>
+        <view class='btn_list'>
+            <image src='../../imgs/unlike.png'></image>1
+        </view>
+        <view class='btn_list'>
+          <image src='../../imgs/info.png'></image>22
+        </view>
+        <view class='btn_list border_unset'>
+          <image src='../../imgs/view.png'></image>333
+        </view>
+      </view>
+    </view>
+    <view class='list'>
+      <view class='list_tit'>
+        <view class='list_tit_left'>
+          <image src='../../imgs/photo.png'></image>
+        </view>
+        <view class='list_tit_right'>
+          <view class='list_tit_right_name'>蓝尊美食汇自助烤肉肉肉肉</view>
+          <view class='list_tit_right_add'>
+            <image src='../../imgs/position.png'></image>
+            <span>海路良基雅苑一楼……</span><span>100m</span>
+          </view>
+        </view>
+      </view>
+      <view class='list_label'>
+        <view class='label_list'>好吃</view>
+        <view class='label_list'>烤肉</view>
+        <view class='label_list'>我好喜欢</view>
+      </view>
+      <view class='list_images'>
+        <view class='list_images_list'>
+          <image src='../../imgs/photo.png'></image>
+        </view>
+        <view class='list_images_list'>
+          <image src='../../imgs/photo.png'></image>
+        </view>
+        <view class='list_images_list'>
+          <image src='../../imgs/photo.png'></image>
+        </view>
+        <view class='list_images_list'>
+          <image src='../../imgs/photo.png'></image>
+        </view>
+      </view>
+      <view class='list_btn'>
+        <view class='btn_list'>
+            <image src='../../imgs/unlike.png'></image>1
+        </view>
+        <view class='btn_list'>
+          <image src='../../imgs/info.png'></image>22
+        </view>
+        <view class='btn_list border_unset'>
+          <image src='../../imgs/view.png'></image>333
+        </view>
+      </view>
+    </view> 
+
+  </view>
+</view>
+<view class='map_btn'></view>

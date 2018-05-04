@@ -1,0 +1,26 @@
+<!--pages/map/map.wxml-->
+<view>
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="14" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location style="width: 750rpx; height: 890rpx;"></map>
+  <view class='shop_detail'>
+    <view style='display:flex;'>
+      <view class='shop_detail_tit'>蓝尊美食汇自助烤肉<span class='tit_detail'>详情</span></view>
+      <view class='shop_detail_img'>
+        <image src='../../imgs/photo.png'></image>
+      </view>
+    </view>
+
+    <view style='display:flex;'>
+      <view class='shop_detail_phone_content'>服务电话0323-34895321</view>
+      <view class='shop_detail_phone'>
+        <image src='../../imgs/photo.png'></image>
+      </view>
+      <view class='shop_detail_distance'>300m</view>
+    </view>
+    <view class='shop_intro'>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</view>
+    <view class='coupon_type_list'>
+      <view class='coupon_type'><image src='../../imgs/photo.png'></image></view>
+      <view><image src='../../imgs/photo.png'></image></view>
+    </view>
+    <view class='shop_add'>地址：巴彦县金泰嘉园二期楼下金泰超市正门东侧</view>
+  </view>
+</view>

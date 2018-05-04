@@ -1,0 +1,211 @@
+/* pages/shopIndex/shopIndex.wxss */
+page {
+  overflow: hidden;
+}
+.containor {
+  background-color: #EFEFEF;
+  z-index: 99;
+  overflow: hidden;
+}
+.top {
+  height: 385rpx;
+  border: 1rpx solid burlywood;
+  background-color: #FFFFFF;
+}
+.top_intro {
+  display: flex;
+}
+.top_left {
+  width: 250rpx;
+  height: 190rpx;
+  border: 1rpx solid burlywood;
+  margin: 10rpx;
+}
+.top_left image{
+  width: 250rpx;
+  height: 190rpx;
+}
+.top_right {
+
+}
+.top_right_tit {
+  width: 460rpx;
+  height: 46rpx;
+  margin: 26rpx 4rpx;
+  font-size: 32rpx;
+  line-height: 46rpx;
+}
+.top_right_tip {
+  width: 420rpx;
+  font-size: 28rpx;
+  color: red;
+  margin: 20rpx 10rpx;
+}
+.top_middle {
+  width: 730rpx;
+  margin: 10rpx auto;
+  border-top: 5rpx solid #EFEFEF;
+}
+.top_detail {
+  display: flex;
+  padding: 5rpx 0;
+  height: 110rpx;
+  line-height: 55rpx;
+  margin-top: 10rpx;
+}
+.top_detail_b {
+  width: 500rpx;
+  height: 110rpx;
+  font-size: 28rpx;
+  
+}
+.top_detail_a {
+  width: 15rpx;
+  height: 110rpx;
+  margin: 0 20rpx;
+}
+.img1 {
+  width: 30rpx;
+  height: 30rpx;
+}
+.top_detail_c {
+  width: 50rpx;
+  height: 110rpx;
+  border-right: 5rpx solid #EFEFEF;
+  line-height: 110rpx;
+  padding: 10rpx;
+}
+.top_detail_c image {
+  width: 40rpx;
+  height: 40rpx;
+}
+.top_detail_d {
+  width: 100rpx;
+  height: 110rpx;
+  line-height: 110rpx;
+  padding: 10rpx;
+  text-align: center;
+}
+.top_detail_d image {
+  width: 40rpx;
+  height: 40rpx;
+}
+.center {
+  display: flex;
+  margin:10rpx 0;
+  background-color: #FFF;
+  padding: 5rpx 10rpx;
+}
+.center_img_list {
+  width: 180rpx;
+  height: 120rpx;
+  margin: 0 1rpx;
+}
+.center image {
+  width: 180rpx;
+  height: 120rpx;
+}
+.share {
+  height: 140rpx;
+  padding: 20rpx;
+  background-color: #FFF;
+  font-size: 28rpx;
+  color: #BBB;
+}
+.share_tit {
+  font-size: 24rpx;
+  margin-left:10rpx;
+  height: 46rpx;
+  line-height: 46rpx;
+}
+.share_img {
+  width: 40rpx;
+  height: 40rpx;
+}
+.share_img image{
+  width: 40rpx;
+  height: 40rpx;
+}
+.share_head {
+  width: 40rpx;
+  height: 40rpx;
+  margin: 15rpx 40rpx;
+}
+.share_head image{
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  
+}
+.comment {
+  height: unset;
+}
+.comment_list_head {
+  margin: 10rpx 20rpx;
+  width: 60rpx;
+  height: 60rpx;
+}
+.comment_list_head image{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%
+}
+.comment_list_tit {
+  font-size: 25rpx;
+  color: black;
+}
+.comment_content {
+  margin-left: 100rpx;
+  margin-bottom: 10rpx;
+  color: black;
+}
+.claim {
+  width: 560rpx;
+  display: flex;
+  font-size: 28rpx;
+  text-align: center;
+  color: #FFF;
+  height: 65rpx;
+  line-height: 65rpx;
+  margin: 10rpx auto;
+}
+.btn {
+  width: 280rpx;
+  background-color: green;
+  border-radius: 10rpx;
+}
+.mask {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 100;
+  background:rgba(0,0,0,0.5);
+}
+.alert {
+  width: 560rpx;
+  height: 300rpx;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right:0;
+  bottom:0;
+  z-index: 1000;
+  margin: auto;
+  background-color: #FFF;
+  text-align: center;
+  border-radius: 10rpx;
+  
+}
+.alert_tit {
+  margin: 20rpx;
+  font-size: 32rpx;
+}
+.alert_btn {
+  width: 280rpx;
+  color: #BBB;
+  font-size: 28rpx;
+}
+.alert_btn image{
+  width: 90rpx;
+  height: 90rpx;
+}
