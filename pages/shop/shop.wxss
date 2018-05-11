@@ -7,7 +7,7 @@
 
 
 .list {
-  height: 475rpx;
+  /* height: 475rpx; */
   background-color: #FFF;
   margin-bottom: 14rpx;
   border: 1rpx solid white; 
@@ -35,11 +35,19 @@
   line-height: 50rpx
 }
 .list_tit_right_add {
+
   height: 50rpx;
   width: 500rpx;
   line-height: 50rpx;
   color: #BBBBBB;
   font-size: 25rpx;
+}
+.list_tit_right_add_text {
+  float: left;
+  width: 300rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;  
 }
 .list_tit_right_add image {
   width: 30rpx;
@@ -70,13 +78,14 @@
 }
 .list_images_list {
   width: 180rpx;
-  height: 180rpx;
+  /* height: 180rpx;  */
   margin: 0 3rpx;
+  /* background-color: #EFEFEF; */
+  
 }
 .list_images_list image{
   width: 180rpx;
   height: 180rpx;
-  
 }
 .list_btn {
   display: flex;
@@ -114,4 +123,23 @@
   height: 80rpx;
   background-color: black;
   border-radius: 50%;
+}
+.list_coupons {
+  width: 500rpx;
+  height: 50rpx;
+  display: flex;
+  margin: 5rpx 20rpx;
+  font-size: 24rpx;
+  color: #999999;
+  line-height: 50rpx;
+}
+.list_coupons_image {
+  width: 50rpx;
+  position: relative;
+}
+.list_coupons_image image {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  top: 5rpx;
 }

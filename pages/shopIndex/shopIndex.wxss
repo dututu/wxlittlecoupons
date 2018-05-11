@@ -1,6 +1,6 @@
 /* pages/shopIndex/shopIndex.wxss */
 page {
-  overflow: hidden;
+    /* overflow: hidden;   */
 }
 .containor {
   background-color: #EFEFEF;
@@ -8,8 +8,7 @@ page {
   overflow: hidden;
 }
 .top {
-  height: 385rpx;
-  border: 1rpx solid burlywood;
+  /* height: 385rpx; */
   background-color: #FFFFFF;
 }
 .top_intro {
@@ -18,7 +17,6 @@ page {
 .top_left {
   width: 250rpx;
   height: 190rpx;
-  border: 1rpx solid burlywood;
   margin: 10rpx;
 }
 .top_left image{
@@ -49,20 +47,20 @@ page {
 .top_detail {
   display: flex;
   padding: 5rpx 0;
-  height: 110rpx;
+  /* height: 110rpx; */
   line-height: 55rpx;
   margin-top: 10rpx;
 }
 .top_detail_b {
   width: 500rpx;
-  height: 110rpx;
+  /* height: 110rpx; */
   font-size: 28rpx;
   
 }
 .top_detail_a {
   width: 15rpx;
-  height: 110rpx;
-  margin: 0 20rpx;
+  /* height: 110rpx; */
+  margin: 0rpx 20rpx;
 }
 .img1 {
   width: 30rpx;
@@ -70,9 +68,9 @@ page {
 }
 .top_detail_c {
   width: 50rpx;
-  height: 110rpx;
+  /* height: 110rpx; */
   border-right: 5rpx solid #EFEFEF;
-  line-height: 110rpx;
+  /* line-height: 110rpx; */
   padding: 10rpx;
 }
 .top_detail_c image {
@@ -81,8 +79,8 @@ page {
 }
 .top_detail_d {
   width: 100rpx;
-  height: 110rpx;
-  line-height: 110rpx;
+  /* height: 110rpx; */
+  /* line-height: 110rpx; */
   padding: 10rpx;
   text-align: center;
 }
@@ -93,7 +91,7 @@ page {
 .center {
   display: flex;
   margin:10rpx 0;
-  background-color: #FFF;
+  background-color: #EFEFEF;
   padding: 5rpx 10rpx;
 }
 .center_img_list {
@@ -106,7 +104,8 @@ page {
   height: 120rpx;
 }
 .share {
-  height: 140rpx;
+  /* height: 140rpx; */
+  margin-top: 20rpx;
   padding: 20rpx;
   background-color: #FFF;
   font-size: 28rpx;
@@ -208,4 +207,149 @@ page {
 .alert_btn image{
   width: 90rpx;
   height: 90rpx;
+}
+
+/*优惠券  */
+.index_info_coupon {
+  /* margin-bottom: 17rpx; */
+  /* box-shadow: 5rpx 5rpx 2rpx red; */
+  width: 690rpx;
+  height: 250rpx;
+}
+.index_info_couponimg {
+  width: 690rpx;
+  height: 266rpx;
+}
+.index_info_coupon_head {
+  width: 160rpx;
+  height: 160rpx;
+  position: absolute;
+  border-radius: 10rpx;
+  /* border:3rpx solid #FFFFFF; */
+  margin: 55rpx 35rpx;
+}
+.index_info_coupon_img {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 20rpx;
+  
+}
+.index_info_coupon_price {
+  width: 340rpx;
+  height: 85rpx;
+  position: absolute;
+  font-family: Impact;
+  font-size: 68rpx;
+  line-height: 85rpx;
+  color: #FFFFFF;
+  font-weight: bold;
+  margin: 115rpx 245rpx;
+  text-align: left;
+}
+.index_info_coupon_price span {
+  font-weight: unset;
+  font-size: 28rpx;
+}
+/* .index_info_coupon_type {
+  width: 92rpx;
+  height: 32rpx;
+  position: absolute;
+  font-family: PingFangSC-Regular;
+  font-size: 23rpx;
+  color: #FFFFFF;
+  margin: 40rpx 534rpx;
+} */
+.index_info_coupon_btn {
+  width: 80rpx;
+  height: 80rpx;
+  position: absolute;
+  text-align: center;
+  line-height: 40rpx;
+  font-family: PingFangSC-Semibold;
+  font-size: 24rpx;
+  margin: 115rpx 590rpx;
+}
+.index_info_coupon_btn image{ 
+  width: 80rpx;
+  height: 80rpx;
+}
+.index_info_coupon_name {
+  width: 360rpx;
+  height: 42rpx;
+  position: absolute;
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #FFFFFF;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
+  margin: 55rpx 245rpx;
+}
+.index_info_coupon_pimg {
+  position: absolute;
+  width: 19rpx;
+  height: 23rpx;
+  margin: 218rpx 245rpx;
+}
+.index_info_coupon_pimg image{
+  width: 19rpx;
+  height: 23rpx;
+  margin-bottom: 20rpx; 
+}
+.index_info_coupon_distans {
+  width: 66rpx;
+  height: 30rpx;
+  position: absolute;
+  font-family: PingFangSC-Regular;
+  font-size: 22rpx;
+  color: #9B9B9B;
+  margin: 213rpx 275rpx;
+}
+.index_info_coupon_vimg {
+  position: absolute;
+  width: 22rpx;
+  height: 15rpx;
+  margin: 221rpx 400rpx;
+}
+.index_info_coupon_vimg image{
+  width: 22rpx;
+  height: 15rpx;
+  margin-bottom: 30rpx; 
+}
+.index_info_coupon_vcount {
+  width: 66rpx;
+  height: 30rpx;
+  position: absolute;
+  font-family: PingFangSC-Regular;
+  font-size: 22rpx;
+  color: #9B9B9B;
+  margin: 213rpx 430rpx;
+}
+.index_info_coupon_share {
+  width: 30rpx;
+  height: 29rpx;
+  position: absolute;
+  margin: 213rpx 620rpx;
+  z-index: 1000;
+}
+.index_info_coupon_share image {
+  width: 30rpx;
+  height: 29rpx;  
+}
+.share_b {
+  font-size: 20rpx;
+  background-color:unset;
+  /* position: unset; */
+  line-height: unset;
+}
+.share_b::after {
+  border:unset;
+}
+.coupons {
+  padding:0rpx 30rpx;
+}
+.coupon {
+  padding-left: unset;
+  padding-right: unset;
+  text-align: unset;
 }

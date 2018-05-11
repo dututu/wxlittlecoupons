@@ -1,4 +1,5 @@
 // pages/shopIndex/shopIndex.js
+let common = require('../../assets/js/common');
 Page({
 
   /**
@@ -8,6 +9,12 @@ Page({
     height:'1300rpx',
     alert:false,
     maskShow:false,
+    storeInfo:[],
+    host: common.fileUrl,
+    commentInfo: [],
+    showCoupon:false,
+    comment_page:1,
+    comment_totalpage:0
   },
 
   /**
@@ -23,6 +30,41 @@ Page({
         })
       }
     })
+    this.getShopInfo(options.id) 
+    this.getComments(options.id)
+  },
+  getShopInfo:function(id) {
+    common.get('/storeInfo', {
+      store_id: id
+    }).then(res => {
+      this.setData({
+        storeInfo:res.data.data,
+        storeId:res.data.data.id
+      })
+    })
+  },
+  getComments:function(id) {
+    common.get('/storeComments', {
+      store_id: id,
+      page: this.data.comment_page,
+      unique_id: wx.getStorageSync('unique_id'),
+    }).then(res => {
+      this.data.commentInfo = [...this.data.commentInfo, ...res.data.data];
+      this.setData({
+        commentInfo: this.data.commentInfo,
+        comment_totalpage: res.data.meta.pagination.total_pages,
+        comment_page: this.data.comment_page + 1, 
+        commentCount: res.data.meta.pagination.total,
+      })
+      
+    })
+  },
+  nextPage: function () {
+    let id = this.data.storeId
+    if (this.data.comment_page <= this.data.comment_totalpage)
+      this.getComments(id)
+    else
+      console.log('没有了');
   },
   selfGet:function() {
     wx.showModal({

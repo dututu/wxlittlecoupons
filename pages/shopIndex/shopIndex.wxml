@@ -1,16 +1,17 @@
 <!--pages/shopIndex/shopIndex.wxml-->
 <view class='mask' style='width:750rpx;height:{{height}};' wx:if='{{maskShow}}' bindtap='hideAlet'></view>
 
-<view class='containor' style='height:{{height}}'>
+<view class='containor'>
   <view class='top'>
     <view class='top_intro'>
       <view class='top_left'>
-        <image src='../../imgs/photo.png'>
+        <image src='{{host}}{{storeInfo.pic[0]}}'>
         </image>
       </view>
       <view class='top_right'>
-        <view class='top_right_tit'>蓝尊美食汇自助烤肉</view>
-        <view class='top_right_tip'>此商家暂未认领店铺，推荐认领，获得核销优惠券永久奖励</view>
+        <view class='top_right_tit'>{{storeInfo.name}}</view>
+        <view class='top_right_tip' wx:if='{{storeInfo.memberid<=0}}' >此商家暂未认领店铺，推荐认领，获得核销优惠券永久奖励</view>
+        <view class='top_right_tip' wx:if='{{storeInfo.memberid>0}}' style='color:black;'>{{storeInfo.desc}}</view>
       </view>
     </view>
     <view class='top_middle'></view>
@@ -18,7 +19,7 @@
       <view class='top_detail_a'>
         <image class='img1' src='../../imgs/position.png'></image>
       </view>
-      <view class='top_detail_b'>合浦县定海中路美人鱼广场御珠广场临街商铺（近大地影院）</view>
+      <view class='top_detail_b'>{{storeInfo.add}}</view>
       <view class='top_detail_c'>
         <image src='../../imgs/position.png'></image>
       </view>
@@ -28,22 +29,78 @@
     </view>
   </view>
   <view class='center'>
-    <view class='center_img_list'><image src='../../imgs/photo.png'></image></view>
-    <view class='center_img_list'><image src='../../imgs/photo.png'></image></view>
-    <view class='center_img_list'><image src='../../imgs/photo.png'></image></view>
-    <view class='center_img_list'><image src='../../imgs/photo.png'></image></view>
+    <view class='center_img_list' wx:if='{{storeInfo.pic[1]!=undefined}}'><image src='{{host}}{{storeInfo.pic[1]}}'></image></view>
+    <view class='center_img_list' wx:if='{{storeInfo.pic[2]!=undefined}}'><image src='{{host}}{{storeInfo.pic[2]}}'></image></view>
+    <view class='center_img_list' wx:if='{{storeInfo.pic[3]!=undefined}}'><image src='{{host}}{{storeInfo.pic[3]}}'></image></view>
+    <view class='center_img_list' wx:if='{{storeInfo.pic[4]!=undefined}}'><image src='{{host}}{{storeInfo.pic[4]}}'></image></view>
     
+  </view>
+  <view class='coupons' wx:if='{{true}}'>
+    <view class='index_info_coupon' wx:for="{{storeInfo.coupons}}" wx:for-item="item"  data-item="{{item}}" bindtap="jumpDetail" data-index="{{index}}" wx:if='{{index<2}}'>
+        <form bindsubmit="getFormId" report-submit='true'>
+        <button class='share_b coupon'  form-type="submit">  
+        <view class='index_info_coupon_head'>
+          <image class='index_info_coupon_img' src='{{host}}{{item.img}}'>{{index}}</image>
+        </view>
+        <view class='index_info_coupon_price' wx:if="{{item.prefer_type==1}}">{{item.prefer_value}}元
+          <span>代金券</span>
+        </view>
+        <view class='index_info_coupon_price' wx:if="{{item.prefer_type==2}}">{{item.prefer_value}}折
+          <span>优惠券</span>
+        </view>
+        <!-- <view class='index_info_coupon_type' wx:if="{{item.prefer_type==1}}">元代金券</view>         <view class='index_info_coupon_type' wx:if="{{item.prefer_type==2}}">折折扣券</view> -->
+        <view class='index_info_coupon_btn' wx:if="{{item.price==0 }}">
+          <image src='../../imgs/free.png'></image>
+        </view>
+        <view class='index_info_coupon_btn' wx:if="{{item.price!=0}}">
+          <image src='../../imgs/buy.png'></image>
+        </view>
+        
+        <view class='index_info_coupon_name'>{{item.name}}</view>
+        <image class='index_info_couponimg' wx:if="{{index%3==0}}" src='../../imgs/purple.png'></image>
+        <image class='index_info_couponimg' wx:if="{{index%3==1}}" src='../../imgs/orange.png'></image>
+        <image class='index_info_couponimg' wx:if="{{index%3==2}}" src='../../imgs/green.png'></image>
+            </button>
+        </form>  
+      </view>
+      <view class='index_info_coupon' wx:for="{{storeInfo.coupons}}" wx:for-item="item"  data-item="{{item}}" bindtap="jumpDetail" data-index="{{index}}" wx:if='{{index>=2}}' wx:if='{{showCoupon}}'>
+        <form bindsubmit="getFormId" report-submit='true'>
+        <button class='share_b coupon'  form-type="submit">  
+        <view class='index_info_coupon_head'>
+          <image class='index_info_coupon_img' src='{{host}}{{item.img}}'>{{index}}</image>
+        </view>
+        <view class='index_info_coupon_price' wx:if="{{item.prefer_type==1}}">{{item.prefer_value}}元
+          <span>代金券</span>
+        </view>
+        <view class='index_info_coupon_price' wx:if="{{item.prefer_type==2}}">{{item.prefer_value}}折
+          <span>优惠券</span>
+        </view>
+        <!-- <view class='index_info_coupon_type' wx:if="{{item.prefer_type==1}}">元代金券</view>         <view class='index_info_coupon_type' wx:if="{{item.prefer_type==2}}">折折扣券</view> -->
+        <view class='index_info_coupon_btn' wx:if="{{item.price==0 }}">
+          <image src='../../imgs/free.png'></image>
+        </view>
+        <view class='index_info_coupon_btn' wx:if="{{item.price!=0}}">
+          <image src='../../imgs/buy.png'></image>
+        </view>
+        
+        <view class='index_info_coupon_name'>{{item.name}}</view>
+        <image class='index_info_couponimg' wx:if="{{index%3==0}}" src='../../imgs/purple.png'></image>
+        <image class='index_info_couponimg' wx:if="{{index%3==1}}" src='../../imgs/orange.png'></image>
+        <image class='index_info_couponimg' wx:if="{{index%3==2}}" src='../../imgs/green.png'></image>
+            </button>
+        </form>  
+      </view>
   </view>
   <view class='share'>
     <view style='display: flex;'>
       <view class='share_img'>
         <image src='../../imgs/position.png'></image>
       </view>
-      <view class='share_tit'>有38人与您共分享</view>
+      <view class='share_tit'>有{{storeInfo.memberlikes.count}}人与您共分享</view>
     </view>
     <view style='display: flex;'>
-      <view class='share_head'>
-        <image src='../../imgs/photo.png'></image>
+      <view class='share_head' wx:for='{{storeInfo.memberlikes.member}}'>
+        <image src='{{item.avatar}}'></image>
       </view>
     </view>
   </view>
@@ -52,34 +109,24 @@
       <view class='share_img'>
         <image src='../../imgs/position.png'></image>
       </view>
-      <view class='share_tit'>精彩评论(100)</view>
+      <view class='share_tit'>精彩评论({{commentCount}})</view>
     </view>
-    <view class='comment_list'>
-      <view style='display: flex;'>
-        <view class='comment_list_head'>
-          <image src='../../imgs/photo.png'></image>
+    <scroll-view scroll-y="true" style="height:350rpx;" bindscrolltolower="nextPage">
+      <view class='comment_list' wx:for='{{commentInfo}}'>
+        <view style='display: flex;'>
+          <view class='comment_list_head'>
+            <image src='{{item.avatar}}'></image>
+          </view>
+          <view class='comment_list_tit'>
+            <view >{{item.name}}</view>
+            <view style='color:#BBB'>{{item.time}}{{item.couponname}}</view>
+          </view>
         </view>
-        <view class='comment_list_tit'>
-          <view>aaaaa</view>
-          <view style='color:#BBB'>2018-02-09 13:13:13自助烤肉8折代金券</view>
-        </view>
+        <view class='comment_content'>{{item.content}}</view>
       </view>
-      <view class='comment_content'>环境不错，下次还回来</view>
-    </view>
-    <view class='comment_list'>
-      <view style='display: flex;'>
-        <view class='comment_list_head'>
-          <image src='../../imgs/photo.png'></image>
-        </view>
-        <view class='comment_list_tit'>
-          <view>aaaaa</view>
-          <view style='color:#BBB'>2018-02-09 13:13:13自助烤肉8折代金券</view>
-        </view>
-      </view>
-      <view class='comment_content'>环境不错，下次还回来</view>
-    </view>
+    </scroll-view>
   </view>
-  <view class='claim'>
+  <view class='claim' wx:if='{{storeInfo.memberid<=0}}'>
     <view class='btn' style='margin-right:100rpx;' bindtap='selfGet'>我是店主我要认领</view>
     <view class='btn' bindtap='reGet'>推荐店主认领</view>
   </view>

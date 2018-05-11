@@ -1,184 +1,69 @@
 <!--pages/shop/shop.wxml-->
 <view class='containor'>
-  <view class='info'>
-     <view class='list'>
-      <view class='list_tit'>
-        <view class='list_tit_left'>
-          <image src='../../imgs/photo.png'></image>
-        </view>
-        <view class='list_tit_right'>
-          <view class='list_tit_right_name'>蓝尊美食汇自助烤肉肉肉肉</view>
-          <view class='list_tit_right_add'>
-            <image src='../../imgs/position.png'></image>
-            <span>海路良基雅苑一楼……</span><span>100m</span>
+  <scroll-view scroll-y="true" style="height:{{height}};" bindscrolltolower="nextPage" >
+    <view class='info' style="height:{{height}};">
+      <view class='list' wx:for='{{storeList}}' bindtap='todetail' data-id='{{item.id}}'>
+        <view class='list_tit'>
+          <view class='list_tit_left'>
+            <image src='../../imgs/photo.png' wx:if='{{item.pic[0]==undefined}}'></image> 
+            <image src='{{host}}{{item.pic[0]}}' wx:if='{{item.pic[0]!=undefined}}'></image>
+          </view>
+          <view class='list_tit_right'>
+            <view class='list_tit_right_name'>{{item.name}}</view>
+            <view class='list_tit_right_add'>
+              <view style='float:left;'><image src='../../imgs/position.png'></image></view>
+              <view class='list_tit_right_add_text'>{{item.add}}</view><span>{{item.distance}}</span>
+            </view>
           </view>
         </view>
-      </view>
-      <view class='list_label'>
-        <view class='label_list'>好吃</view>
-        <view class='label_list'>烤肉</view>
-        <view class='label_list'>我好喜欢</view>
-      </view>
-      <view class='list_images'>
-        <view class='list_images_list'>
-          <image src='../../imgs/photo.png'></image>
+        <!-- <view class='list_label'>
+          <view class='label_list'>好吃</view>
+          <view class='label_list'>烤肉</view>
+          <view class='label_list'>我好喜欢</view>
+        </view> -->
+        <view class='list_images'>
+          <view class='list_images_list'>
+            <image src='{{host}}{{item.pic[1]}}' wx:if='{{item.pic[1]!=undefined}}'></image>
+            <!-- <image src='../../imgs/photo.png' wx:if='{{item.pic[1]==undefined}}'></image> -->
+          </view>
+          <view class='list_images_list'>
+            <image src='{{host}}{{item.pic[2]}}' wx:if='{{item.pic[2]!=undefined}}'></image>
+            <!-- <image src='../../imgs/photo.png' wx:if='{{item.pic[2]==undefined}}'></image> -->
+          </view>
+          <view class='list_images_list'>
+            <image src='{{host}}{{item.pic[3]}}' wx:if='{{item.pic[3]!=undefined}}'></image>
+            <!-- <image src='../../imgs/photo.png' wx:if='{{item.pic[3]==undefined}}'></image> -->
+          </view>
+          <view class='list_images_list'>
+            <image src='{{host}}{{item.pic[4]}}' wx:if='{{item.pic[4]!=undefined}}'></image>
+            <!-- <image src='../../imgs/photo.png' wx:if='{{item.pic[4]==undefined}}'></image> -->
+          </view>
         </view>
-        <view class='list_images_list'>
-          <image src='../../imgs/photo.png'></image>
+        <view class='coupons' wx:if='{{item.coupons[0]!=undefined}}'>
+          <view class='list_coupons' wx:for='{{item.coupons}}' wx:for-item="coupon" wx:for-index="idx" wx:if='{{idx<2}}'>
+            <view class='list_coupons_image'><image src='../../imgs/photo.png'></image></view>
+            <view>{{coupon.name}}</view>
+          </view>
+          <view class='list_coupons' wx:for='{{item.coupons}}' wx:for-item="coupon" wx:for-index="idx" wx:if='{{idx>=2 && allCoupon}}'>
+            <view class='list_coupons_image'><image src='../../imgs/photo.png'></image></view>
+            <view>{{coupon.name}}</view>
+          </view>
         </view>
-        <view class='list_images_list'>
-          <image src='../../imgs/photo.png'></image>
-        </view>
-        <view class='list_images_list'>
-          <image src='../../imgs/photo.png'></image>
-        </view>
-      </view>
-      <view class='list_btn'>
-        <view class='btn_list'>
-            <image src='../../imgs/unlike.png'></image>1
-        </view>
-        <view class='btn_list'>
-          <image src='../../imgs/info.png'></image>22
-          
-        </view>
-        <view class='btn_list border_unset'>
-          <image src='../../imgs/view.png'></image>333
+        <view class='list_btn'>
+          <view class='btn_list' bindtap='likeStore' data-storeId='{{item.id}}' data-status='{{item.islike}}' data-index='{{index}}'>
+              <image src='../../imgs/unlike.png' wx:if='{{item.islike==0}}'></image>
+              <image src='../../imgs/like.png' wx:if='{{item.islike==1}}'></image>{{item.like}}
+          </view>
+          <view class='btn_list'>
+            <image src='../../imgs/info.png'></image>{{item.comment}}
+            
+          </view>
+          <view class='btn_list border_unset'>
+            <image src='../../imgs/view.png'></image>{{item.view}}
+          </view>
         </view>
       </view>
     </view>
-    <view class='list'>
-      <view class='list_tit'>
-        <view class='list_tit_left'>
-          <image src='../../imgs/photo.png'></image>
-        </view>
-        <view class='list_tit_right'>
-          <view class='list_tit_right_name'>蓝尊美食汇自助烤肉肉肉肉</view>
-          <view class='list_tit_right_add'>
-            <image src='../../imgs/position.png'></image>
-            <span>海路良基雅苑一楼……</span><span>100m</span>
-          </view>
-        </view>
-      </view>
-      <view class='list_label'>
-        <view class='label_list'>好吃</view>
-        <view class='label_list'>烤肉</view>
-        <view class='label_list'>我好喜欢</view>
-      </view>
-      <view class='list_images'>
-        <view class='list_images_list'>
-          <image src='../../imgs/photo.png'></image>
-        </view>
-        <view class='list_images_list'>
-          <image src='../../imgs/photo.png'></image>
-        </view>
-        <view class='list_images_list'>
-          <image src='../../imgs/photo.png'></image>
-        </view>
-        <view class='list_images_list'>
-          <image src='../../imgs/photo.png'></image>
-        </view>
-      </view>
-      <view class='list_btn'>
-        <view class='btn_list'>
-            <image src='../../imgs/unlike.png'></image>1
-        </view>
-        <view class='btn_list'>
-          <image src='../../imgs/info.png'></image>22
-        </view>
-        <view class='btn_list border_unset'>
-          <image src='../../imgs/view.png'></image>333
-        </view>
-      </view>
-    </view>
-    <view class='list'>
-      <view class='list_tit'>
-        <view class='list_tit_left'>
-          <image src='../../imgs/photo.png'></image>
-        </view>
-        <view class='list_tit_right'>
-          <view class='list_tit_right_name'>蓝尊美食汇自助烤肉肉肉肉</view>
-          <view class='list_tit_right_add'>
-            <image src='../../imgs/position.png'></image>
-            <span>海路良基雅苑一楼……</span><span>100m</span>
-          </view>
-        </view>
-      </view>
-      <view class='list_label'>
-        <view class='label_list'>好吃</view>
-        <view class='label_list'>烤肉</view>
-        <view class='label_list'>我好喜欢</view>
-      </view>
-      <view class='list_images'>
-        <view class='list_images_list'>
-          <image src='../../imgs/photo.png'></image>
-        </view>
-        <view class='list_images_list'>
-          <image src='../../imgs/photo.png'></image>
-        </view>
-        <view class='list_images_list'>
-          <image src='../../imgs/photo.png'></image>
-        </view>
-        <view class='list_images_list'>
-          <image src='../../imgs/photo.png'></image>
-        </view>
-      </view>
-      <view class='list_btn'>
-        <view class='btn_list'>
-            <image src='../../imgs/unlike.png'></image>1
-        </view>
-        <view class='btn_list'>
-          <image src='../../imgs/info.png'></image>22
-        </view>
-        <view class='btn_list border_unset'>
-          <image src='../../imgs/view.png'></image>333
-        </view>
-      </view>
-    </view>
-    <view class='list'>
-      <view class='list_tit'>
-        <view class='list_tit_left'>
-          <image src='../../imgs/photo.png'></image>
-        </view>
-        <view class='list_tit_right'>
-          <view class='list_tit_right_name'>蓝尊美食汇自助烤肉肉肉肉</view>
-          <view class='list_tit_right_add'>
-            <image src='../../imgs/position.png'></image>
-            <span>海路良基雅苑一楼……</span><span>100m</span>
-          </view>
-        </view>
-      </view>
-      <view class='list_label'>
-        <view class='label_list'>好吃</view>
-        <view class='label_list'>烤肉</view>
-        <view class='label_list'>我好喜欢</view>
-      </view>
-      <view class='list_images'>
-        <view class='list_images_list'>
-          <image src='../../imgs/photo.png'></image>
-        </view>
-        <view class='list_images_list'>
-          <image src='../../imgs/photo.png'></image>
-        </view>
-        <view class='list_images_list'>
-          <image src='../../imgs/photo.png'></image>
-        </view>
-        <view class='list_images_list'>
-          <image src='../../imgs/photo.png'></image>
-        </view>
-      </view>
-      <view class='list_btn'>
-        <view class='btn_list'>
-            <image src='../../imgs/unlike.png'></image>1
-        </view>
-        <view class='btn_list'>
-          <image src='../../imgs/info.png'></image>22
-        </view>
-        <view class='btn_list border_unset'>
-          <image src='../../imgs/view.png'></image>333
-        </view>
-      </view>
-    </view> 
-
-  </view>
+  </scroll-view>
 </view>
 <view class='map_btn'></view>
